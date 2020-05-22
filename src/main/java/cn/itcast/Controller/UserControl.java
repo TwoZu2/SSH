@@ -42,8 +42,8 @@ public class UserControl extends ActionSupport implements ModelDriven {
 //    }
 
     public String save(){
-        System.out.println(user);
-        System.out.println("测试111111111111111111");
+
+
         userService.SaveUser(user);
         System.out.println("as");
         return SUCCESS;
