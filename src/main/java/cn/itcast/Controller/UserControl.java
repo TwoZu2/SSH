@@ -43,7 +43,7 @@ public class UserControl extends ActionSupport implements ModelDriven {
 
     public String save(){
 
-
+        System.out.println("测试修改");
         userService.SaveUser(user);
         System.out.println("as");
         return SUCCESS;
