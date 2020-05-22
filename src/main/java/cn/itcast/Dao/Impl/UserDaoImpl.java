@@ -13,6 +13,7 @@ public class UserDaoImpl implements UserDao {
     Util util;
     @Override
     public Object FindUserById(User user) {
+        System.out.println();
         return util.FindById(user.getClass(),user.getUid());
     }
 
