@@ -36,6 +36,23 @@
         <property name="mappingResources">
             <list>
                 <value>Mapper/User.hbm.xml</value>
+                <value>Mapper/Administrator.hbm.xml</value>
+                <value>Mapper/Apply.hbm.xml</value>
+                <value>Mapper/Appointment.hbm.xml</value>
+                <value>Mapper/Customer.hbm.xml</value>
+                <value>Mapper/Contactus.hbm.xml</value>
+                <value>Mapper/Department.hbm.xml</value>
+                <value>Mapper/Employees.hbm.xml</value>
+                <value>Mapper/Industrynews.hbm.xml</value>
+                <value>Mapper/Inventory.hbm.xml</value>
+                <value>Mapper/Location.hbm.xml</value>
+                <value>Mapper/Message.hbm.xml</value>
+                <value>Mapper/News.hbm.xml</value>
+                <value>Mapper/Recruitment.hbm.xml</value>
+                <value>Mapper/Repairs.hbm.xml</value>
+                <value>Mapper/Selling.hbm.xml</value>
+                <value>Mapper/Service.hbm.xml</value>
+                <value>Mapper/Storages.hbm.xml</value>
             </list>
         </property>
     </bean>
