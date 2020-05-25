@@ -29,5 +29,7 @@
         <property name="empIdentity">
             <column name="EmpIdentity" sql-type="varchar(50)" length="50"/>
         </property>
+        <many-to-one name="location" class="cn.itcast.Entity.Location" column="PostionId"/>
     </class>
+
 </hibernate-mapping>

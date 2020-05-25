@@ -10,6 +10,7 @@ import java.util.List;
 
 
 public interface Util {
+    public List<Object> FindAll(String hql);
     public Object FindById(Class c,Integer id);
     public boolean SaveOrUpdate(Object obj);
     public boolean DeleteByID(Object obj);

@@ -1,5 +1,6 @@
 package cn.itcast.Utils.Impl;
 
+import cn.itcast.Entity.News;
 import cn.itcast.Entity.User;
 import cn.itcast.Utils.Util;
 import org.hibernate.SessionFactory;
@@ -25,6 +26,11 @@ public class UtilImpl extends HibernateDaoSupport implements Util {
     public void setSF(SessionFactory sessionFactory){
         super.setSessionFactory(sessionFactory);
 
+    }
+
+    @Override
+    public List<Object> FindAll(String hql) {
+        return this.getHibernateTemplate().findByExample(new News());
     }
 
     @Override

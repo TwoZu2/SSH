@@ -14,7 +14,10 @@
         <property name="locText">
             <column name="LocText" sql-type="varchar(100)" length="100" not-null="true"/>
         </property>
-
+            <set name="employees">
+                <key column="PostionId"/>
+                <one-to-many class="cn.itcast.Entity.Employees"/>
+            </set>
         <many-to-one name="departmentByDeparId" class="cn.itcast.Entity.Department">
             <column name="DeparId"/>
         </many-to-one>

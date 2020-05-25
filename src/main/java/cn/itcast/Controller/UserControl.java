@@ -1,9 +1,14 @@
 package cn.itcast.Controller;
 
 
+import cn.itcast.Dao.INewsDao;
+import cn.itcast.Entity.Department;
+import cn.itcast.Entity.Location;
+import cn.itcast.Entity.News;
 import cn.itcast.Entity.User;
 import cn.itcast.Service.UserService;
 
+import cn.itcast.Utils.Util;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -30,7 +35,10 @@ public class UserControl extends ActionSupport implements ModelDriven {
     private User user ;
     @Autowired
     private UserService userService;
-
+    @Autowired
+    INewsDao iNewsDao;
+        @Autowired
+    Util util;
 // private  JSONArray array ;
 //
 //    public JSONArray getArray() {
@@ -59,26 +67,19 @@ public class UserControl extends ActionSupport implements ModelDriven {
     }
 
     public String findUser() throws UnsupportedEncodingException {
-//      Object obj=  userService.FindUserById(user);
-//
-//      System.out.println(obj);
-//        return SUCCESS;
-        List a = new ArrayList();
-        user.setUid(1);
-        user.setUsername("ss");
-        user.setPassword("sad");
-        a.add(user);
-        System.out.println("as");
 
-//      JSONArray array=   JSONArray.fromObject(a);
-//      array.add("d",)
+    List<Object> k = iNewsDao.FindAll();
+        System.out.println(k.size());
+
         JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code",0);
+        jsonObject.put("msg","");
+        jsonObject.put("count",k.size());
+        jsonObject.put("date",k);
 
-        jsonObject.put("date",a);
-        jsonObject.put("msg","成功");
         System.out.println(jsonObject);
 
-
+//          System.out.println(util.FindById(Location.class,1));
 
         return SUCCESS ;
 

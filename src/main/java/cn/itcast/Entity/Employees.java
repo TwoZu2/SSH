@@ -9,6 +9,15 @@ public class Employees {
     private String empPhone;
     private String empTime;
     private String empIdentity;
+    private Location location;
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
     public int getEmpId() {
         return empId;
@@ -105,5 +114,20 @@ public class Employees {
         result = 31 * result + (empTime != null ? empTime.hashCode() : 0);
         result = 31 * result + (empIdentity != null ? empIdentity.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Employees{" +
+                "empId=" + empId +
+                ", empName='" + empName + '\'' +
+                ", empSex='" + empSex + '\'' +
+                ", empAge=" + empAge +
+                ", empAddress='" + empAddress + '\'' +
+                ", empPhone='" + empPhone + '\'' +
+                ", empTime='" + empTime + '\'' +
+                ", empIdentity='" + empIdentity + '\'' +
+
+                '}';
     }
 }
