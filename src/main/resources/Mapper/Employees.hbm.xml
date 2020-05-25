@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.itcast.Entity.Employees" table="employees" schema="maintain">
+        <id name="empId">
+            <column name="EmpId" sql-type="int(11)"/>
+        </id>
+        <property name="empName">
+            <column name="EmpName" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="empSex">
+            <column name="EmpSex" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="empAge">
+            <column name="EmpAge" sql-type="int(11)"/>
+        </property>
+        <property name="empAddress">
+            <column name="EmpAddress" sql-type="varchar(50)" length="50"/>
+        </property>
+        <property name="empPhone">
+            <column name="EmpPhone" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="empTime">
+            <column name="EmpTime" sql-type="varchar(50)" length="50"/>
+        </property>
+        <property name="empIdentity">
+            <column name="EmpIdentity" sql-type="varchar(50)" length="50"/>
+        </property>
+    </class>
+</hibernate-mapping>

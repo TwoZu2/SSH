@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="SSH_Test" />
         <module name="SSH" />
+        <module name="Two-SSH" />
       </profile>
     </annotationProcessing>
   </component>
