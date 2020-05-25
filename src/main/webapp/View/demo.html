@@ -2,11 +2,12 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
 <!--    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
-    <script src="resources/layui/jquery-3.1.1.min.js"></script>
+    <script src="../resources/layui/jquery-3.1.1.min.js"></script>
 <!--    <link rel="stylesheet" href="layui/css/layui.css">-->
-    <link rel="stylesheet" href="resources/layui/css/layui.css">
+    <link rel="stylesheet" href="../resources/layui/css/layui.css">
+
 <!--    <script src="layui\layui.js"></script>-->
-    <script src="resources/layui/layui.js"></script>
+    <script src="../resources/layui/layui.js"></script>
     <meta charset="utf-8" />
     <style type="text/css">
         .container{
@@ -71,6 +72,7 @@
     </style>
 </head>
 <body >
+
 <form class="layui-form" method="post">
     <div class="container">
         <button class="close" title="关闭">X</button>
@@ -113,7 +115,7 @@
 
     </div>
 </form>
-<script type="text/javascript" src="layui/layui.js"></script>
+
 <!--<script>-->
 
 <!--    // layui.use(['form', 'layedit', 'laydate'], function(){-->
@@ -171,14 +173,14 @@
 
 
         $.ajax({
-            url: "User_findUser",    // 提交到controller的url路径
+            url: "../User_findUser",    // 提交到controller的url路径
             type: "post",    // 提交方式
             data: {"username":name,"password":password},  // data为String类型，必须为 Key/Value 格式。
             // 服务器端返回的数据类型
 
             success: function (data) {
 
-                alert(JSON.stringify(data))
+                alert(data)
 
 
 
@@ -212,7 +214,7 @@
             // 请求成功后的回调函数，其中的参数data为controller返回的map,也就是说,@ResponseBody将返回的map转化为JSON格式的数据，然后通过data这个参数取JSON数据中的值
             if(data==="1"){
 
-                  window.location.href="Sub_page/index.jsp";
+                  window.location.href="../index.jsp";
 
 
             }else {

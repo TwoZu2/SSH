@@ -12,12 +12,9 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <welcome-file-list>
-    <welcome-file>demo.html</welcome-file>
+    <welcome-file>View/demo.html</welcome-file>
   </welcome-file-list>
-  <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.html</url-pattern>
-  </servlet-mapping>
+
 <!--  &lt;!&ndash;Spring 的框架的核心监听器&ndash;&gt;-->
 <!--  &lt;!&ndash;来自spring-web依赖&ndash;&gt;-->
 <!--  &lt;!&ndash;spring配置文件的位置&ndash;&gt;-->
@@ -31,7 +28,15 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:ApplicationContext.xml</param-value>
   </context-param>
-
+  <!-- 配置openSessionView解决懒加载 -->
+  <filter>
+    <filter-name>OpenSessionInViewFilter</filter-name>
+    <filter-class>org.springframework.orm.hibernate5.support.OpenSessionInViewFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>OpenSessionInViewFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
   <!--Struts2的框架的核心过滤器的配置-->
   <filter>
     <filter-name>struts</filter-name>
@@ -46,15 +51,7 @@
     </init-param>
 
   </filter>
-  <!-- 配置openSessionView解决懒加载 -->
-  <filter>
-    <filter-name>OpenSessionInViewFilter</filter-name>
-    <filter-class>org.springframework.orm.hibernate5.support.OpenSessionInViewFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>OpenSessionInViewFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
+
   <!--对所有用户请求进行过滤-->
   <filter-mapping>
     <filter-name>struts</filter-name>
