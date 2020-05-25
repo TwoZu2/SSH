@@ -4,8 +4,7 @@ public class Location {
     private int locId;
     private String locName;
     private String locText;
-    private Apply applyByDeparId;
-    private Apply applyByDeparId_0;
+
     private Department departmentByDeparId;
 
     public int getLocId() {
@@ -54,21 +53,7 @@ public class Location {
         return result;
     }
 
-    public Apply getApplyByDeparId() {
-        return applyByDeparId;
-    }
 
-    public void setApplyByDeparId(Apply applyByDeparId) {
-        this.applyByDeparId = applyByDeparId;
-    }
-
-    public Apply getApplyByDeparId_0() {
-        return applyByDeparId_0;
-    }
-
-    public void setApplyByDeparId_0(Apply applyByDeparId_0) {
-        this.applyByDeparId_0 = applyByDeparId_0;
-    }
 
     public Department getDepartmentByDeparId() {
         return departmentByDeparId;

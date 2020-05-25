@@ -6,9 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="SSH_Test" />
         <module name="SSH" />
         <module name="Two-SSH" />
+        <module name="SSH_Test" />
       </profile>
     </annotationProcessing>
   </component>

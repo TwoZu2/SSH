@@ -3,7 +3,7 @@ package cn.itcast.Controller;
 
 import cn.itcast.Entity.User;
 import cn.itcast.Service.UserService;
-import com.mysql.cj.xdevapi.JsonArray;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -13,7 +13,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.junit.jupiter.api.Test;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -57,7 +57,7 @@ public class UserControl extends ActionSupport implements ModelDriven {
       boolean b=  userService.DeleteUserById(user);
         return SUCCESS;
     }
-    @Test
+
     public String findUser() throws UnsupportedEncodingException {
 //      Object obj=  userService.FindUserById(user);
 //

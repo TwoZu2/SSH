@@ -14,12 +14,7 @@
         <property name="locText">
             <column name="LocText" sql-type="varchar(100)" length="100" not-null="true"/>
         </property>
-        <many-to-one name="applyByDeparId" class="cn.itcast.Entity.Apply">
-            <column name="DeparId"/>
-        </many-to-one>
-        <many-to-one name="applyByDeparId_0" class="cn.itcast.Entity.Apply">
-            <column name="DeparId"/>
-        </many-to-one>
+
         <many-to-one name="departmentByDeparId" class="cn.itcast.Entity.Department">
             <column name="DeparId"/>
         </many-to-one>
