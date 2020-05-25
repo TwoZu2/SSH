@@ -14,11 +14,7 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
 
-  <!--Spring 的框架的核心监听器-->
-  <!--来自spring-web依赖-->
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
+
 
   <!--spring配置文件的位置-->
   <context-param>
@@ -48,6 +44,10 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
-
+  <!--Spring 的框架的核心监听器-->
+  <!--来自spring-web依赖-->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
 
 </web-app>

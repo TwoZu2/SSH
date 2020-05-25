@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="SSH_Test">
+    <output-path>$PROJECT_DIR$/out/artifacts/SSH_Test</output-path>
+    <root id="root">
+      <element id="archive" name="SSH_Test.jar">
+        <element id="module-output" name="SSH_Test" />
+      </element>
+    </root>
+  </artifact>
+</component>

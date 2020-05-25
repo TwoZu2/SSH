@@ -19,16 +19,19 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean SaveUser(User user) {
+
         return util.SaveOrUpdate(user);
     }
 
     @Override
     public boolean DeleteUserById(User user) {
+
         return util.DeleteByID(user);
     }
 
     @Override
     public boolean UpdateUserById(User user) {
+
         return util.SaveOrUpdate(user);
     }
 }

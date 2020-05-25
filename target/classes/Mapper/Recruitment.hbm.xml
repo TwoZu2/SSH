@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.itcast.Entity.Recruitment" table="recruitment" schema="maintain">
+        <id name="retId">
+            <column name="RetId" sql-type="int(11)"/>
+        </id>
+        <property name="retDepartment">
+            <column name="RetDepartment" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="retPostion">
+            <column name="RetPostion" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="retText">
+            <column name="RetText" sql-type="varchar(200)" length="200"/>
+        </property>
+        <property name="retDemand">
+            <column name="RetDemand" sql-type="varchar(100)" length="100"/>
+        </property>
+        <property name="retNum">
+            <column name="RetNum" sql-type="int(11)"/>
+        </property>
+        <property name="workPlace">
+            <column name="WorkPlace" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="beginTime">
+            <column name="BeginTime" sql-type="timestamp"/>
+        </property>
+        <property name="endTime">
+            <column name="EndTime" sql-type="datetime"/>
+        </property>
+    </class>
+</hibernate-mapping>

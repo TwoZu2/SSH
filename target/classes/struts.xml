@@ -9,16 +9,21 @@
     <!--struts的前后端交互路径设置-->
     <package name="ssh" extends="json-default" namespace="/">
 
-        <!--如JSP里 action指定为info_save则是指到action.InfoAction类中去找寻save方法 -->
+        <!--如JSP里 action指定为info_save则是指到action.InfoAction类中去找寻save方法
         <action name="User_*" class="userControl" method="{1}">
-<!--            <result name="success">ok.jsp</result>-->
+        -->
+<!--            <result name="success">ok.jsp</result>
             <result  type="json"/>
 
 
 
             <allowed-methods>delete,update,save,findUser</allowed-methods>
-        </action>
 
+        </action>
+        -->
+        <action name="show" class="userControl" method="findUser">
+            <result name="success">/ok.jsp</result>
+        </action>
     </package>
 
 </struts>
