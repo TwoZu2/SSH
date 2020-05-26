@@ -1,12 +1,20 @@
 package cn.itcast.Entity;
 
+import java.util.Set;
+
 public class Location {
     private int locId;
     private String locName;
     private String locText;
-
+    private Set<Employees> employees;
     private Department departmentByDeparId;
+    public Set<Employees> getEmployees() {
+        return employees;
+    }
 
+    public void setEmployees(Set<Employees> employees) {
+        this.employees = employees;
+    }
     public int getLocId() {
         return locId;
     }
@@ -61,5 +69,18 @@ public class Location {
 
     public void setDepartmentByDeparId(Department departmentByDeparId) {
         this.departmentByDeparId = departmentByDeparId;
+    }
+
+    @Override
+
+
+    public String toString() {
+        return "Location{" +
+                "locId=" + locId +
+                ", locName='" + locName + '\'' +
+                ", locText='" + locText + '\'' +
+                ", employees=" + employees +
+                ", departmentByDeparId=" + departmentByDeparId +
+                '}';
     }
 }

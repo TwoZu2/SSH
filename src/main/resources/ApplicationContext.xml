@@ -35,7 +35,7 @@
         <!--加载hibernate的映射文件-->
         <property name="mappingResources">
             <list>
-                <value>Mapper/User.hbm.xml</value>
+
                 <value>Mapper/Administrator.hbm.xml</value>
                 <value>Mapper/Apply.hbm.xml</value>
                 <value>Mapper/Appointment.hbm.xml</value>
