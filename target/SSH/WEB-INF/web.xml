@@ -1,0 +1,55 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+
+  <display-name>Archetype Created Web Application</display-name>
+
+<!--  <welcome-file-list>-->
+<!--    <welcome-file>index.jsp</welcome-file>-->
+<!--  </welcome-file-list>-->
+
+<!--  &lt;!&ndash;Spring 的框架的核心监听器&ndash;&gt;-->
+<!--  &lt;!&ndash;来自spring-web依赖&ndash;&gt;-->
+<!--  &lt;!&ndash;spring配置文件的位置&ndash;&gt;-->
+
+
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:ApplicationContext.xml</param-value>
+  </context-param>
+
+  <!--Struts2的框架的核心过滤器的配置-->
+  <filter>
+    <filter-name>struts</filter-name>
+    <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+
+    <!--struts.xml文件的位置 -->
+    <!--需要注意的是，若不加上struts-default.xml,struts-plugin.xml,会报错,
+        没有找到依赖配置文件com.opensymphony.xwork2.ObjectFactory。-->
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>struts-default.xml,struts-plugin.xml,struts.xml</param-value>
+    </init-param>
+
+  </filter>
+
+  <!--对所有用户请求进行过滤-->
+  <filter-mapping>
+    <filter-name>struts</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
+
+</web-app>

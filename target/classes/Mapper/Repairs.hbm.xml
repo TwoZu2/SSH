@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.itcast.Entity.Repairs" table="repairs" schema="maintain">
+        <id name="repId">
+            <column name="RepId" sql-type="int(11)"/>
+        </id>
+        <property name="repName">
+            <column name="RepName" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="repPhone">
+            <column name="RepPhone" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="repType">
+            <column name="RepType" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="repNum">
+            <column name="RepNum" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="repTime">
+            <column name="RepTime" sql-type="datetime"/>
+        </property>
+        <property name="time">
+            <column name="Time" sql-type="varchar(20)" length="20" not-null="true"/>
+        </property>
+        <property name="repService">
+            <column name="RepService" sql-type="varchar(10)" length="10"/>
+        </property>
+        <property name="repPerson">
+            <column name="RepPerson" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="repPrice">
+            <column name="RepPrice" sql-type="decimal(5,2)" precision="5" scale="2"/>
+        </property>
+        <property name="repState">
+            <column name="RepState" sql-type="varchar(2)" length="2" not-null="true"/>
+        </property>
+        <property name="carTime">
+            <column name="CarTime" sql-type="datetime"/>
+        </property>
+    </class>
+</hibernate-mapping>

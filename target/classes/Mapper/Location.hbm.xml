@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.itcast.Entity.Location" table="location" schema="maintain">
+        <id name="locId">
+            <column name="LocId" sql-type="int(11)"/>
+        </id>
+        <property name="locName">
+            <column name="LocName" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="locText">
+            <column name="LocText" sql-type="varchar(100)" length="100" not-null="true"/>
+        </property>
+
+        <many-to-one name="departmentByDeparId" class="cn.itcast.Entity.Department">
+            <column name="DeparId"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
