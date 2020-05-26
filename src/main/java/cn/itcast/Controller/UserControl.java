@@ -84,6 +84,7 @@ public class UserControl extends ActionSupport implements ModelDriven<News> {
            System.out.println(0);
            map.put("msg","0");
        }
+        news.setNewTitle(null);
         return SUCCESS;
     }
 
@@ -96,6 +97,7 @@ public class UserControl extends ActionSupport implements ModelDriven<News> {
           System.out.println(0);
           map.put("msg","0");
       }
+      news.setNewTitle(null);
         return SUCCESS;
     }
     public String delete(){
