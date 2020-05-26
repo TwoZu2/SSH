@@ -167,9 +167,7 @@
 
                 , {field: 'newMessage', title: '新闻内容', width:'40%',  sort: true,align: "center"}
 
-
                 , {fixed: 'right', title: '操作',width:'15%', toolbar: '#currentTableBar',align:"center"}
-
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 5,
@@ -212,7 +210,7 @@
                     maxmin:true,
                     shadeClose: true,
                     area: ['70%', '70%'],
-                    content: 'Sub_View/add.html',
+                    content: 'Sub_View/News_add.html',
                 });
                 $(window).on("resize", function () {
                     layer.full(index);
@@ -246,7 +244,7 @@
                     maxmin:true,
                     shadeClose: true,
                     area: ['70%', '70%'],
-                    content: 'Sub_View/edit.html',
+                    content: 'Sub_View/News_edit.html',
                 });
                 $(window).on("resize", function () {
                     layer.full(index);
