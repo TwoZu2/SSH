@@ -40,8 +40,7 @@ public class UserControl extends ActionSupport implements ModelDriven<News> {
 
     @Autowired
     INewsService iNewsService;
-    @Autowired
-    Util util;
+
         @Autowired
         private News news;
 
