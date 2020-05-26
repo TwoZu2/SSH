@@ -1,37 +1,17 @@
 package cn.itcast.Controller;
 
 
-import cn.itcast.Dao.INewsDao;
-import cn.itcast.Entity.Department;
-import cn.itcast.Entity.Location;
 import cn.itcast.Entity.News;
-
-
 import cn.itcast.Service.INewsService;
 import cn.itcast.Utils.Util;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-
-
-import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.interceptor.ServletResponseAware;
-import org.hibernate.internal.build.AllowSysOut;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletResponse;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Controller
@@ -124,8 +104,9 @@ public class UserControl extends ActionSupport implements ModelDriven<News> {
                 map = iNewsService.FindAll(news,Integer.parseInt(page),Integer.parseInt(limit));
 
 
-
                 return "success";
+
+
 
 
 
