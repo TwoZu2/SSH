@@ -1,7 +1,10 @@
 package cn.itcast.Entity;
 
-import java.sql.Timestamp;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
+@Component
 public class News {
     private int newId;
     private Timestamp newTime;
@@ -62,5 +65,15 @@ public class News {
         result = 31 * result + (newTitle != null ? newTitle.hashCode() : 0);
         result = 31 * result + (newMessage != null ? newMessage.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "News{" +
+                "newId=" + newId +
+                ", newTime=" + newTime +
+                ", newTitle='" + newTitle + '\'' +
+                ", newMessage='" + newMessage + '\'' +
+                '}';
     }
 }

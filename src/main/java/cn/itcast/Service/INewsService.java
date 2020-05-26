@@ -1,15 +1,14 @@
-package cn.itcast.Dao;
+package cn.itcast.Service;
 
 import cn.itcast.Entity.News;
 
 import java.util.List;
 import java.util.Map;
 
-public interface INewsDao {
-    public Map FindAll(Class z, int page, int no);
-    public Map FindLike(Class c,String str,int page, int limit);
+public interface INewsService {
+    public Map FindAll(News news, int page, int limit);
+    public Map FindLike(News news,int page, int limit);
     public boolean save(News news);
     public boolean UpdateById(News news);
     public boolean DeleteById(News news);
-
 }
