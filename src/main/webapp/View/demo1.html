@@ -148,7 +148,7 @@
 
         table.render({
             elem: '#currentTableId',
-            url: 'User_findUser',
+            url: '../User_findUser',
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -172,7 +172,7 @@
 
 
 
-                , {fixed: 'right', title: '操作',width:'15%', toolbar: '#barDemo',align:"center"}
+                , {fixed: 'right', title: '操作',width:'15%', toolbar: '#currentTableBar',align:"center"}
 
             ]],
             limits: [10, 15, 20, 25, 50, 100],
@@ -183,7 +183,9 @@
 
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
-            var result = JSON.stringify(data.field);
+
+
+            var result = JSON.stringify(data.field.username);
             layer.alert(result, {
                 title: '最终的搜索信息'
             });
@@ -194,7 +196,7 @@
                     curr: 1
                 }
                 , where: {
-                    searchParams: result
+                    "username": result
                 }
             }, 'data');
 
@@ -212,11 +214,12 @@
                     shade: 0.2,
                     maxmin:true,
                     shadeClose: true,
-                    area: ['100%', '100%'],
-                    content: '../page/table/add.html',
+                    area: ['70%', '70%'],
+                    content: 'add.html',
                 });
                 $(window).on("resize", function () {
                     layer.full(index);
+
                 });
             } else if (obj.event === 'delete') {  // 监听删除操作
                 var checkStatus = table.checkStatus('currentTableId')
@@ -241,7 +244,7 @@
                     maxmin:true,
                     shadeClose: true,
                     area: ['100%', '100%'],
-                    content: '../page/table/edit.html',
+                    content: 'edit.html',
                 });
                 $(window).on("resize", function () {
                     layer.full(index);

@@ -1,7 +1,7 @@
 package cn.itcast.Utils.Impl;
 
 import cn.itcast.Entity.News;
-import cn.itcast.Entity.User;
+
 import cn.itcast.Utils.Util;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
