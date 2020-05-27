@@ -35,13 +35,12 @@ import java.util.*;
 
 
 @Controller
-public class UserControl extends ActionSupport implements ModelDriven<News> {
+public class NewsControl extends ActionSupport implements ModelDriven<News> {
 
 
     @Autowired
     INewsService iNewsService;
-    @Autowired
-    Util util;
+
         @Autowired
         private News news;
 
@@ -102,7 +101,7 @@ public class UserControl extends ActionSupport implements ModelDriven<News> {
     }
     public String delete(){
 
-
+        System.out.println(news);
         if(iNewsService.DeleteById(news)){
 
             map.put("msg","1");

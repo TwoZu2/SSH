@@ -9,7 +9,7 @@
             <column name="ContId" sql-type="int(11)"/>
         </id>
         <property name="contImage">
-            <column name="ContImage" sql-type="int(11)" not-null="true"/>
+            <column name="ContImage" sql-type="int(11)" />
         </property>
         <property name="contName">
             <column name="ContName" sql-type="varchar(30)" length="30"/>
@@ -21,7 +21,7 @@
             <column name="ContTime" sql-type="timestamp"/>
         </property>
         <property name="replyContent">
-            <column name="ReplyContent" sql-type="varchar(200)" length="200" not-null="true"/>
+            <column name="ReplyContent" sql-type="varchar(200)" length="200" />
         </property>
         <property name="retshow">
             <column name="Retshow" sql-type="varchar(5)" length="5"/>

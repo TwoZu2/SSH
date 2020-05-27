@@ -20,8 +20,9 @@ public class NewsDaoImpl implements INewsDao {
     }
 
     @Override
-    public Map FindLike(Class c, String str, int page, int limit) {
-        return util.FindLike(c,str,page,limit);
+    public Map FindLike(Class c, Map map, int page, int limit) {
+
+        return util.FindLike(c,map,page,limit);
     }
 
     @Override

@@ -1,5 +1,8 @@
 package cn.itcast.Entity;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Message {
     private int megId;
     private String megName;
@@ -61,5 +64,15 @@ public class Message {
         result = 31 * result + (megContent != null ? megContent.hashCode() : 0);
         result = 31 * result + (replyContent != null ? replyContent.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "megId=" + megId +
+                ", megName='" + megName + '\'' +
+                ", megContent='" + megContent + '\'' +
+                ", replyContent='" + replyContent + '\'' +
+                '}';
     }
 }
