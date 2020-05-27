@@ -6,6 +6,7 @@ import cn.itcast.Utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,9 @@ public class NewsDaoImpl implements INewsDao {
     }
     @Override
     public Map FindLike(Class c, String str, int page, int limit) {
-        return util.FindLike(c,str,page,limit);
+        Map m = new HashMap();
+        m.put("",c.getClass());
+        return util.FindLike(c,m,page,limit);
     }
 
     @Override

@@ -58,7 +58,16 @@ public class UtilImpl extends HibernateDaoSupport implements Util {
     }
 
     @Override
-    public Map FindLike(Class c, String str,int page, int limit) {
+    //参数里面的Map  是 模糊查询的条件 key 是属性名(字段名) value 是 属性值
+    public Map FindLike(Class c, Map<String,String> map,int page, int limit) {
+        //便利Map  获得字段名和值
+        String str = null;
+        String value=null;
+        for(Map.Entry<String, String> map1 :map.entrySet()){
+            str=  map1.getKey();
+            value= map1.getValue();
+        }
+
         Map m = new HashMap();
         DetachedCriteria criteria=DetachedCriteria.forClass(c);
         /*
@@ -68,13 +77,13 @@ public class UtilImpl extends HibernateDaoSupport implements Util {
              MatchMode.START 字符串在最前面的位置，相当于“like 'value%'
              MatchMode.END 字符串在最后面的位置，相当于“like '%value'
         * */
-        criteria.add(Restrictions.ilike("newTitle", str,MatchMode.ANYWHERE));
+        criteria.add(Restrictions.ilike(str,value,MatchMode.ANYWHERE));
         Long totalCount = (Long) criteria.setProjection(Projections.rowCount()).getExecutableCriteria(Objects.requireNonNull(this.getHibernateTemplate().getSessionFactory()).getCurrentSession()).uniqueResult();
         m.put("count",totalCount);
-            //如上
+        //如上
         criteria.setProjection(null);
         //模糊查询并放入map中
-        criteria.add(Restrictions.ilike("newTitle", str,MatchMode.ANYWHERE));
+        criteria.add(Restrictions.ilike(str,value,MatchMode.ANYWHERE));
         List<?> list = this.getHibernateTemplate().findByCriteria(criteria, page, limit);
         m.put("data",list);
         return m;
