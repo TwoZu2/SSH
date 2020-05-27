@@ -7,6 +7,7 @@
     <class name="cn.itcast.Entity.Service" table="service" schema="maintain">
         <id name="serId">
             <column name="SerId" sql-type="int(11)"/>
+            <generator class="native"></generator>
         </id>
         <property name="serName">
             <column name="SerName" sql-type="varchar(30)" length="30"/>

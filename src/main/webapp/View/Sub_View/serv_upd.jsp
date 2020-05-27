@@ -8,15 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../../resources/layui/jquery-3.1.1.min.js"></script>
-    <script src="../../resources/layui/layui.js" charset="utf-8"></script>
-
-    <link rel="stylesheet" href="../../resources/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css">
+    <script src="${pageContext.request.contextPath}/layui/layui.js"></script>
     <title>Title</title>
 
     <style>
@@ -40,19 +34,19 @@
         <label class="layui-form-label">id</label>
 
         <div class="layui-input-block">
-            <input type="text" value="" name="serId" id="serId" required  lay-verify="required" autocomplete="off" placeholder="请输入" class="layui-input">
+            <input type="text" value="${param.id}" name="name" id="id" required  lay-verify="required" autocomplete="off" placeholder="请输入" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">服务名称</label>
         <div class="layui-input-block">
-            <input type="text" value="" serName name="serName" id="serName" required  lay-verify="required" autocomplete="off" placeholder="请输入服务名称" class="layui-input">
+            <input type="text" value="${param.name}" ${param.zhuang} name="name" id="name" required  lay-verify="required" autocomplete="off" placeholder="请输入服务名称" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">服务价格</label>
         <div class="layui-input-block">
-            <input type="number" value="" name="serPrice" id="serPrice"  required  lay-verify="required" autocomplete="off" placeholder="请输入服务价格" class="layui-input">
+            <input type="number" value="${param.price}" name="price" id="price" ${param.zhuang} required  lay-verify="required" autocomplete="off" placeholder="请输入服务价格" class="layui-input">
         </div>
     </div>
 
@@ -60,7 +54,7 @@
         <label class="layui-form-label">服务介绍</label>
 
         <div class="layui-input-block">
-            <textarea name="serIntroduce" id="serIntroduce"   lay-verify="required" autocomplete="off" placeholder="请输入服务介绍" class="layui-textarea"></textarea>
+            <textarea name="text" id="text" ${param.zhuang}  lay-verify="required" autocomplete="off" placeholder="请输入服务介绍" class="layui-textarea">${param.text}</textarea>
         </div>
     </div>
 
@@ -108,7 +102,7 @@
 
             $.ajax({
 
-                url: "../../Service_update",    // 提交到controller的url路径
+                url: "../../Servletservupd",    // 提交到controller的url路径
                 type: "post",    // 提交方式
                 data:{"id":id,"name": name, "text":text,"type1":type1,"price":price}, // data为String类型，必须为 Key/Value 格式。
                 // 服务器端返回的数据类型
