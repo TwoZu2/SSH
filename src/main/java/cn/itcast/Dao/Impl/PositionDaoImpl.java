@@ -16,6 +16,7 @@ public class PositionDaoImpl implements IPositionDao {
     Util util;
     @Override
     public Map findAll(Class z, int page, int no) {
+
         return  util.FindAll(z,page,no) ;
     }
 

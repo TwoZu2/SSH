@@ -69,7 +69,9 @@ public class UtilImpl extends HibernateDaoSupport implements Util {
         }
         Map m = new HashMap();
         DetachedCriteria criteria=DetachedCriteria.forClass(c);
+
         /*
+
                 //模糊查询总行数
              MatchMode.EXACT 精确匹配，相当于 like 'value'
              MatchMode.ANYWHERE 字符串在中间位置，相当于 like '%value%'
@@ -85,6 +87,7 @@ public class UtilImpl extends HibernateDaoSupport implements Util {
         criteria.add(Restrictions.ilike(str,value,MatchMode.ANYWHERE));
         List<?> list = this.getHibernateTemplate().findByCriteria(criteria, page, limit);
         m.put("data",list);
+        System.out.println("1111111111111111111111111111111"+m);
         return m;
     }
     @Override

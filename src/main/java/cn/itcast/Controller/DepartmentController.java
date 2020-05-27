@@ -96,6 +96,7 @@ public class DepartmentController  extends  ActionSupport implements ModelDriven
             return "success";
         }else {
             map = departmentService.findAll(department, Integer.parseInt(page), Integer.parseInt(limit));
+            System.out.println(map);
             return "success";
         }
     }

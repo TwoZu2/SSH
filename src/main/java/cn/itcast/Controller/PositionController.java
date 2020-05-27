@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -95,7 +96,9 @@ public class PositionController extends ActionSupport implements ModelDriven<Loc
             return "success";
         }else {
             System.out.println("22222222222222222222222222222222222222222222222222222222222222");
+
             map = positionService.findAll(location, Integer.parseInt(page), Integer.parseInt(limit));
+            //System.out.println(positionService.findAll(location, Integer.parseInt(page), Integer.parseInt(limit)));
             System.out.println(map);
             return "success";
         }

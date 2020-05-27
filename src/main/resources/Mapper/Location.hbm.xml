@@ -23,3 +23,22 @@
         </many-to-one>
     </class>
 </hibernate-mapping>
+
+
+<!--
+
+
+    <class name="cn.itcast.Entity.Location" table="location" schema="maintain">
+        <id name="locId">
+            <column name="LocId" sql-type="int(11)"/>
+        </id>
+        <property name="locName">
+            <column name="LocName" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="locText">
+            <column name="LocText" sql-type="varchar(100)" length="100" not-null="true"/>
+        </property>
+
+    </class>
+
+-->

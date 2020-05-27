@@ -1,5 +1,6 @@
 package cn.itcast.Entity;
 
+import org.apache.struts2.json.annotations.JSON;
 import org.springframework.stereotype.Component;
 
 
@@ -11,6 +12,7 @@ public class Location {
     private String locText;
     private Set<Employees> employees;
     private Department departmentByDeparId;
+
     public Set<Employees> getEmployees() {
         return employees;
     }
@@ -42,19 +44,7 @@ public class Location {
         this.locText = locText;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        Location location = (Location) o;
-
-        if (locId != location.locId) return false;
-        if (locName != null ? !locName.equals(location.locName) : location.locName != null) return false;
-        if (locText != null ? !locText.equals(location.locText) : location.locText != null) return false;
-
-        return true;
-    }
 
     @Override
     public int hashCode() {
@@ -74,16 +64,14 @@ public class Location {
         this.departmentByDeparId = departmentByDeparId;
     }
 
+
+
     @Override
-
-
     public String toString() {
         return "Location{" +
                 "locId=" + locId +
                 ", locName='" + locName + '\'' +
                 ", locText='" + locText + '\'' +
-                ", employees=" + employees +
-                ", departmentByDeparId=" + departmentByDeparId +
                 '}';
     }
 }

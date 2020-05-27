@@ -156,7 +156,7 @@
                 icon: 'layui-icon-tips'
             }],
             cols: [[
-                {field: 'locId', title: '序号', width:'15%',  sort: true,align: "center"}
+                  {field: 'locId', title: '序号', width:'15%',  sort: true,align: "center"}
                 , {field: 'locName', title: '职位名称', width: '35%',align: "center"}
                 , {field: 'locText', title: '职位描述', width:'25%',sort: true,align: "center"}
                 , {fixed: 'right', title: '操作',width:'15%', toolbar: '#currentTableBar',align:"center"}
@@ -171,7 +171,7 @@
         form.on('submit(data-search-btn)', function (data) {
 
             //获取输入的数据(模糊查询的值)
-            var result = data.field.localName;
+            var result = data.field.locName;
             // layer.alert(result, {
             //     title: '最终的搜索信息'
             // });
@@ -242,13 +242,10 @@
                 });
                 return false;
             } else if (obj.event === 'delete') {
-
-
                 layer.confirm('真的删除ID为:'+data.locId+"的数据吗?", function (index) {
                     $.post("../Position_delete", {locId: data.locId}, function (ret) {
                         if (ret.msg === "1") {//删除成功，刷新当前页表格
                             layer.msg("删除成功", {icon: 1, time: 1000}, function () {
-
                                 obj.del();
                                 layer.close(index);
                             });
