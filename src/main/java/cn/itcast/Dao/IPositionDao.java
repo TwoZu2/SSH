@@ -17,7 +17,7 @@ public interface IPositionDao {
     /**
      * 模糊查询并进行分页
      * @param c
-     * @param str
+     * @param map
      * @param page
      * @param limit
      * @return

@@ -1,5 +1,8 @@
 package cn.itcast.Entity;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Employees {
     private int empId;
     private String empName;
