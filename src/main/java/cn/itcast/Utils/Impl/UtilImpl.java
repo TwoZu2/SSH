@@ -67,7 +67,6 @@ public class UtilImpl extends HibernateDaoSupport implements Util {
             str=  map1.getKey();
             value= map1.getValue();
         }
-
         Map m = new HashMap();
         DetachedCriteria criteria=DetachedCriteria.forClass(c);
         /*
@@ -88,11 +87,9 @@ public class UtilImpl extends HibernateDaoSupport implements Util {
         m.put("data",list);
         return m;
     }
-
     @Override
 //不用多说
     public boolean SaveOrUpdate(Object obj) {
-
       try {
            this.getHibernateTemplate().saveOrUpdate(obj);
 

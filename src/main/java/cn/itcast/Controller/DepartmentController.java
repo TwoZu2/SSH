@@ -99,7 +99,6 @@ public class DepartmentController  extends  ActionSupport implements ModelDriven
             return "success";
         }
     }
-
     @Override
     public Department getModel() {
         return department;
