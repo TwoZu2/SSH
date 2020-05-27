@@ -35,4 +35,9 @@ public class MesDaoImpl implements IMesDao {
     public boolean DeleteById(Contactus message) {
         return util.DeleteByID(message);
     }
+    @Override
+    public Map FindLike(Class c, Map map, int page, int limit) {
+
+        return util.FindLike(c,map,page,limit);
+    }
 }

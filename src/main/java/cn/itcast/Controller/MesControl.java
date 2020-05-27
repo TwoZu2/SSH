@@ -46,6 +46,17 @@ public class MesControl extends ActionSupport implements ModelDriven<Contactus> 
         this.limit = limit;
     }
     public String findAll(){
+        System.out.println(message);
+        if(message.getContName()!=null&&message.getContName().length()>0){
+            map = iMesService.FindLike(message,Integer.parseInt(page),Integer.parseInt(limit));
+
+
+            return SUCCESS;
+        }if(message.getRetshow()!=null&&message.getRetshow().length()>0){
+            map = iMesService.FindLike(message,Integer.parseInt(page),Integer.parseInt(limit));
+
+            return SUCCESS;
+        }
         map = iMesService.findAll(message,Integer.parseInt(page),Integer.parseInt(limit));
         System.out.println(map);
         return SUCCESS;

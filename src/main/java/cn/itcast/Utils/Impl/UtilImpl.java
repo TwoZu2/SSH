@@ -63,8 +63,9 @@ public class UtilImpl extends HibernateDaoSupport implements Util {
         for(Map.Entry<String, String> map1 :map.entrySet()){
           str=  map1.getKey();
            value= map1.getValue();
-        }
 
+        }
+        System.out.println(str+"   "+value);
         Map m = new HashMap();
         DetachedCriteria criteria=DetachedCriteria.forClass(c);
         /*

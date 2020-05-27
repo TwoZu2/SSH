@@ -94,34 +94,31 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">新闻标题</label>
                             <div class="layui-input-inline">
-<!--                                <input type="text" name="newTitle" autocomplete="off" class="layui-input">-->
-                                <select>
-                                    <option value="a">a</option>
-                                    <option value="b">b</option>
-                                </select>
+                                <input type="text" name="contName" autocomplete="off" class="layui-input">
+
                             </div>
                         </div>
-                        <!--                        <div class="layui-inline">-->
-                        <!--                            <label class="layui-form-label">用户性别</label>-->
-                        <!--                            <div class="layui-input-inline">-->
-                        <!--                                <input type="text" name="sex" autocomplete="off" class="layui-input">-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="layui-inline">-->
-                        <!--                            <label class="layui-form-label">用户城市</label>-->
-                        <!--                            <div class="layui-input-inline">-->
-                        <!--                                <input type="text" name="city" autocomplete="off" class="layui-input">-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
+                        <div class="layui-inline">
+                            <button type="submit" class="layui-btn layui-btn-primary"  lay-submit lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                        </div>
+                                                <div class="layui-inline">
+                                                    <label class="layui-form-label">显示状态</label>
+                                                    <div class="layui-input-inline">
+                                                        <select>
+                                                            <option value="">全部</option>
+                                                            <option value="1">已屏蔽</option>
+                                                            <option value="0">未屏蔽</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
                         <!--                        <div class="layui-inline">-->
                         <!--                            <label class="layui-form-label">用户职业</label>-->
                         <!--                            <div class="layui-input-inline">-->
                         <!--                                <input type="text" name="classify" autocomplete="off" class="layui-input">-->
                         <!--                            </div>-->
                         <!--                        </div>-->
-                        <div class="layui-inline">
-                            <button type="submit" class="layui-btn layui-btn-primary"  lay-submit lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
-                        </div>
+
                     </div>
                 </form>
             </div>
@@ -154,7 +151,7 @@
             elem: '#currentTableId',
             //请求地址
             url: '../Mes_findAll',
-            toolbar: '#toolbarDemo',
+
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
                 layEvent: 'LAYTABLE_TIPS',
@@ -211,14 +208,29 @@
         });
         //得到下拉框选中的值
         form.on('select()', function(data){
+                alert(data.value)
+            //获取输入的数据(条件查询)
+            var result = data.value;
 
 
+            //执行搜索重载(等于在执行一次上面+++++++++++的方法,不过会带上 result这个值,
+            // 这个值我们指定了name:newTitle ,跟实体类属性对应，所以会通过模型驱动封装到实体类 )
+            table.reload('currentTableId', {
+                page: {
+                    curr: 1
+                }
+                , where: {
+                    "retshow": result
+                }
+            }, 'data');
+
+            return false;
         });
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
 
             //获取输入的数据(模糊查询的值)
-            var result = data.field.newTitle;
+            var result = data.field.contName;
             // layer.alert(result, {
             //     title: '最终的搜索信息'
             // });
@@ -230,7 +242,7 @@
                     curr: 1
                 }
                 , where: {
-                    "newTitle": result
+                    "contName": result
                 }
             }, 'data');
 
