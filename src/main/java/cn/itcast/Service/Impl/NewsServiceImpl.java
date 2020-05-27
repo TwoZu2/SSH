@@ -37,7 +37,9 @@ public class NewsServiceImpl implements INewsService {
     public Map FindLike(News news, int page, int limit) {
         page--;
         page *= limit;
-        Map map=iNewsDao.FindLike(news.getClass(),news.getNewTitle(),page,limit);
+        Map m = new HashMap();
+        m.put("newTitle",news.getClass());
+        Map map=iNewsDao.FindLike(news.getClass(),m,page,limit);
         Map map1 = new HashMap();
         map1.put("code",0);
         map1.put("msg","");

@@ -99,10 +99,7 @@ public class UserControl extends ActionSupport implements ModelDriven<News> {
         return SUCCESS;
     }
     public String delete(){
-
-
         if(iNewsService.DeleteById(news)){
-
             map.put("msg","1");
         }else {
             System.out.println(0);

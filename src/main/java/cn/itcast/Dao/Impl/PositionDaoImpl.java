@@ -19,9 +19,10 @@ public class PositionDaoImpl implements IPositionDao {
     }
 
     @Override
-    public Map findLike(Class c, String str, int page, int limit) {
-        return util.FindLike(c,str,page,limit);
+    public Map findLike(Class c, Map map, int page, int limit) {
+        return util.FindLike(c,map,page,limit);
     }
+
 
     @Override
     public boolean save(Department department) {

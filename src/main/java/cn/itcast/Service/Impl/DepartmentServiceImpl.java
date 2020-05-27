@@ -1,6 +1,5 @@
 package cn.itcast.Service.Impl;
 
-import cn.itcast.Dao.IDao;
 import cn.itcast.Dao.IDepartmentDao;
 import cn.itcast.Entity.Department;
 import cn.itcast.Service.IDepartmentService;
@@ -32,7 +31,9 @@ public class DepartmentServiceImpl implements IDepartmentService {
     public Map findLike(Department department, int page, int limit) {
         page--;
         page *= limit;
-        Map map=departmentDao.findLike(department.getClass(),department.getDepName(),page,limit);
+        Map m = new HashMap();
+        m.put("depName",department.getClass());
+        Map map=departmentDao.findLike(department.getClass(),m,page,limit);
         Map map1 = new HashMap();
         map1.put("code",0);
         map1.put("msg","");

@@ -12,17 +12,14 @@ import java.util.Map;
 public class DepartmentDaoImpl implements IDepartmentDao {
     @Autowired
     Util util;
-
-
-
     @Override
     public Map findAll(Class z, int page, int no) {
         return util.FindAll(z,page,no);
     }
 
     @Override
-    public Map findLike(Class c, String str, int page, int limit) {
-        return util.FindLike(c,str,page,limit);
+    public Map findLike(Class c, Map map, int page, int limit) {
+        return util.FindLike(c,map,page,limit);
     }
 
     @Override

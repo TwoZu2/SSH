@@ -64,7 +64,6 @@ public class DepartmentController  extends  ActionSupport implements ModelDriven
         }
         department.setDepName(null);
         return SUCCESS;
-
     }
     public String delete(){
         System.out.println("delete");

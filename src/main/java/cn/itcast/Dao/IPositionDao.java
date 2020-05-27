@@ -22,7 +22,7 @@ public interface IPositionDao {
      * @param limit
      * @return
      */
-    Map findLike(Class c,String str,int page, int limit);
+    Map findLike(Class c,Map map,int page, int limit);
 
     /**
      * 添加

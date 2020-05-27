@@ -17,12 +17,12 @@ public interface IDepartmentDao {
     /**
      * 模糊查询并进行分页
      * @param c
-     * @param str
+     * @param map
      * @param page
      * @param limit
      * @return
      */
-  Map findLike(Class c,String str,int page, int limit);
+  Map findLike(Class c,Map map,int page, int limit);
 
     /**
      * 添加

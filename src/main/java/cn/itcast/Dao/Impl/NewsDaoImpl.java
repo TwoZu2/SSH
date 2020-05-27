@@ -19,12 +19,9 @@ public class NewsDaoImpl implements INewsDao {
         return util.FindAll(c,page,no);
     }
     @Override
-    public Map FindLike(Class c, String str, int page, int limit) {
-        Map m = new HashMap();
-        m.put("",c.getClass());
-        return util.FindLike(c,m,page,limit);
+    public Map FindLike(Class c, Map map, int page, int limit) {
+        return util.FindLike(c,map,page,limit);
     }
-
     @Override
     public boolean save(News news) {
         return util.SaveOrUpdate(news);

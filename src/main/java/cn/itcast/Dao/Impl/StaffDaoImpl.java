@@ -22,8 +22,8 @@ public class StaffDaoImpl implements IStaffDao {
     }
 
     @Override
-    public Map findLike(Class c, String str, int page, int limit) {
-        return util.FindLike(c,str,page,limit);
+    public Map findLike(Class c, Map map, int page, int limit) {
+        return util.FindLike(c,map,page,limit);
     }
 
     @Override
