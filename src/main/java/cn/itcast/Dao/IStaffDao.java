@@ -1,6 +1,7 @@
 package cn.itcast.Dao;
 
 import cn.itcast.Entity.Department;
+import cn.itcast.Entity.Employees;
 
 import java.util.Map;
 
@@ -28,20 +29,20 @@ public interface IStaffDao {
      * @param department (实体类)
      * @return
      */
-    boolean save(Department department);
+    boolean save(Employees employees);
 
     /**
      * 修改
      * @param department （实体类）
      * @return
      */
-    boolean updateById(Department department);
+    boolean updateById(Employees employees);
 
     /**
      * 删除
      * @param department  （实体类）
      * @return
      */
-    boolean deleteById(Department department);
+    boolean deleteById(Employees employees);
 
 }

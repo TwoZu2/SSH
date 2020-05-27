@@ -92,9 +92,9 @@
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">新闻标题</label>
+                            <label class="layui-form-label">员工姓名</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="newTitle" autocomplete="off" class="layui-input">
+                                <input type="text" name="empName" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <!--                        <div class="layui-inline">-->
@@ -149,7 +149,7 @@
         table.render({
             elem: '#currentTableId',
             //请求地址
-            url: '../User_findUser',
+            url: '../Staff_find',
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -157,16 +157,14 @@
                 icon: 'layui-icon-tips'
             }],
             cols: [[
-
-
-                {field: 'newId', title: '新闻编号', width:'15%',  sort: true,align: "center"}
-
-                , {field: 'newTime', title: '发布时间',templet : "<div>{{layui.util.toDateString(d.newTime, 'yyyy-MM-dd')}}</div>", width: '10%',align: "center"}
-
-                , {field: 'newTitle', title: '新闻标题', width:'20%',sort: true,align: "center"}
-
-                , {field: 'newMessage', title: '新闻内容', width:'40%',  sort: true,align: "center"}
-
+                {field: 'EmpId', title: '序号', width:'5%',  sort: true,align: "center"}
+                , {field: 'EmpName', title: '员工姓名', width: '7%',align: "center"}
+                , {field: 'EmpSex', title: '员工性别', width:'5%',sort: true,align: "center"}
+                , {field: 'EmpAge', title: '员工年龄', width:'5%',  sort: true,align: "center"}
+                , {field: 'EmpAddress', title: '家庭地址', width: '15%',align: "center"}
+                , {field: 'EmpPhone', title: '联系方式', width:'20%',sort: true,align: "center"}
+                , {field: 'EmpTime', title: '入职时间', width: '15%',align: "center"}
+                , {field: 'EmpIdentity', title: '身份证号码', width:'18%',sort: true,align: "center"}
                 , {fixed: 'right', title: '操作',width:'15%', toolbar: '#currentTableBar',align:"center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
@@ -179,19 +177,19 @@
         form.on('submit(data-search-btn)', function (data) {
 
             //获取输入的数据(模糊查询的值)
-            var result = data.field.newTitle;
+            var result = data.field.empName;
             // layer.alert(result, {
             //     title: '最终的搜索信息'
             // });
 
             //执行搜索重载(等于在执行一次上面+++++++++++的方法,不过会带上 result这个值,
-            // 这个值我们指定了name:newTitle ,跟实体类属性对应，所以会通过模型驱动封装到实体类 )
+            // 这个值我们指定了name:empName,跟实体类属性对应，所以会通过模型驱动封装到实体类 )
             table.reload('currentTableId', {
                 page: {
                     curr: 1
                 }
                 , where: {
-                    "newTitle": result
+                    "empName": result
                 }
             }, 'data');
 
@@ -210,7 +208,7 @@
                     maxmin:true,
                     shadeClose: true,
                     area: ['70%', '70%'],
-                    content: 'Sub_View/News_add.html',
+                    content: 'Sub_View/Staff_add.html',
                 });
                 $(window).on("resize", function () {
                     layer.full(index);
@@ -231,9 +229,8 @@
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
 
-
             //给打开的页面传值 (放入cookie)
-            document.cookie = "newId:" + data.newId + "&newTime:" + data.newTime + "&newTitle:"+data.newTitle +"&newMessage:"+data.newMessage;
+            document.cookie = "empId:" + data.empId + "&empName:" + data.empName + "&empSex:"+data.empSex +"&empAge:"+data.empAge+"&empAddress:"+data.empAddress+"&empPhone:"+data.empPhone+"&empTime:"+data.empTime+"&empIdentity:"+data.empIdentity;
 
             if (obj.event === 'edit') {
 
@@ -244,27 +241,23 @@
                     maxmin:true,
                     shadeClose: true,
                     area: ['70%', '70%'],
-                    content: 'Sub_View/News_edit.html',
+                    content: 'Sub_View/Staff_edit.html',
                 });
                 $(window).on("resize", function () {
                     layer.full(index);
                 });
                 return false;
             } else if (obj.event === 'delete') {
-
-
-                layer.confirm('真的删除ID为:'+data.newId+"的数据吗?", function (index) {
-                    $.post("../User_delete", {newId: data.newId}, function (ret) {
+                layer.confirm('真的删除ID为:'+data.empId+"的数据吗?", function (index) {
+                    $.post("../Staff_delete", {empId: data.empId}, function (ret) {
                         if (ret.msg === "1") {//删除成功，刷新当前页表格
                             layer.msg("删除成功", {icon: 1, time: 1000}, function () {
-
                                 obj.del();
                                 layer.close(index);
                             });
                         } else {  //删除失败
                             layer.alert("删除失败", {icon: 2,time: 1000}, function () {
                                 layer.close(index);
-
                             });
                         }
                     });

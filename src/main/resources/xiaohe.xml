@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <!--struts的前后端交互路径设置-->
+    <package name="xiaohe" extends="json-default" namespace="/">
+        <!-- 人员管理模块   （部门管理 ， 职位管理 ， 员工管理）-->
+
+        <!--  部门管理 -->
+        <action name="Department_*" class="departmentController" method="{1}">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+            <allowed-methods>delete,update,save,find</allowed-methods>
+        </action>
+        <!-- 职位管理   -->
+        <action name="Position_*" class="positionController" method="{1}">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+            <allowed-methods>delete,update,save,find</allowed-methods>
+        </action>
+        <!--  员工管理 -->
+        <action name="Staff_*" class="staffController" method="{1}">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+            <allowed-methods>delete,update,save,find</allowed-methods>
+        </action>
+
+    </package>
+</struts>

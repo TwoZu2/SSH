@@ -1,6 +1,7 @@
 package cn.itcast.Dao;
 
 import cn.itcast.Entity.Department;
+import cn.itcast.Entity.Location;
 
 import java.util.Map;
 
@@ -26,22 +27,22 @@ public interface IPositionDao {
 
     /**
      * 添加
-     * @param department (实体类)
+     *
      * @return
      */
-    boolean save(Department department);
+    boolean save(Location location);
 
     /**
      * 修改
-     * @param department （实体类）
+     * @param （实体类）
      * @return
      */
-    boolean updateById(Department department);
+    boolean updateById(Location location);
 
     /**
      * 删除
-     * @param department  （实体类）
+     * @param   （实体类）
      * @return
      */
-    boolean deleteById(Department department);
+    boolean deleteById(Location location);
 }

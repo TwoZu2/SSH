@@ -101,6 +101,7 @@ public class DepartmentController  extends  ActionSupport implements ModelDriven
     }
     @Override
     public Department getModel() {
+
         return department;
     }
 }

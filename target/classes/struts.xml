@@ -8,7 +8,6 @@
 
     <!--struts的前后端交互路径设置-->
     <package name="ssh" extends="json-default" namespace="/">
-
         <!--如JSP里 action指定为info_save则是指到action.InfoAction类中去找寻save方法 -->
         <action name="User_*" class="userControl" method="{1}">
 <!--            <result name="success">ok.jsp</result>-->
@@ -17,28 +16,6 @@
             </result>
             <allowed-methods>delete,update,save,findUser</allowed-methods>
         </action>
-        <!-- 人员管理模块   （部门管理 ， 职位管理 ， 员工管理）-->
-
-        <!--  部门管理 -->
-        <action name="Department_*" class="departmentController" method="{1}">
-            <result type="json">
-                <param name="root">map</param>
-            </result>
-            <allowed-methods>delete,update,save,find</allowed-methods>
-        </action>
-        <!-- 职位管理   -->
-        <action name="Position_*" class="positionController" method="{1}">
-            <result>/ok.html</result>
-            <allowed-methods>delete,update,save,find</allowed-methods>
-        </action>
-        <!--  员工管理 -->
-        <action name="Staff_*" class="staffController" method="{1}">
-            <result>/ok.html</result>
-            <allowed-methods>delete,update,save,find</allowed-methods>
-        </action>
-
-
-
-
     </package>
+    <include file="xiaohe.xml"></include>
 </struts>

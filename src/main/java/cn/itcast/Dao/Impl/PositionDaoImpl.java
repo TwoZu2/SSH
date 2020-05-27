@@ -2,6 +2,7 @@ package cn.itcast.Dao.Impl;
 
 import cn.itcast.Dao.IPositionDao;
 import cn.itcast.Entity.Department;
+import cn.itcast.Entity.Location;
 import cn.itcast.Utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,19 +24,20 @@ public class PositionDaoImpl implements IPositionDao {
         return util.FindLike(c,map,page,limit);
     }
 
-
     @Override
-    public boolean save(Department department) {
-        return util.SaveOrUpdate(department);
+    public boolean save(Location location) {
+        return util.SaveOrUpdate(location);
     }
 
     @Override
-    public boolean updateById(Department department) {
-        return util.SaveOrUpdate(department);
+    public boolean updateById(Location location) {
+        return util.SaveOrUpdate(location);
     }
 
     @Override
-    public boolean deleteById(Department department) {
-        return util.DeleteByID(department);
+    public boolean deleteById(Location location) {
+        return util.DeleteByID(location);
     }
+
+
 }
