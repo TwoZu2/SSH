@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.itcast.Entity.Contactus" table="contactus" schema="maintain">
+        <id name="contId">
+            <column name="ContId" sql-type="int(11)"/>
+        </id>
+        <property name="contImage">
+            <column name="ContImage" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="contName">
+            <column name="ContName" sql-type="varchar(30)" length="30"/>
+        </property>
+        <property name="contMessage">
+            <column name="ContMessage" sql-type="varchar(200)" length="200"/>
+        </property>
+        <property name="contTime">
+            <column name="ContTime" sql-type="timestamp"/>
+        </property>
+        <property name="replyContent">
+            <column name="ReplyContent" sql-type="varchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="retshow">
+            <column name="Retshow" sql-type="varchar(5)" length="5"/>
+        </property>
+    </class>
+</hibernate-mapping>
