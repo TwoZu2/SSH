@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface IServiceDao {
     public Map FindAll(Class z, int page, int no);
-    public Map FindLike(Class c,String str,int page, int limit);
+    public Map FindLike(Class c,Map<String,String> map,int page, int limit);
     public boolean save(Service service);
     public boolean UpdateById(Service service);
     public boolean DeleteById(Service service);

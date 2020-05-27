@@ -19,8 +19,8 @@ public class ServiceDaoImpl implements IServiceDao {
     }
 
     @Override
-    public Map FindLike(Class c, String str, int page, int limit) {
-        return util.FindLike(c,str,page,limit);
+    public Map FindLike(Class c, Map<String,String> map, int page, int limit) {
+        return util.FindLike(c, map,page,limit);
     }
 
     @Override

@@ -1,0 +1,61 @@
+package cn.itcast.Service.Impl;
+
+import cn.itcast.Dao.IMesDao;
+import cn.itcast.Entity.Contactus;
+import cn.itcast.Entity.Message;
+import cn.itcast.Entity.News;
+import cn.itcast.Service.IMesService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashMap;
+import java.util.Map;
+@Transactional
+@Service
+public class MesServiceImpl implements IMesService {
+    @Autowired
+    IMesDao iMesDao;
+    @Override
+    public Map findAll(Contactus message, int page, int limit) {
+        page--;
+        page *= limit;
+        Map map=iMesDao.findAll(message.getClass(),page,limit);
+        //设置返回的json 格式 (layui 硬性要求)
+        Map map1 = new HashMap();
+        map1.put("code",0);
+        map1.put("msg","");
+        //查询的总记录数
+        map1.put("count",map.get("count"));
+        map1.put("data",map.get("data"));
+        return map1;
+    }
+
+    @Override
+    public boolean UpdateById(Contactus message) {
+        return iMesDao.UpdateById(message);
+    }
+    @Override
+    public boolean DeleteById(Contactus message) {
+        return iMesDao.DeleteById(message);
+    }
+    @Override
+    public Map FindLike(Contactus message, int page, int limit) {
+        page--;
+        page *= limit;
+        Map m = new HashMap();
+        if(message.getContName()!=null&&message.getContName().length()>0){
+                m.put("contName",message.getContName());
+        }if(message.getRetshow()!=null&&message.getRetshow().length()>0){
+            m.put("retshow",message.getRetshow());
+        }
+
+        Map map=iMesDao.FindLike(message.getClass(),m,page,limit);
+        Map map1 = new HashMap();
+        map1.put("code",0);
+        map1.put("msg","");
+        map1.put("count",map.get("count"));
+        map1.put("data",map.get("data"));
+        return map1;
+    }
+}

@@ -33,10 +33,13 @@ public class ServiceServiceImpl implements IServiceService {
     }
 
     @Override
-    public Map FindLike(Service service, int page, int limit) {
+    public Map FindLike(Service service,int page, int limit) {
         page--;
         page *= limit;
-        Map map=serviceDao.FindLike(service.getClass(),service.getSerName(),page,limit);
+        Map m = new HashMap();
+        m.put("serName",service.getSerName());
+
+        Map map=serviceDao.FindLike(service.getClass(),m,page,limit);
         Map map1 = new HashMap();
         map1.put("code",0);
         map1.put("msg","");

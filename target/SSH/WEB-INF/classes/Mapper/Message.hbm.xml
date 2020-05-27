@@ -7,6 +7,7 @@
     <class name="cn.itcast.Entity.Message" table="message" schema="maintain">
         <id name="megId">
             <column name="MegId" sql-type="int(11)"/>
+            <generator class="increment"/>
         </id>
         <property name="megName">
             <column name="MegName" sql-type="varchar(20)" length="20"/>

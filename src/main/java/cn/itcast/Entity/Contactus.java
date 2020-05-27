@@ -1,7 +1,9 @@
 package cn.itcast.Entity;
 
-import java.sql.Timestamp;
+import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
+@Component
 public class Contactus {
     private int contId;
     private Integer contImage;
@@ -97,5 +99,18 @@ public class Contactus {
         result = 31 * result + (replyContent != null ? replyContent.hashCode() : 0);
         result = 31 * result + (retshow != null ? retshow.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Contactus{" +
+                "contId=" + contId +
+                ", contImage=" + contImage +
+                ", contName='" + contName + '\'' +
+                ", contMessage='" + contMessage + '\'' +
+                ", contTime=" + contTime +
+                ", replyContent='" + replyContent + '\'' +
+                ", retshow='" + retshow + '\'' +
+                '}';
     }
 }

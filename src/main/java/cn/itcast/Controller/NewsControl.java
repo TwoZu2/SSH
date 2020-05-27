@@ -3,7 +3,6 @@ package cn.itcast.Controller;
 
 import cn.itcast.Entity.News;
 import cn.itcast.Service.INewsService;
-import cn.itcast.Utils.Util;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ import java.util.Map;
 
 
 @Controller
-public class UserControl extends ActionSupport implements ModelDriven<News> {
+public class NewsControl extends ActionSupport implements ModelDriven<News> {
 
 
     @Autowired
@@ -81,7 +80,7 @@ public class UserControl extends ActionSupport implements ModelDriven<News> {
     }
     public String delete(){
 
-
+        System.out.println(news);
         if(iNewsService.DeleteById(news)){
 
             map.put("msg","1");
