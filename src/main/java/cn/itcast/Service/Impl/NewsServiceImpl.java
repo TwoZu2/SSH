@@ -52,6 +52,7 @@ public class NewsServiceImpl implements INewsService {
     }
     @Override
     public boolean UpdateById(News news) {
+
         return iNewsDao.UpdateById(news);
     }
     @Override

@@ -76,12 +76,9 @@ public class UtilImpl extends HibernateDaoSupport implements Util {
         //模糊查询并放入map中
         criteria.add(Restrictions.ilike("newTitle", str,MatchMode.ANYWHERE));
         List<?> list = this.getHibernateTemplate().findByCriteria(criteria, page, limit);
-
-
         m.put("data",list);
         return m;
     }
-
 
     @Override
 //不用多说

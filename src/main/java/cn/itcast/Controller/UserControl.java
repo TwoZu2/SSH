@@ -74,7 +74,6 @@ public class UserControl extends ActionSupport implements ModelDriven<News> {
     }
 
     public String save(){
-
         news.setNewId(0);
        if(iNewsService.save(news)){
            System.out.println(1);
