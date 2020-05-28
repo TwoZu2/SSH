@@ -30,7 +30,7 @@
             <column name="EmpIdentity" sql-type="varchar(50)" length="50"/>
         </property>
         <property name="postionId">
-            <column name="PostionId" sql-type="int(11)"/>
+            <column name="PostionId" sql-type="varchar(11)"/>
         </property>
     </class>
 

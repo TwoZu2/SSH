@@ -12,7 +12,7 @@ public class Employees {
     private String empPhone;
     private String empTime;
     private String empIdentity;
-    public int postionId;
+    public String postionId;
    // private Location location;
 
     public int getEmpId() {
@@ -79,11 +79,11 @@ public class Employees {
         this.empIdentity = empIdentity;
     }
 
-    public int getPostionId() {
+    public String getPostionId() {
         return postionId;
     }
 
-    public void setPostionId(int postionId) {
+    public void setPostionId(String postionId) {
         this.postionId = postionId;
     }
 

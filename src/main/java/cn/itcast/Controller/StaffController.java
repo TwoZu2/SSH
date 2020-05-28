@@ -93,7 +93,7 @@ public class StaffController extends ActionSupport implements ModelDriven<Employ
         System.out.println("find");
         System.out.println(employees.getPostionId());
         //判断是否模糊查询
-        if(employees.getPostionId() != 0 && employees.getPostionId()>0){
+        if(employees.getPostionId() != null && employees.getPostionId().length()>0){
             map= staffService.findLike(employees,Integer.parseInt(page),Integer.parseInt(limit));
             return "success";
         }else {
@@ -103,7 +103,6 @@ public class StaffController extends ActionSupport implements ModelDriven<Employ
             return "success";
         }
     }
-
     @Override
     public Employees getModel() {
         return employees;
