@@ -155,18 +155,20 @@
         var form = layui.form,
             layer = layui.layer,
             $ = layui.$;
-
+            alert(1)
         //监听提交
         form.on('submit(saveBtn)', function (data) {
+
             var index = layer.alert("确认修改?", {
                 title: '提示'
             }, function () {
+
                 $.ajax({
 
                     url: "../../Service_update",    // 提交到controller的url路径
                     type: "post",    // 提交方式
                     dataType: "json",
-                        data:{"serName":data.field.serName,"serPrice":data.field.serPrice,"serIntroduce":data.field.serIntroduce,"serviceType":data.field.serviceType}, // data为String类型，必须为 Key/Value 格式。
+                        data:{"serId":data.field.serId,"serName":data.field.serName,"serPrice":data.field.serPrice,"serIntroduce":data.field.serIntroduce,"serviceType":data.field.serviceType}, // data为String类型，必须为 Key/Value 格式。
                     // 服务器端返回的数据类型
 
                     success: function (data) {

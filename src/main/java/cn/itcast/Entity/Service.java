@@ -78,4 +78,15 @@ public class Service {
         result = 31 * result + (serviceType != null ? serviceType.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Service{" +
+                "serId=" + serId +
+                ", serName='" + serName + '\'' +
+                ", serPrice=" + serPrice +
+                ", serIntroduce='" + serIntroduce + '\'' +
+                ", serviceType='" + serviceType + '\'' +
+                '}';
+    }
 }

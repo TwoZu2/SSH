@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 import java.util.Map;
 
 @Repository
-public class ServiceDaoImpl implements IServiceDao {
+public class ServiceDaoImpl implements IServiceDao{
+
     @Autowired
     Util util;
 
@@ -29,9 +30,7 @@ public class ServiceDaoImpl implements IServiceDao {
     }
 
     @Override
-    public boolean UpdateById(Service service) {
-        return util.SaveOrUpdate(service);
-    }
+    public boolean UpdateById(Service service) {return util.SaveOrUpdate(service); }
 
     @Override
     public boolean DeleteById(Service service) {

@@ -13,6 +13,8 @@ public interface Util {
     public Map FindLike(Class c,Map<String,String> map,int page, int limit);
     //添加 修改
     public boolean SaveOrUpdate(Object obj);
+    //修改
+    public boolean Update(Object obj);
     //删除
     public boolean DeleteByID(Object obj);
 }

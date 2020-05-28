@@ -117,4 +117,18 @@ public class UtilImpl extends HibernateDaoSupport implements Util {
 //            return false;
 //        }
     }
+
+    @Override
+    public boolean Update(Object obj) {
+
+        try {
+            this.getHibernateTemplate().update(obj);
+
+            logger.debug("Update");
+            return true;
+        }catch (Exception o){
+            logger.debug(o);
+            return false;
+        }
+    }
 }
