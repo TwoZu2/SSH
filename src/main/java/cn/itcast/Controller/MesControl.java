@@ -6,6 +6,8 @@ import cn.itcast.Service.IMesService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.util.HashMap;
@@ -15,8 +17,8 @@ import java.util.Map;
 public class MesControl extends ActionSupport implements ModelDriven<Contactus> {
     @Autowired
     IMesService iMesService;
-    @Autowired
-    Contactus message;
+@Autowired
+  private    Contactus message;
     private Map map = new HashMap();
 
     public Map getMap() {
@@ -46,16 +48,19 @@ public class MesControl extends ActionSupport implements ModelDriven<Contactus> 
         this.limit = limit;
     }
     public String findAll(){
-        System.out.println(message);
-        if(message.getContName()!=null&&message.getContName().length()>0){
+
+        if((message.getRetshow()!=null&&message.getRetshow().length()>0)||message.getContName()!=null&&message.getContName().length()>0){
+
+
             map = iMesService.FindLike(message,Integer.parseInt(page),Integer.parseInt(limit));
 
 
-            return SUCCESS;
-        }if(message.getRetshow()!=null&&message.getRetshow().length()>0){
-            map = iMesService.FindLike(message,Integer.parseInt(page),Integer.parseInt(limit));
+
+
+
 
             return SUCCESS;
+
         }
         map = iMesService.findAll(message,Integer.parseInt(page),Integer.parseInt(limit));
         System.out.println(map);

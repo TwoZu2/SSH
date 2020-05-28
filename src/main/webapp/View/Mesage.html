@@ -208,7 +208,7 @@
         });
         //得到下拉框选中的值
         form.on('select()', function(data){
-                alert(data.value)
+
             //获取输入的数据(条件查询)
             var result = data.value;
 
@@ -275,10 +275,10 @@
             }
         });
 
-        //监听表格复选框选择
-        table.on('checkbox(currentTableFilter)', function (obj) {
-            console.log(obj)
-        });
+        // //监听表格复选框选择
+        // table.on('checkbox(currentTableFilter)', function (obj) {
+        //     console.log(obj)
+        // });
 // 删除和修改的内容都在这
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
