@@ -66,12 +66,20 @@ public class DepartmentController  extends  ActionSupport implements ModelDriven
     public String delete(){
         System.out.println("delete");
         System.out.println(department);
-        if(departmentService.deleteById(department)){
-            map.put("msg","1");
-        }else {
-            System.out.println(0);
+
+        try {
+            if(departmentService.deleteById(department)){
+                map.put("msg","1");
+            }else {
+                System.out.println(0);
+                map.put("msg","0");
+            }
+        }catch (Exception e){
             map.put("msg","0");
+
         }
+
+
         return SUCCESS;
     }
     public String update(){

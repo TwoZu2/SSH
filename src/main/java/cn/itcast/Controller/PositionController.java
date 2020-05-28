@@ -66,14 +66,13 @@ public class PositionController extends ActionSupport implements ModelDriven<Loc
     }
 
     public String delete(){
-
-        if(positionService.deleteById(location)){
-            map.put("msg","1");
-        }else {
-            System.out.println(0);
-            map.put("msg","0");
-            map.put("value","请先删除人员!");
-        }
+                try {
+                    positionService.deleteById(location);
+                    map.put("msg","1");
+                }catch (Exception e){
+                    map.put("msg","0");
+                    map.put("value","请先删除人员!");
+                }
         return SUCCESS;
     }
     public String update(){
