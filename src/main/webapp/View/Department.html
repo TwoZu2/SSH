@@ -128,6 +128,7 @@
                 <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 添加 </button>
                 <!--                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除 </button>-->
             </div>
+
         </script>
 
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
@@ -235,7 +236,7 @@
                     maxmin:true,
                     shadeClose: true,
                     area: ['70%', '70%'],
-                    content: 'Sub_View/dep_edit.html',
+                    content: 'Sub_View/Department_edit.html',
                 });
                 $(window).on("resize", function () {
                     layer.full(index);
