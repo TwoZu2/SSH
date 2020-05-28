@@ -85,7 +85,6 @@
 <body>
 <div class="layuimini-container">
     <div class="layuimini-main">
-
         <fieldset class="table-search-fieldset">
             <legend>搜索信息</legend>
             <div style="margin: 10px 10px 10px 10px">
@@ -166,7 +165,6 @@
             //获取输入的数据(条件查询)
             var result = data.value;
 
-            alert(result)
 
             //执行搜索重载(等于在执行一次上面+++++++++++的方法,不过会带上 result这个值,
             // 这个值我们指定了name:newTitle ,跟实体类属性对应，所以会通过模型驱动封装到实体类 )
@@ -178,18 +176,15 @@
                     "deparId": result
                 }
             }, 'data');
-
             return false;
         });
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
-
             //获取输入的数据(模糊查询的值)
             var result = data.field.locName;
             // layer.alert(result, {
             //     title: '最终的搜索信息'
             // });
-
             //执行搜索重载(等于在执行一次上面+++++++++++的方法,不过会带上 result这个值,
             // 这个值我们指定了name:locName ,跟实体类属性对应，所以会通过模型驱动封装到实体类 )
             table.reload('currentTableId', {
@@ -203,7 +198,6 @@
 
             return false;
         });
-
         /**
          * toolbar监听事件
          */

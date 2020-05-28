@@ -90,33 +90,39 @@
             <legend>搜索信息</legend>
             <div style="margin: 10px 10px 10px 10px">
                 <form class="layui-form layui-form-pane" action="">
-                    <div class="layui-form-item">
-                        <div class="layui-inline">
-                            <label class="layui-form-label">员工姓名</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="empName" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <!--                        <div class="layui-inline">-->
-                        <!--                            <label class="layui-form-label">用户性别</label>-->
-                        <!--                            <div class="layui-input-inline">-->
-                        <!--                                <input type="text" name="sex" autocomplete="off" class="layui-input">-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="layui-inline">-->
-                        <!--                            <label class="layui-form-label">用户城市</label>-->
-                        <!--                            <div class="layui-input-inline">-->
-                        <!--                                <input type="text" name="city" autocomplete="off" class="layui-input">-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="layui-inline">-->
-                        <!--                            <label class="layui-form-label">用户职业</label>-->
-                        <!--                            <div class="layui-input-inline">-->
-                        <!--                                <input type="text" name="classify" autocomplete="off" class="layui-input">-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <div class="layui-inline">
-                            <button type="submit" class="layui-btn layui-btn-primary"  lay-submit lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label">显示状态</label>
+                        <div class="layui-input-inline">
+                            <select>
+                                <option value="">全部</option>
+                                <option value="1">后勤管理</option>
+                                <option value="2">后勤123</option>
+                                <option value="5">初级会计</option>
+                                <option value="6">中级会计</option>
+                                <option value="7">高级会计</option>
+                                <option value="8">市场营销</option>
+                                <option value="9">市场统计</option>
+                                <option value="11">营销设计</option>
+                                <option value="12">展示设计</option>
+                                <option value="14">网页开发</option>
+                                <option value="16">数据开发</option>
+                                <option value="17">初级维修师</option>
+                                <option value="18">高级维修师</option>
+                                <option value="19">初级售后专员</option>
+                                <option value="20">高级售后专员</option>
+                                <option value="21">初级售前专员</option>
+                                <option value="22">高级售前专员</option>
+                                <option value="23">人事专员</option>
+                                <option value="24">人事经理</option>
+                                <option value="25">营销专员</option>
+                                <option value="26">营销经理</option>
+                                <option value="27">采购专员</option>
+                                <option value="28">采购经理</option>
+                                <option value="29">仓库搬运</option>
+                                <option value="30">仓库管理</option>
+                            </select>
                         </div>
                     </div>
                 </form>
@@ -172,7 +178,23 @@
             page: true,
             skin: 'line'
         });
+        //得到下拉框选中的值
+        form.on('select()', function(data){
 
+            //获取输入的数据(条件查询)
+            var result = data.value;
+            //执行搜索重载(等于在执行一次上面+++++++++++的方法,不过会带上 result这个值,
+            // 这个值我们指定了name:newTitle ,跟实体类属性对应，所以会通过模型驱动封装到实体类 )
+            table.reload('currentTableId', {
+                page: {
+                    curr: 1
+                }
+                , where: {
+                    "postionId": result
+                }
+            }, 'data');
+            return false;
+        });
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
 
@@ -181,7 +203,6 @@
             // layer.alert(result, {
             //     title: '最终的搜索信息'
             // });
-
             //执行搜索重载(等于在执行一次上面+++++++++++的方法,不过会带上 result这个值,
             // 这个值我们指定了name:empName,跟实体类属性对应，所以会通过模型驱动封装到实体类 )
             table.reload('currentTableId', {
