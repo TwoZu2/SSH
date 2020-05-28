@@ -105,13 +105,13 @@ public class UtilImpl extends HibernateDaoSupport implements Util {
     }
     @Override
     public boolean DeleteByID(Object obj) {
-//        try {
+        try {
             this.getHibernateTemplate().delete(obj);
             logger.debug("DeleteByID");
             return true;
-//        }catch (Exception o){
-//            logger.debug(o);
-//            return false;
-//        }
+        }catch (Exception o){
+            logger.debug(o);
+            return false;
+        }
     }
 }
