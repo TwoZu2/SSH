@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="lang">
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="../resources/layui/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="../resources/layui/css/layui.css" media="all">
+    <style>
+        body {
+            margin: 15px 15px 15px 15px;
+            background: #f2f2f2;
+        }
+
+        .layuimini-container {
+            border: 1px solid #f2f2f2;
+            border-radius: 5px;
+            background-color: #ffffff
+        }
+
+        .layuimini-main {
+            margin: 10px 10px 10px 10px;
+        }
+
+        /**必填红点 */
+        .layuimini-form > .layui-form-item > .required:after {
+            content: '*';
+            color: #ff0000;
+            position: absolute;
+            margin-left: 4px;
+            font-weight: bold;
+            line-height: 1.8em;
+            top: 6px;
+            right: 5px;
+        }
+
+        .layuimini-form > .layui-form-item > .layui-form-label {
+            width: 120px !important;
+        }
+
+        .layuimini-form > .layui-form-item > .layui-input-block {
+            margin-left: 150px !important;
+        }
+
+        .layuimini-form > .layui-form-item > .layui-input-block > tip {
+            display: block;
+            margin-top: 10px;
+            line-height: 10px;
+            font-size: 10px;
+            color: #a29c9c;
+        }
+
+        /**搜索框*/
+        .layuimini-container .table-search-fieldset {
+            margin: 0;
+            border: 1px solid #e6e6e6;
+            padding: 10px 20px 5px 20px;
+            color: #6b6b6b;
+        }
+
+        /**自定义滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: transparent;
+            -webkit-border-radius: 2em;
+            -moz-border-radius: 2em;
+            border-radius: 2em;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #9c9da0;
+            -webkit-border-radius: 2em;
+            -moz-border-radius: 2em;
+            border-radius: 2em
+        }
+
+    </style>
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+        <fieldset class="table-search-fieldset">
+            <legend>搜索信息</legend>
+            <div style="margin: 10px 10px 10px 10px">
+                <form class="layui-form layui-form-pane" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">部门名称</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="depName" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <!--                        <div class="layui-inline">-->
+                        <!--                            <label class="layui-form-label">用户性别</label>-->
+                        <!--                            <div class="layui-input-inline">-->
+                        <!--                                <input type="text" name="sex" autocomplete="off" class="layui-input">-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <!--                        <div class="layui-inline">-->
+                        <!--                            <label class="layui-form-label">用户城市</label>-->
+                        <!--                            <div class="layui-input-inline">-->
+                        <!--                                <input type="text" name="city" autocomplete="off" class="layui-input">-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <!--                        <div class="layui-inline">-->
+                        <!--                            <label class="layui-form-label">用户职业</label>-->
+                        <!--                            <div class="layui-input-inline">-->
+                        <!--                                <input type="text" name="classify" autocomplete="off" class="layui-input">-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <div class="layui-inline">
+                            <button type="submit" class="layui-btn layui-btn-primary"  lay-submit lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+
+        <script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 添加 </button>
+                <!--                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除 </button>-->
+            </div>
+        </script>
+
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+
+        <script type="text/html" id="currentTableBar">
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+        </script>
+
+    </div>
+</div>
+<script src="../resources/layui/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form', 'table'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table;
+        //++++++++++++++++++++
+        table.render({
+            elem: '#currentTableId',
+            //请求地址
+            url: '../Department_find',
+            toolbar: '#toolbarDemo',
+            defaultToolbar: ['filter', 'exports', 'print', {
+                title: '提示',
+                layEvent: 'LAYTABLE_TIPS',
+                icon: 'layui-icon-tips'
+            }],
+            cols: [[
+                {field: 'depId', title: '序号', width:'15%',  sort: true,align: "center"}
+                , {field: 'depName', title: '部门名称', width: '25%',align: "center"}
+                , {field: 'depNum', title: '部门人数', width:'15%',sort: true,align: "center"}
+                , {field: 'depIntroduce', title: '描述', width: '25%',align: "center"}
+                , {fixed: 'right', title: '操作',width:'15%', toolbar: '#currentTableBar',align:"center"}
+            ]],
+            limits: [10, 15, 20, 25, 50, 100],
+            limit: 5,
+            page: true,
+            skin: 'line'
+        });
+        // 监听搜索操作
+        form.on('submit(data-search-btn)', function (data) {
+
+            //获取输入的数据(模糊查询的值)
+            var result = data.field.depName;
+            // layer.alert(result, {
+            //     title: '最终的搜索信息'
+            // });
+
+            //执行搜索重载(等于在执行一次上面+++++++++++的方法,不过会带上 result这个值,
+            // 这个值我们指定了name:depname,跟实体类属性对应，所以会通过模型驱动封装到实体类 )
+            table.reload('currentTableId', {
+                page: {
+                    curr: 1
+                }
+                , where: {
+                    "depName": result
+                }
+            }, 'data');
+
+            return false;
+        });
+
+        /**
+         * toolbar监听事件
+         */
+        table.on('toolbar(currentTableFilter)', function (obj) {
+            if (obj.event === 'add') {  // 监听添加操作
+                var index = layer.open({
+                    title: '添加用户',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin:true,
+                    shadeClose: true,
+                    area: ['70%', '70%'],
+                    content: 'Sub_View/Department_add.html',
+                });
+                $(window).on("resize", function () {
+                    layer.full(index);
+
+                });
+            } else if (obj.event === 'delete') {  // 监听删除操作
+                var checkStatus = table.checkStatus('currentTableId')
+                    , data = checkStatus.data;
+                layer.alert(JSON.stringify(data));
+            }
+        });
+
+        //监听表格复选框选择
+        table.on('checkbox(currentTableFilter)', function (obj) {
+            console.log(obj)
+        });
+// 删除和修改的内容都在这
+        table.on('tool(currentTableFilter)', function (obj) {
+            var data = obj.data;
+
+            //给打开的页面传值 (放入cookie)
+            document.cookie = "depId:" + data.depId + "&depName:" + data.depName + "&depNum:"+data.depNum +"&depIntroduce:"+data.depIntroduce;
+            if (obj.event === 'edit') {
+
+                var index = layer.open({
+                    title: '编辑用户',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin:true,
+                    shadeClose: true,
+                    area: ['70%', '70%'],
+                    content: 'Sub_View/dep_edit.html',
+                });
+                $(window).on("resize", function () {
+                    layer.full(index);
+                });
+                return false;
+            } else if (obj.event === 'delete') {
+                layer.confirm('真的删除ID为:'+data.depId+"的数据吗?", function (index) {
+                    $.post("../Department_delete", {depId: data.depId}, function (ret) {
+                        if (ret.msg === "1") {//删除成功，刷新当前页表格
+                            layer.msg("删除成功", {icon: 1, time: 1000}, function () {
+                                obj.del();
+                                layer.close(index);
+                            });
+                        } else {  //删除失败
+                            layer.alert("删除失败", {icon: 2,time: 1000}, function () {
+                                layer.close(index);
+                            });
+                        }
+                    });
+
+                });
+            }
+        });
+
+    });
+</script>
+
+</body>
+</html>

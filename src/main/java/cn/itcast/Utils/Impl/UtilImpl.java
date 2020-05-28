@@ -105,7 +105,6 @@ public class UtilImpl extends HibernateDaoSupport implements Util {
            return false;
        }
     }
-
     @Override
     public boolean DeleteByID(Object obj) {
 //        try {
