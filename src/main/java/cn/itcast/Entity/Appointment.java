@@ -1,7 +1,9 @@
 package cn.itcast.Entity;
 
-import java.sql.Timestamp;
+import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
+@Component
 public class Appointment {
     private int aptId;
     private String aptName;
@@ -96,5 +98,18 @@ public class Appointment {
         result = 31 * result + (appointmentTime != null ? appointmentTime.hashCode() : 0);
         result = 31 * result + (serviceType != null ? serviceType.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "aptId=" + aptId +
+                ", aptName='" + aptName + '\'' +
+                ", aptPhone='" + aptPhone + '\'' +
+                ", aptNo='" + aptNo + '\'' +
+                ", aptType='" + aptType + '\'' +
+                ", appointmentTime=" + appointmentTime +
+                ", serviceType='" + serviceType + '\'' +
+                '}';
     }
 }

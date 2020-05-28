@@ -28,6 +28,15 @@
 
             <allowed-methods>delete,update,save,findAll</allowed-methods>
         </action>
+
+        <action name="Appo_*" class="appoControl" method="{1}">
+
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+
+            <allowed-methods>delete,update,save,findAll</allowed-methods>
+        </action>
     </package>
 
 </struts>
