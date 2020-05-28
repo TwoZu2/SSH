@@ -95,9 +95,7 @@ public class UtilImpl extends HibernateDaoSupport implements Util {
     public boolean SaveOrUpdate(Object obj) {
 
       try {
-
            this.getHibernateTemplate().saveOrUpdate(obj);
-
           logger.debug("SaveOrUpdate");
            return true;
        }catch (Exception o){

@@ -37,7 +37,9 @@ public class StaffServiceImpl implements IStaffService {
         page--;
         page *= limit;
         Map m = new HashMap();
-        m.put("empName",employees.getClass());
+
+
+        m.put("postionId",employees.getPostionId());
         Map map=staffDao.findLike(employees.getClass(),m,page,limit);
         Map map1 = new HashMap();
         map1.put("code",0);

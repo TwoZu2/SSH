@@ -39,9 +39,7 @@ public class PositionServiceImpl implements IPositionService {
         page *= limit;
         Map m = new HashMap();
 
-
-        m.put("locName",location.getClass());
-
+        m.put("deparId",location.getDeparId());
         Map map=positionDao.findLike(location.getClass(),m,page,limit);
         Map map1 = new HashMap();
         map1.put("code",0);

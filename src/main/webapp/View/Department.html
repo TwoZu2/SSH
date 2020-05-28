@@ -224,11 +224,9 @@
 // 删除和修改的内容都在这
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
-
             //给打开的页面传值 (放入cookie)
             document.cookie = "depId:" + data.depId + "&depName:" + data.depName + "&depNum:"+data.depNum +"&depIntroduce:"+data.depIntroduce;
             if (obj.event === 'edit') {
-
                 var index = layer.open({
                     title: '编辑用户',
                     type: 2,

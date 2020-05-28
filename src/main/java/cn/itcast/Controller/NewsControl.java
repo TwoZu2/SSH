@@ -119,12 +119,7 @@ public class NewsControl extends ActionSupport implements ModelDriven<News> {
 
                     return "success";
                 }
-
-
                 map = iNewsService.FindAll(news,Integer.parseInt(page),Integer.parseInt(limit));
-
-
-
                 return "success";
 
 

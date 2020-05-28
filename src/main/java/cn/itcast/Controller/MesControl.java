@@ -55,10 +55,6 @@ public class MesControl extends ActionSupport implements ModelDriven<Contactus> 
             map = iMesService.FindLike(message,Integer.parseInt(page),Integer.parseInt(limit));
 
 
-
-
-
-
             return SUCCESS;
 
         }

@@ -12,15 +12,8 @@ public class Employees {
     private String empPhone;
     private String empTime;
     private String empIdentity;
-    private Location location;
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
+    public int postionId;
+   // private Location location;
 
     public int getEmpId() {
         return empId;
@@ -86,6 +79,14 @@ public class Employees {
         this.empIdentity = empIdentity;
     }
 
+    public int getPostionId() {
+        return postionId;
+    }
+
+    public void setPostionId(int postionId) {
+        this.postionId = postionId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -130,7 +131,7 @@ public class Employees {
                 ", empPhone='" + empPhone + '\'' +
                 ", empTime='" + empTime + '\'' +
                 ", empIdentity='" + empIdentity + '\'' +
-
+                ", postionId=" + postionId +
                 '}';
     }
 }

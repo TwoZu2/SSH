@@ -90,35 +90,29 @@
             <legend>搜索信息</legend>
             <div style="margin: 10px 10px 10px 10px">
                 <form class="layui-form layui-form-pane" action="">
-                    <div class="layui-form-item">
-                        <div class="layui-inline">
-                            <label class="layui-form-label">职位名称</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="locName" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <!--                        <div class="layui-inline">-->
-                        <!--                            <label class="layui-form-label">用户性别</label>-->
-                        <!--                            <div class="layui-input-inline">-->
-                        <!--                                <input type="text" name="sex" autocomplete="off" class="layui-input">-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="layui-inline">-->
-                        <!--                            <label class="layui-form-label">用户城市</label>-->
-                        <!--                            <div class="layui-input-inline">-->
-                        <!--                                <input type="text" name="city" autocomplete="off" class="layui-input">-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="layui-inline">-->
-                        <!--                            <label class="layui-form-label">用户职业</label>-->
-                        <!--                            <div class="layui-input-inline">-->
-                        <!--                                <input type="text" name="classify" autocomplete="off" class="layui-input">-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <div class="layui-inline">
-                            <button type="submit" class="layui-btn layui-btn-primary"  lay-submit lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                    <!-- 分页 -->
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label">显示状态</label>
+                        <div class="layui-input-inline">
+                            <select>
+                                <option value="">全部</option>
+                                <option value="1">后勤部</option>
+                                <option value="3">财政部</option>
+                                <option value="4">市场部</option>
+                                <option value="5">设计部</option>
+                                <option value="7">开发部</option>
+                                <option value="8">维修部</option>
+                                <option value="9">售后部</option>
+                                <option value="10">售前部</option>
+                                <option value="11">人事部</option>
+                                <option value="12">营销部</option>
+                                <option value="13">采购部</option>
+                                <option value="17">仓库部</option>
+                            </select>
                         </div>
                     </div>
+
                 </form>
             </div>
         </fieldset>
@@ -166,7 +160,27 @@
             page: true,
             skin: 'line'
         });
+        //得到下拉框选中的值
+        form.on('select()', function(data){
 
+            //获取输入的数据(条件查询)
+            var result = data.value;
+
+            alert(result)
+
+            //执行搜索重载(等于在执行一次上面+++++++++++的方法,不过会带上 result这个值,
+            // 这个值我们指定了name:newTitle ,跟实体类属性对应，所以会通过模型驱动封装到实体类 )
+            table.reload('currentTableId', {
+                page: {
+                    curr: 1
+                }
+                , where: {
+                    "deparId": result
+                }
+            }, 'data');
+
+            return false;
+        });
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
 

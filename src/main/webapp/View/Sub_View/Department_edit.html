@@ -103,13 +103,13 @@
     <div class="layui-form-item">
         <label class="layui-form-label">部门名称</label>
         <div class="layui-input-block">
-            <input type="text" id="depName" name="depName" lay-verify="required" placeholder="请输入部门名称" value="" class="layui-input">
+            <input type="text" id="depName" name="depName" lay-verify="required" readonly="readonly" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label required">部门人数</label>
         <div class="layui-input-block">
-            <input type="text" id="depNum" name="depNum" lay-verify="required" readonly="readonly"    class="layui-input">
+            <input type="text" id="depNum" name="depNum" lay-verify="required"   readonly="readonly"  class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
@@ -131,7 +131,7 @@
         </div>
     </div>
 </div>
-</div>
+</div>.
 
 <script>
     layui.use(['form'], function () {
@@ -148,7 +148,7 @@
                     url: "../../Department_update",    // 提交到controller的url路径
                     type: "post",    // 提交方式
                     dataType: "json",
-                    data:{"depName":data.field.depName,"depIntroduce":data.field.depIntroduce}, // data为String类型，必须为 Key/Value 格式。
+                    data:{"depId":data.field.depId,"depName":data.field.depName,"depNum":data.field.depNum,"depIntroduce":data.field.depIntroduce}, // data为String类型，必须为 Key/Value 格式。
                     // 服务器端返回的数据类型
                     success: function (data) {
                         if(data.msg==="1"){
@@ -159,7 +159,6 @@
                                 parent.layer.close(iframeIndex);
                                 parent.location.reload();
                             })
-
                         }
                         if(data.msg==="0"){
                             layer.msg("修改失败,请再试试吧!", {icon: 2,time:1000},function () {

@@ -29,7 +29,10 @@
         <property name="empIdentity">
             <column name="EmpIdentity" sql-type="varchar(50)" length="50"/>
         </property>
-        <many-to-one name="location" class="cn.itcast.Entity.Location" column="PostionId"/>
+        <property name="postionId">
+            <column name="PostionId" sql-type="int(11)"/>
+        </property>
     </class>
 
 </hibernate-mapping>
+<!--   <many-to-one name="location" class="cn.itcast.Entity.Location" column="PostionId"/>  -->

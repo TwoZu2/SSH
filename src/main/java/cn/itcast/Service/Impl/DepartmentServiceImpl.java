@@ -34,7 +34,8 @@ public class DepartmentServiceImpl implements IDepartmentService {
         page--;
         page *= limit;
         Map m = new HashMap();
-        m.put("depName",department.getClass());
+        m.put("depName",department.getDepName());
+
         Map map=departmentDao.findLike(department.getClass(),m,page,limit);
         Map map1 = new HashMap();
         map1.put("code",0);
@@ -46,11 +47,13 @@ public class DepartmentServiceImpl implements IDepartmentService {
 
     @Override
     public boolean save(Department department) {
+
         return departmentDao.save(department);
     }
 
     @Override
     public boolean updateById(Department department) {
+
         return departmentDao.updateById(department);
     }
 

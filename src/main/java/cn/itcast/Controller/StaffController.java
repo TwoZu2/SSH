@@ -91,9 +91,9 @@ public class StaffController extends ActionSupport implements ModelDriven<Employ
     }
     public String find(){
         System.out.println("find");
-        System.out.println(employees.getEmpName());
+        System.out.println(employees.getPostionId());
         //判断是否模糊查询
-        if(employees.getEmpName() !=null&&employees.getEmpName().length()>0){
+        if(employees.getPostionId() != 0 && employees.getPostionId()>0){
             map= staffService.findLike(employees,Integer.parseInt(page),Integer.parseInt(limit));
             return "success";
         }else {

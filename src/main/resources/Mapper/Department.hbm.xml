@@ -15,11 +15,13 @@
             <column name="DepNum" sql-type="int(11)"/>
         </property>
         <property name="depIntroduce">
-            <column name="DepIntroduce" sql-type="varchar(100)" length="100" not-null="true"/>
+            <column name="DepIntroduce" sql-type="varchar(100)" length="100" />
         </property>
-        <set name="locations">
-            <key column="DeparId"/>
-            <one-to-many class="cn.itcast.Entity.Location"/>
-        </set>
+
     </class>
 </hibernate-mapping>
+
+<!--  <set name="locations">
+            <key column="DeparId"/>
+            <one-to-many class="cn.itcast.Entity.Location"/>
+        </set>-->

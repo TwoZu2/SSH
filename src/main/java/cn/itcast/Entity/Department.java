@@ -9,7 +9,7 @@ public class Department {
     private String depName;
     private int depNum;
     private String depIntroduce;
-    private Set<Location> locations;
+    //private Set<Location> locations;
     public int getDepId() {
         return depId;
     }
@@ -42,13 +42,7 @@ public class Department {
         this.depIntroduce = depIntroduce;
     }
 
-    public Set<Location> getLocations() {
-        return locations;
-    }
 
-    public void setLocations(Set<Location> locations) {
-        this.locations = locations;
-    }
 
     @Override
     public boolean equals(Object o) {
