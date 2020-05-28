@@ -69,7 +69,7 @@ public class StaffController extends ActionSupport implements ModelDriven<Employ
     }
     public String update(){
         System.out.println("update");
-        if(staffService.deleteById(employees)){
+        if(staffService.updateById(employees)){
             map.put("msg","1");
         }else {
             System.out.println(0);
@@ -78,8 +78,8 @@ public class StaffController extends ActionSupport implements ModelDriven<Employ
         return SUCCESS;
     }
     public String delete(){
-        System.out.println("delete");
-        if(staffService.updateById(employees)){
+        System.out.println(employees);
+        if(staffService.deleteById(employees)){
             System.out.println(1);
             map.put("msg","1");
         }else {

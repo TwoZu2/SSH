@@ -15,7 +15,7 @@
             <column name="DepNum" sql-type="int(11)"/>
         </property>
         <property name="depIntroduce">
-            <column name="DepIntroduce" sql-type="varchar(100)" length="100" />
+            <column name="DepIntroduce" sql-type="varchar(100)" length="100" not-null="true"/>
         </property>
 
     </class>
