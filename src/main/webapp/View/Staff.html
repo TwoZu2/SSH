@@ -93,33 +93,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">显示状态</label>
                         <div class="layui-input-inline">
-                            <select>
-                                <option value="">全部</option>
-                                <option value="1">后勤管理</option>
-                                <option value="2">后勤123</option>
-                                <option value="5">初级会计</option>
-                                <option value="6">中级会计</option>
-                                <option value="7">高级会计</option>
-                                <option value="8">市场营销</option>
-                                <option value="9">市场统计</option>
-                                <option value="11">营销设计</option>
-                                <option value="12">展示设计</option>
-                                <option value="14">网页开发</option>
-                                <option value="16">数据开发</option>
-                                <option value="17">初级维修师</option>
-                                <option value="18">高级维修师</option>
-                                <option value="19">初级售后专员</option>
-                                <option value="20">高级售后专员</option>
-                                <option value="21">初级售前专员</option>
-                                <option value="22">高级售前专员</option>
-                                <option value="23">人事专员</option>
-                                <option value="24">人事经理</option>
-                                <option value="25">营销专员</option>
-                                <option value="26">营销经理</option>
-                                <option value="27">采购专员</option>
-                                <option value="28">采购经理</option>
-                                <option value="29">仓库搬运</option>
-                                <option value="30">仓库管理</option>
+                            <select id="select" name="select">
                             </select>
                         </div>
                     </div>
@@ -149,6 +123,7 @@
         var $ = layui.jquery,
             form = layui.form,
             table = layui.table;
+        getClassify1();
         //++++++++++++++++++++
         table.render({
             elem: '#currentTableId',
@@ -176,6 +151,7 @@
             page: true,
             skin: 'line'
         });
+
         //得到下拉框选中的值
         form.on('select()', function(data){
             //获取输入的数据(条件查询)
@@ -285,6 +261,26 @@
 
     });
 </script>
-
+<script>
+    function getClassify1() {
+        $.ajax({url:'../../Position_find',
+            type:"post",
+            async:true,
+            dataType:"json",
+            error:function(){
+            },
+            data: {"page":1,"limit":99999},
+            success:function(data1){
+                var html = '';
+                $.each(data1.data, function(idx, obj) {
+                    html+="<option value='"+obj.locId+"'>"+obj.locName+"</option>";
+                })
+                $("#select").empty().append(html);
+                layui.form.render("select");
+            }
+        });
+        return false;
+    }
+</script>
 </body>
 </html>

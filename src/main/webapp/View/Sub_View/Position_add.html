@@ -111,20 +111,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">添加部门</label>
         <div class="layui-input-inline">
-            <select id="select">
-                <option value="">全部</option>
-                <option value="1">后勤部</option>
-                <option value="3">财政部</option>
-                <option value="4">市场部</option>
-                <option value="5">设计部</option>
-                <option value="7">开发部</option>
-                <option value="8">维修部</option>
-                <option value="9">售后部</option>
-                <option value="10">售前部</option>
-                <option value="11">人事部</option>
-                <option value="12">营销部</option>
-                <option value="13">采购部</option>
-                <option value="17">仓库部</option>
+            <select id="select" name="select">
+                <option value="" selected>全部</option>
             </select>
         </div>
     </div>
@@ -165,14 +153,14 @@
         var form = layui.form,
             layer = layui.layer,
             $ = layui.$;
-
+        getClassify1();
         //添加部门
         form.on('select()', function(s) {
-            document.getElementById("deparId").value = s.value;
+                document.getElementById("deparId").value = s.value;
         });
+        document.getElementById("deparId").value = "1";
         //监听提交
         form.on('submit(saveBtn)', function (data) {
-
             var index = layer.alert("确认添加?", {
                 title: '提示'
             }, function () {
@@ -225,10 +213,26 @@
 
 
 <script>
-    //异步刷新列表
+    function getClassify1() {
+        $.ajax({url:'../../Department_find',
+            type:"post",
+            async:true,
+            dataType:"json",
+            error:function(){
+            },
 
-
-
+            data: {"page":1,"limit":99999},
+            success:function(data){
+                var html = '';
+                $.each(data.data, function(idx, obj) {
+                    html+="<option value='"+obj.depId+"'>"+obj.depName+"</option>";
+                })
+                $("#select").empty().append(html);
+                layui.form.render("select");
+            }
+        });
+        return false;
+    }
 </script>
 </body>
 </html>
