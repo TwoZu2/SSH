@@ -103,7 +103,6 @@ public class NewsControl extends ActionSupport implements ModelDriven<News> {
 
         System.out.println(news);
         if(iNewsService.DeleteById(news)){
-
             map.put("msg","1");
         }else {
             System.out.println(0);
@@ -120,12 +119,7 @@ public class NewsControl extends ActionSupport implements ModelDriven<News> {
 
                     return "success";
                 }
-
-
                 map = iNewsService.FindAll(news,Integer.parseInt(page),Integer.parseInt(limit));
-
-
-
                 return "success";
 
 

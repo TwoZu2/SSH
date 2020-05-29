@@ -12,14 +12,18 @@
             <column name="LocName" sql-type="varchar(20)" length="20"/>
         </property>
         <property name="locText">
-            <column name="LocText" sql-type="varchar(100)" length="100" not-null="true"/>
+            <column name="LocText" sql-type="varchar(100)" length="100" />
         </property>
-            <set name="employees">
+        <property name="deparId">
+            <column name="deparId" sql-type="varchar(11)" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>
+
+<!-- <set name="employees">
                 <key column="PostionId"/>
                 <one-to-many class="cn.itcast.Entity.Employees"/>
             </set>
         <many-to-one name="departmentByDeparId" class="cn.itcast.Entity.Department">
             <column name="DeparId"/>
-        </many-to-one>
-    </class>
-</hibernate-mapping>
+        </many-to-one> -->

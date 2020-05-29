@@ -1,0 +1,319 @@
+<html>
+<head>
+    <script src="/resources/layui/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="/resources/layui/css/layui.css">
+    <script src="/resources/layui/layui.js"></script>
+    <title>Title</title>
+
+    <style>
+        .layui-form-label{
+            width: 100px;
+        }
+        .layui-input-block {
+            margin-left: 130px;
+            min-height: 36px;
+            width:80%
+        }
+    </style>
+</head>
+<body class="body">
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>添加维修记录</legend>
+</fieldset>
+
+<form class="layui-form layui-from-pane"  style="margin-top:20px" >
+    <div class="layui-form-item" style="display: none">
+        <label class="layui-form-label">id</label>
+        <div class="layui-input-block">
+            <input type="text" value="" name="id" id="id" required  lay-verify="required" autocomplete="off"  class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" style="display: none">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input type="text" value="$" name="name" id="name" required  lay-verify="required" autocomplete="off" placeholder="请输入姓名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" style="display: none">
+        <label class="layui-form-label">联系方式</label>
+        <div class="layui-input-block">
+            <input type="text" value="" name="phone" id="phone"  required  lay-verify="required" autocomplete="off" placeholder="请输入联系方式" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item" style="display: none">
+        <label class="layui-form-label">车牌号</label>
+
+        <div class="layui-input-block">
+            <input type="text" value="" name="no" id="no" required  lay-verify="required" autocomplete="off" placeholder="请输入车牌号" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" style="display: none">
+        <label class="layui-form-label">车型</label>
+        <div class="layui-input-block">
+            <input type="text" value="" name="type" id="type" required  lay-verify="required" autocomplete="off" placeholder="请输入车型" class="layui-input">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item"  style="display: none">
+        <label class="layui-form-label">维修时间</label>
+        <div class="layui-input-block">
+            <input type="date" name="time" id="time"
+                   autocomplete="off"   class="layui-input">
+
+        </div>
+    </div>
+    <div class="layui-form-item" >
+        <label class="layui-form-label">预计时间</label>
+        <div class="layui-input-block">
+            <input type="text" name="yutime" id="yutime"
+                   autocomplete="off"   class="layui-input">
+
+        </div>
+    </div>
+    <div class="layui-form-item"  style="display: none">
+        <label class="layui-form-label">服务类型</label>
+        <div class="layui-input-block">
+
+            <select id="type1">
+                <option value="大类型">大类型</option>
+                <option value="小类型">小类型</option>
+            </select>
+
+        </div>
+    </div>
+    <div class="layui-form-item" >
+        <label class="layui-form-label">服务部门</label>
+        <div class="layui-input-block">
+
+            <select id="select" name="select" lay-filter="select1">
+
+            </select>
+
+        </div>
+    </div>
+    <div class="layui-form-item" >
+        <label class="layui-form-label">服务职位</label>
+        <div class="layui-input-block">
+
+            <select id="a"  name = 'select' lay-filter="select2">
+                <option>请先选择部门</option>
+            </select>
+
+        </div>
+    </div>
+    <div class="layui-form-item" >
+        <label class="layui-form-label">服务人员</label>
+        <div class="layui-input-block">
+
+            <select id="ren">
+                <option>请先选择职位</option>
+            </select>
+
+        </div>
+    </div>
+    <div class="layui-form-item" >
+        <label class="layui-form-label">服务费用</label>
+        <div class="layui-input-block">
+
+            <input type="number" name="price" id="price"
+                   autocomplete="off" placeholder="请输入服务费用" min="0"   class="layui-input">
+
+        </div>
+    </div>
+    <div class="layui-form-item" >
+        <label class="layui-form-label">提车时间</label>
+        <div class="layui-input-block">
+
+            <input type="date" name="endtime" id="endtime"
+                   autocomplete="off"   class="layui-input">
+
+        </div>
+    </div>
+    <div class="layui-form-item" style="margin-top:40px">
+        <div class="layui-input-block">
+            <button class="layui-btn  layui-btn-submit " lay-submit="" lay-filter="demo1">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script>
+    // $("#type1 option[value=${param.type1}]").prop("selected","selected");
+    /*获取当前时间*/
+    var time = new Date();
+    /*格式化日，如果小于9，则补0*/
+    var day = ("0" + time.getDate()).slice(-2);
+    /*格式化月，如果小于9，则补0*/
+    var month = ("0" + (time.getMonth() + 1)).slice(-2);
+    /*拼接日期*/
+    var today = time.getFullYear() + "-" + (month) + "-" + (day);
+    /*完成赋值操作*/
+    document.getElementById("time").value=today;
+
+
+
+    layui.use('form', function () {
+        var form = layui.form;
+        getClassify();
+
+        form.on('select(select1)', function (data) {
+            getClassify1();
+        })
+        form.on('select(select2)', function (data) {
+
+            getClassify2();
+        })
+    })
+
+    function getClassify() {
+        $.ajax({url:'../../Department_find',
+            type:"post",
+            async:true,
+
+            error:function(){
+            },
+
+            data: {"page":1,"limit":99999},
+            success:function(data){
+                    alert(data)
+
+                var str= data.data.substring(data.indexOf('['),data.lastIndexOf(']')+1);
+
+                alert(str)
+
+                $.each(JSON.parse(str), function(idx, obj) {
+                    $("#select").append("<option value='"+obj.depName+"' name='"+obj.depId+"' >"+obj.depName+"</option>");
+                });
+
+                layui.form.render("select");
+
+            }
+
+        });
+
+    }
+
+    function getClassify1() {
+        var wai= $("#select").find("option:selected").attr("name");
+
+
+        $.ajax({url:'../../ServletstShow?wai='+wai,
+            type:"post",
+            async:true,
+
+            error:function(){
+            },
+
+            data: {"page":1,"limit":99999},
+            success:function(data){
+
+                var str= data.substring(data.indexOf('['),data.lastIndexOf(']')+1);
+
+
+                var html = '';
+                $.each(JSON.parse(str), function(idx, obj) {
+                    html+="<option value='"+obj.LocId+"' >"+obj.LocName+"</option>";
+                });
+                $("#a").empty().append(html);
+                layui.form.render("select");
+
+            }
+
+        });
+    }
+
+    function getClassify2() {
+        var wai= $("#a").find("option:selected").attr("value");
+
+
+        $.ajax({url:'../../ServletpoShow?wai='+wai,
+            type:"post",
+            async:true,
+
+            error:function(){
+            },
+
+            data: {"page":1,"limit":99999},
+            success:function(data){
+
+                var str= data.substring(data.indexOf('['),data.lastIndexOf(']')+1);
+
+
+                var html = '';
+                $.each(JSON.parse(str), function(idx, obj) {
+                    html+="<option value='"+obj.EmpName+"' >"+obj.EmpName+"</option>";
+                });
+
+                $("#ren").empty().append(html);
+                layui.form.render("select");
+
+            }
+
+        });
+    }
+
+    layui.use('form', function(){
+        var form = layui.form;
+
+
+        //监听提交
+        form.on('submit(demo1)', function(data) {
+
+
+            var name = $("#name").val();
+            var no = $("#no").val();
+
+            var phone = $("#phone").val();
+            var type = $("#type").val();
+
+            var type1 =  $("#type1").val();
+            var starttime = $("#time").val();
+            var endtime = $("#endtime").val();
+            var ren = $("#ren").val();
+            var price = $("#price").val();
+            var yutime = $("#yutime").val();
+            var id = $("#id").val();
+
+            $.ajax({
+
+                url: "../../Servletrepadd",    // 提交到controller的url路径
+                type: "post",    // 提交方式
+                data:{"name": name, "no":no,"type":type,"type1":type1,"phone":phone,"price":price,"starttime":starttime,"endtime":endtime,"ren":ren,"yutime":yutime,"zhuang":'0'}, // data为String类型，必须为 Key/Value 格式。
+                // 服务器端返回的数据类型
+                async:false,
+                success: function (data) {
+
+                    if(data==="1"){
+
+
+                        parent.layer.msg("添加成功", {icon: 1,time:1000}, function () {
+
+                            $.ajax({url:'../../Servletappodel?id='+id,
+                                type:"post",
+
+                            });
+                            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                            parent.location.reload();//刷新父页面，注意一定要在关闭当前iframe层之前执行刷新
+                            parent.layer.close(index)
+                        });
+
+
+                    }
+
+                }
+
+            });
+
+
+            return false;
+
+
+
+        })
+
+    });
+</script>
+
+</body>
+</html>
