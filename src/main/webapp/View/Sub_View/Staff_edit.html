@@ -87,6 +87,13 @@
 <body>
 <div class="layui-form layuimini-form">
     <div class="layui-form-item">
+        <label class="layui-form-label required">ID</label>
+        <div class="layui-input-block">
+            <input type="text" id="empId" name="empId" lay-verify="required" readonly="readonly"   value="" class="layui-input">
+            <!--            <tip>填写自己管理账号的名称。</tip>-->
+        </div>
+    </div>
+    <div class="layui-form-item">
         <label class="layui-form-label required">员工姓名</label>
         <div class="layui-input-block">
             <input type="text" name="empName" id="empName"  lay-verify="required" lay-reqtext="姓名不能为空" placeholder="请输入姓名" value="" class="layui-input">
@@ -140,7 +147,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">选择职业</label>
         <div class="layui-input-inline">
-            <select>
+            <select id="select">
                 <option value="">全部</option>
                 <option value="1">后勤管理</option>
                 <option value="2">后勤123</option>
@@ -193,7 +200,10 @@
         var form = layui.form,
             layer = layui.layer,
             $ = layui.$;
-
+        //添加部门
+        form.on('select()', function(s) {
+            document.getElementById("postionId").value = s.value;
+        });
         //监听提交
         form.on('submit(saveBtn)', function (data) {
             var index = layer.alert("确认修改" +
@@ -204,7 +214,7 @@
                     url: "../../Staff_update",    // 提交到controller的url路径
                     type: "post",    // 提交方式
                     dataType: "json",
-                    data:{"empName":data.field.empName,"empSex":data.field.empSex,"empAge":data.field.empAge,"empAddress":data.field.empAddress,"empPhone":data.field.empPhone,"empTime":data.field.empTime,"empIdentity":data.field.empIdentity,"postionId":data.field.postionId}, // data为String类型，必须为 Key/Value 格式。
+                    data:{"empId":data.field.empId,"empName":data.field.empName,"empSex":data.field.empSex,"empAge":data.field.empAge,"empAddress":data.field.empAddress,"empPhone":data.field.empPhone,"empTime":data.field.empTime,"empIdentity":data.field.empIdentity,"postionId":data.field.postionId}, // data为String类型，必须为 Key/Value 格式。
                     // 服务器端返回的数据类型
                     success: function (data) {
 
@@ -248,13 +258,13 @@
     for(var i = 0; i < pa.length; i ++){
         s[pa[i].split(":")[0]] = pa[i].split(":")[1];
     }
+    document.getElementById("empId").value = s.empId;
    document.getElementById("empName").value = s.empName;
     document.getElementById("empAge").value = s.empAge;
     document.getElementById("empAddress").value = s.empAddress;
     document.getElementById("empPhone").value = s.empPhone;
     document.getElementById("empIdentity").value = s.empIdentity;
-
-    var num =s.postionId;
+    var num = s.postionId;
     $("#select>option:eq('"+num+"')").attr("selected","selected");
 </script>
 </body>
