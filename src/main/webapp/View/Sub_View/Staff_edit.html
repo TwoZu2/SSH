@@ -127,7 +127,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">入职时间</label>
         <div class="layui-input-block">
-            <input type="date" name="empTime" id="empTime" value="2010-1-2"
+            <input type="date" name="empTime" id="empTime" value=""
                    autocomplete="off" placeholder="请输入入职时间"  class="layui-input">
         </div>
     </div>
@@ -201,13 +201,11 @@
                 title: '提示'
             }, function () {
                 $.ajax({
-
                     url: "../../Staff_update",    // 提交到controller的url路径
                     type: "post",    // 提交方式
                     dataType: "json",
-                    data:{"newId":data.field.newId,"newTitle":data.field.newTitle,"newMessage":data.field.newMessage}, // data为String类型，必须为 Key/Value 格式。
+                    data:{"empName":data.field.empName,"empSex":data.field.empSex,"empAge":data.field.empAge,"empAddress":data.field.empAddress,"empPhone":data.field.empPhone,"empTime":data.field.empTime,"empIdentity":data.field.empIdentity,"postionId":data.field.postionId}, // data为String类型，必须为 Key/Value 格式。
                     // 服务器端返回的数据类型
-
                     success: function (data) {
 
                         if(data.msg==="1"){
@@ -244,21 +242,20 @@
     });
 </script>
 <script>
-    alert(2)
     var params= document.cookie;
     var pa = params.split("&");
     var s = new Object();
     for(var i = 0; i < pa.length; i ++){
         s[pa[i].split(":")[0]] = pa[i].split(":")[1];
     }
-    document.getElementById("empId").value =s.empId;
-    document.getElementById("empName").value = s.empName.substring(0,10);
-    document.getElementById("empSex").value = s.empSex;
+   document.getElementById("empName").value = s.empName;
     document.getElementById("empAge").value = s.empAge;
     document.getElementById("empAddress").value = s.empAddress;
     document.getElementById("empPhone").value = s.empPhone;
-    document.getElementById("empTime").value = s.empTime;
     document.getElementById("empIdentity").value = s.empIdentity;
+
+    var num =s.postionId;
+    $("#select>option:eq('"+num+"')").attr("selected","selected");
 </script>
 </body>
 </html>
