@@ -19,6 +19,14 @@ public class RepDao implements IRepDao {
 
 
     public boolean UpdateById(Repairs repairs) {
+        if(repairs.getRepId()!=0){
+            Repairs repairs1 = (Repairs) util.FindById(repairs.getClass(),repairs.getRepId());
+            repairs1.setRepPrice(repairs.getRepPrice());
+            repairs1.setRepState(repairs.getRepState());
+            repairs1.setCarTime(repairs.getCarTime());
+            return true;
+        }
+
 
         return util.SaveOrUpdate(repairs);
     }

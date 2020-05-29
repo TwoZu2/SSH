@@ -44,19 +44,19 @@ public class RepService implements IRepService {
         page--;
         page *= limit;
         Map m = new HashMap();
-//        if(appointment.getAptName()!=null&&appointment.getAptName().length()>0){
-//            m.put("aptName",appointment.getAptName());
-//        }if(appointment.getServiceType()!=null&&appointment.getServiceType().length()>0){
-//            m.put("serviceType",appointment.getServiceType());
-//        }
+        if(repairs.getRepName()!=null&&repairs.getRepName().length()>0){
+            m.put("repName",repairs.getRepName());
+        }if(repairs.getRepState()!=null&&repairs.getRepState().length()>0){
+            m.put("repState",repairs.getRepState());
+        }
 
-//        Map map=iAppoDao.FindLike(appointment.getClass(),m,page,limit);
-//        Map map1 = new HashMap();
-//        map1.put("code",0);
-//        map1.put("msg","");
-//        map1.put("count",map.get("count"));
-//        map1.put("data",map.get("data"));
-//        return map1;
-        return null;
+        Map map=iRepDao.FindLike(repairs.getClass(),m,page,limit);
+        Map map1 = new HashMap();
+        map1.put("code",0);
+        map1.put("msg","");
+        map1.put("count",map.get("count"));
+        map1.put("data",map.get("data"));
+        return map1;
+
     }
 }

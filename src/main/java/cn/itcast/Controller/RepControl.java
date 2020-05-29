@@ -47,29 +47,30 @@ public class RepControl extends ActionSupport implements ModelDriven<Repairs> {
         this.limit = limit;
     }
     public String findAll(){
-        System.out.println(repairs);
-//        if((appointment.getAptName()!=null&&repairs.getAptName().length()>0)||appointment.getServiceType()!=null&&appointment.getServiceType().length()>0){
-//
-//
-//            map = iAppoService.FindLike(repairs,Integer.parseInt(page),Integer.parseInt(limit));
-//
-//            System.out.println(map);
-//            return SUCCESS;
-//
-//        }
+
+        if((repairs.getRepName()!=null&&repairs.getRepName().length()>0)||repairs.getRepState()!=null&&repairs.getRepState().length()>0){
+
+
+            map = iRepService.FindLike(repairs,Integer.parseInt(page),Integer.parseInt(limit));
+
+            System.out.println(map);
+            return SUCCESS;
+
+        }
         map = iRepService.findAll(repairs,Integer.parseInt(page),Integer.parseInt(limit));
         System.out.println(map);
         return SUCCESS;
     }
     public String update(){
-//
-//        if(iMesService.UpdateById(message)){
-//            System.out.println(1);
-//            map.put("msg","1");
-//        }else {
-//            System.out.println(0);
-//            map.put("msg","0");
-//        }
+
+        if(iRepService.UpdateById(repairs)){
+
+            map.put("msg","1");
+        }else {
+
+            map.put("msg","0");
+        }
+            repairs.setRepState(null);
         return SUCCESS;
     }
     public String delete(){

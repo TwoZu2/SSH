@@ -22,22 +22,18 @@
 </fieldset>
 
 <form class="layui-form layui-from-pane"  style="margin-top:20px" >
-    <div class="layui-form-item" style="display: none">
-        <label class="layui-form-label">id</label>
-        <div class="layui-input-block">
-            <input type="text" value="" name="id" id="id" required  lay-verify="required" autocomplete="off"  class="layui-input">
-        </div>
-    </div>
+<!--    document.cookie = "aptName:" + data.aptName +"&aptPhone:"+data.aptPhone+"&aptNo:"+data.aptNo+"&aptType:"+data.aptType+"&serviceType:"+data.serviceType-->
+
     <div class="layui-form-item" style="display: none">
         <label class="layui-form-label">姓名</label>
         <div class="layui-input-block">
-            <input type="text" value="$" name="name" id="name" required  lay-verify="required" autocomplete="off" placeholder="请输入姓名" class="layui-input">
+            <input type="text" value="" name="aptName" id="aptName" required  lay-verify="required" autocomplete="off" placeholder="请输入姓名" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item" style="display: none">
         <label class="layui-form-label">联系方式</label>
         <div class="layui-input-block">
-            <input type="text" value="" name="phone" id="phone"  required  lay-verify="required" autocomplete="off" placeholder="请输入联系方式" class="layui-input">
+            <input type="text" value="" name="aptPhone" id="aptPhone"  required  lay-verify="required" autocomplete="off" placeholder="请输入联系方式" class="layui-input">
         </div>
     </div>
 
@@ -45,13 +41,13 @@
         <label class="layui-form-label">车牌号</label>
 
         <div class="layui-input-block">
-            <input type="text" value="" name="no" id="no" required  lay-verify="required" autocomplete="off" placeholder="请输入车牌号" class="layui-input">
+            <input type="text" value="" name="aptNo" id="aptNo" required  lay-verify="required" autocomplete="off" placeholder="请输入车牌号" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item" style="display: none">
         <label class="layui-form-label">车型</label>
         <div class="layui-input-block">
-            <input type="text" value="" name="type" id="type" required  lay-verify="required" autocomplete="off" placeholder="请输入车型" class="layui-input">
+            <input type="text" value="" name="aptType" id="aptType" required  lay-verify="required" autocomplete="off" placeholder="请输入车型" class="layui-input">
         </div>
     </div>
 

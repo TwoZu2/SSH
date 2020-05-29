@@ -154,4 +154,22 @@ public class Repairs {
         result = 31 * result + (carTime != null ? carTime.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Repairs{" +
+                "repId=" + repId +
+                ", repName='" + repName + '\'' +
+                ", repPhone='" + repPhone + '\'' +
+                ", repType='" + repType + '\'' +
+                ", repNum='" + repNum + '\'' +
+                ", repTime=" + repTime +
+                ", time='" + time + '\'' +
+                ", repService='" + repService + '\'' +
+                ", repPerson='" + repPerson + '\'' +
+                ", repPrice=" + repPrice +
+                ", repState='" + repState + '\'' +
+                ", carTime=" + carTime +
+                '}';
+    }
 }
