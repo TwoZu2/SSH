@@ -202,7 +202,12 @@
             $ = layui.$;
         //添加部门
         form.on('select()', function(s) {
-            document.getElementById("postionId").value = s.value;
+            if(s.value != undefined){
+                document.getElementById("postionId").value = s.value;
+            }else{
+                document.getElementById("postionId").value = num;
+            }
+
         });
         //监听提交
         form.on('submit(saveBtn)', function (data) {
@@ -221,7 +226,6 @@
                         if(data.msg==="1"){
                             layer.msg("修改成功", {icon: 1,time:1000},function () {
                                 // 关闭弹出层
-
                                 layer.close(index);
 
                                 var iframeIndex = parent.layer.getFrameIndex(window.name);
@@ -252,6 +256,10 @@
     });
 </script>
 <script>
+    //异步刷新列表
+
+
+
     var params= document.cookie;
     var pa = params.split("&");
     var s = new Object();
