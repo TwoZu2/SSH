@@ -1,8 +1,10 @@
 package cn.itcast.Entity;
 
+import org.springframework.stereotype.Component;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-
+@Component
 public class Repairs {
     private int repId;
     private String repName;

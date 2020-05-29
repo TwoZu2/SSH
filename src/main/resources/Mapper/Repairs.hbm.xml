@@ -24,7 +24,7 @@
             <column name="RepTime" sql-type="datetime"/>
         </property>
         <property name="time">
-            <column name="Time" sql-type="varchar(20)" length="20" not-null="true"/>
+            <column name="Time" sql-type="varchar(20)" length="20"/>
         </property>
         <property name="repService">
             <column name="RepService" sql-type="varchar(10)" length="10"/>

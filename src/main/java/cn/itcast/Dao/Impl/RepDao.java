@@ -1,15 +1,15 @@
 package cn.itcast.Dao.Impl;
 
-import cn.itcast.Dao.IAppoDao;
+import cn.itcast.Dao.IRepDao;
 import cn.itcast.Entity.Appointment;
-import cn.itcast.Entity.Contactus;
+import cn.itcast.Entity.Repairs;
 import cn.itcast.Utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
 @Repository
-public class AppoDaoImpl implements IAppoDao {
+public class RepDao implements IRepDao {
     @Autowired
     Util util;
 
@@ -18,14 +18,14 @@ public class AppoDaoImpl implements IAppoDao {
     }
 
 
-    public boolean UpdateById(Appointment appointment) {
+    public boolean UpdateById(Repairs repairs) {
 
-        return util.SaveOrUpdate(appointment);
+        return util.SaveOrUpdate(repairs);
     }
 
 
-    public boolean DeleteById(Appointment appointment) {
-        return util.DeleteByID(appointment);
+    public boolean DeleteById(Repairs repairs) {
+        return util.DeleteByID(repairs);
     }
 
     public Map FindLike(Class c, Map map, int page, int limit) {

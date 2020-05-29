@@ -35,6 +35,15 @@
 
             <allowed-methods>delete,update,save,findAll</allowed-methods>
         </action>
+
+        <action name="Rep_*" class="repControl" method="{1}">
+
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+
+            <allowed-methods>delete,update,save,findAll</allowed-methods>
+        </action>
     </package>
-    <include file="xiaohe.xml"></include>
+    <include file="xiaohe.xml"/>
 </struts>

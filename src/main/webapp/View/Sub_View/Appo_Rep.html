@@ -1,8 +1,8 @@
 <html>
 <head>
-    <script src="/resources/layui/jquery-3.1.1.min.js"></script>
-    <link rel="stylesheet" href="/resources/layui/css/layui.css">
-    <script src="/resources/layui/layui.js"></script>
+    <script src="../../resources/layui/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="../../resources/layui/css/layui.css">
+    <script src="../../resources/layui/layui.js"></script>
     <title>Title</title>
 
     <style>
@@ -88,7 +88,7 @@
         <div class="layui-input-block">
 
             <select id="select" name="select" lay-filter="select1">
-
+                <option>"财政部"</option>
             </select>
 
         </div>
@@ -97,7 +97,7 @@
         <label class="layui-form-label">服务职位</label>
         <div class="layui-input-block">
 
-            <select id="a"  name = 'select' lay-filter="select2">
+            <select id="select1"  name = 'select' lay-filter="select2">
                 <option>请先选择部门</option>
             </select>
 
@@ -107,7 +107,7 @@
         <label class="layui-form-label">服务人员</label>
         <div class="layui-input-block">
 
-            <select id="ren">
+            <select id="select2">
                 <option>请先选择职位</option>
             </select>
 
@@ -170,87 +170,95 @@
         $.ajax({url:'../../Department_find',
             type:"post",
             async:true,
-
+            dataType:"json",
             error:function(){
             },
 
             data: {"page":1,"limit":99999},
             success:function(data){
-                    alert(data)
+                var html = '';
+                $.each(data.data, function(idx, obj) {
+                    html+="<option value='"+obj.depName+"' name='"+obj.depId+"' >"+obj.depName+"</option>";
 
-                var str= data.data.substring(data.indexOf('['),data.lastIndexOf(']')+1);
+                })
+                $("#select").empty().append(html);
 
-                alert(str)
 
-                $.each(JSON.parse(str), function(idx, obj) {
-                    $("#select").append("<option value='"+obj.depName+"' name='"+obj.depId+"' >"+obj.depName+"</option>");
-                });
-
-                layui.form.render("select");
+                 layui.form.render("select");
 
             }
 
         });
-
+    return false;
     }
 
     function getClassify1() {
         var wai= $("#select").find("option:selected").attr("name");
 
 
-        $.ajax({url:'../../ServletstShow?wai='+wai,
+        $.ajax({url:'../../Position_find',
             type:"post",
             async:true,
 
             error:function(){
             },
 
-            data: {"page":1,"limit":99999},
+            data: {"page":1,"limit":99999,"deparId":wai},
             success:function(data){
+                var html="";
+                $.each(data.data, function(idx, obj) {
+                html+="<option value='"+obj.locId+"' >"+obj.locName+"</option>"
 
-                var str= data.substring(data.indexOf('['),data.lastIndexOf(']')+1);
+                })
 
+                    $("#select1").empty().append(html);
 
-                var html = '';
-                $.each(JSON.parse(str), function(idx, obj) {
-                    html+="<option value='"+obj.LocId+"' >"+obj.LocName+"</option>";
-                });
-                $("#a").empty().append(html);
                 layui.form.render("select");
+
 
             }
 
         });
+        return false;
     }
 
     function getClassify2() {
-        var wai= $("#a").find("option:selected").attr("value");
+        var wai= $("#select1").find("option:selected").attr("value");
 
 
-        $.ajax({url:'../../ServletpoShow?wai='+wai,
+        $.ajax({url:'../../Staff_find',
             type:"post",
             async:true,
 
             error:function(){
             },
 
-            data: {"page":1,"limit":99999},
+            data: {"page":1,"limit":99999,"postionId":wai},
             success:function(data){
+                    var html="";
+                $.each(data.data, function(idx, obj) {
+                    html+="<option value='"+obj.empName+"'>"+obj.empName+"</option>"
 
-                var str= data.substring(data.indexOf('['),data.lastIndexOf(']')+1);
+                })
+                $("#select2").empty().append(html);
 
 
-                var html = '';
-                $.each(JSON.parse(str), function(idx, obj) {
-                    html+="<option value='"+obj.EmpName+"' >"+obj.EmpName+"</option>";
-                });
-
-                $("#ren").empty().append(html);
                 layui.form.render("select");
+                // var str= data.substring(data.indexOf('['),data.lastIndexOf(']')+1);
+                //
+                //
+                // var html = '';
+                // $.each(JSON.parse(str), function(idx, obj) {
+                //     html+="<option value='"+obj.EmpName+"' >"+obj.EmpName+"</option>";
+                // });
+                //
+                // $("#ren").empty().append(html);
+                // layui.form.render("select");
 
             }
 
         });
+        return false;
     }
 
     layui.use('form', function(){
