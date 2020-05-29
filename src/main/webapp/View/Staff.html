@@ -245,10 +245,8 @@
 // 删除和修改的内容都在这
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
-
             //给打开的页面传值 (放入cookie)
-            document.cookie = "empId:" + data.empId + "&empName:" + data.empName + "&empSex:"+data.empSex +"&empAge:"+data.empAge+"&empAddress:"+data.empAddress+"&empPhone:"+data.empPhone+"&empTime:"+data.empTime+"&empIdentity:"+data.empIdentity;
-
+            document.cookie = "empId:" + data.empId + "&empName:" + data.empName + "&empSex:"+data.empSex +"&empAge:"+data.empAge+"&empAddress:"+data.empAddress+"&empPhone:"+data.empPhone+"&empTime:"+data.empTime+"&empIdentity:"+data.empIdentity+"&postionId"+data.postionId;
             if (obj.event === 'edit') {
 
                 var index = layer.open({

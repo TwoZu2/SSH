@@ -92,48 +92,6 @@
             <input type="text" name="empName" id="empName" lay-verify="required" lay-reqtext="姓名不能为空" placeholder="请输入姓名" value="" class="layui-input">
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label required">员工性别</label>
-        <div class="layui-input-block">
-            男<input type="radio" name="empSex"  value="男">
-            女<input type="radio" name="empSex"  value="女">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label required">员工年龄</label>
-        <div class="layui-input-block">
-            <input type="number" name="empAge" id="empAge" value="" req
-                   uired  lay-verify="required" autocomplete="off" placeholder="请输入年龄" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label required">员工地址</label>
-        <div class="layui-input-block">
-            <input type="text" value="" name="address" id="address" required  lay-verify="required" autocomplete="off" placeholder="请输入地址" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label required">联系方式</label>
-        <div class="layui-input-block">
-            <input type="text" name="empPhone" id="empPhone"  req
-                   uired  lay-verify="required" autocomplete="off" placeholder="请输入联系方式" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label required">入职时间</label>
-        <div class="layui-input-block">
-            <input type="date" name="time" id="time" value="2010-1-2"
-                   autocomplete="off" placeholder="请输入入职时间"  class="layui-input">
-        </div>
-    </div>
-
-    <div class="layui-form-item">
-        <label class="layui-form-label required">身份证</label>
-        <div class="layui-input-block">
-            <textarea  name="empIdentity" lay-verify="required" lay-reqtext="身份证不能为空" placeholder="请输入身份证" value="" class="layui-input"></textarea>
-        </div>
-    </div>
-
     <!--    <div class="layui-form-item">-->
     <!--        <label class="layui-form-label required">性别</label>-->
     <!--        <div class="layui-input-block">-->
@@ -142,9 +100,86 @@
     <!--        </div>-->
     <!--    </div>-->
     <div class="layui-form-item">
-        <label class="layui-form-label required">新闻内容</label>
+        <label class="layui-form-label required">员工性别</label>
         <div class="layui-input-block">
-            <textarea  name="postionId" lay-verify="required" lay-reqtext="部门不能为空" placeholder="请输入部门" value="" class="layui-input"></textarea>
+            男<input type="radio" name="empSex"  value="男" checked>
+            女<input type="radio" name="empSex"  value="女">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">员工年龄</label>
+        <div class="layui-input-block">
+            <input type="text" name="empAge" id="empAge" lay-verify="required" lay-reqtext="年龄不能为空" placeholder="请输入年龄" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">员工地址</label>
+        <div class="layui-input-block">
+            <input type="text" value="" name="empAddress" id="empAddress" required  lay-verify="required" autocomplete="off" placeholder="请输入地址" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">联系方式</label>
+        <div class="layui-input-block">
+            <textarea  name="empPhone" id="empPhone" lay-verify="required" lay-reqtext="联系方式不能为空" placeholder="请输入联系方式" value="" class="layui-input"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">入职时间</label>
+        <div class="layui-input-block">
+            <input type="date" name="empTime" id="empTime" value="2010-1-2"
+                   autocomplete="off" placeholder="请输入入职时间"  class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">身份证</label>
+        <div class="layui-input-block">
+            <textarea  name="empIdentity" id="empIdentity" lay-verify="required" lay-reqtext="身份证不能为空" placeholder="请输入身份证" value="" class="layui-input"></textarea>
+        </div>
+    </div>
+
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">选择职业</label>
+        <div class="layui-input-inline">
+            <select>
+                <option value="">全部</option>
+                <option value="1">后勤管理</option>
+                <option value="2">后勤123</option>
+                <option value="5">初级会计</option>
+                <option value="6">中级会计</option>
+                <option value="7">高级会计</option>
+                <option value="8">市场营销</option>
+                <option value="9">市场统计</option>
+                <option value="11">营销设计</option>
+                <option value="12">展示设计</option>
+                <option value="14">网页开发</option>
+                <option value="16">数据开发</option>
+                <option value="17">初级维修师</option>
+                <option value="18">高级维修师</option>
+                <option value="19">初级售后专员</option>
+                <option value="20">高级售后专员</option>
+                <option value="21">初级售前专员</option>
+                <option value="22">高级售前专员</option>
+                <option value="23">人事专员</option>
+                <option value="24">人事经理</option>
+                <option value="25">营销专员</option>
+                <option value="26">营销经理</option>
+                <option value="27">采购专员</option>
+                <option value="28">采购经理</option>
+                <option value="29">仓库搬运</option>
+                <option value="30">仓库管理</option>
+            </select>
+        </div>
+    </div>
+
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <textarea  name="postionId" id="postionId" lay-verify="required" style="display: none" value="" class="layui-input"></textarea>
         </div>
     </div>
     <!--    <div class="layui-form-item">-->
@@ -178,44 +213,66 @@
         var form = layui.form,
             layer = layui.layer,
             $ = layui.$;
+
+        //添加部门
+        form.on('select()', function(s) {
+            document.getElementById("postionId").value = s.value;
+        });
+
         //监听提交
         form.on('submit(saveBtn)', function (data) {
+
             var index = layer.alert("确认添加?", {
                 title: '提示'
             }, function () {
                 $.ajax({
+
                     url: "../../Staff_save",    // 提交到controller的url路径
                     type: "post",    // 提交方式
                     dataType: "json",
-                    data:{"empName":data.field.empName,"empSex":data.field.empSex,"empAge":data.field.empAge,"empAddress":data.field.empAddress,"empPhone":data.field.empPhone,"empTime":data.field.empTime,"empIdentity":data.field.empIdentity,"postionId":data.find.postionId}, // data为String类型，必须为 Key/Value 格式。 // data为String类型，必须为 Key/Value 格式。
+                    data:{"empName":data.field.empName,"empSex":data.field.empSex,"empAge":data.field.empAge,"empAddress":data.field.empAddress,"empPhone":data.field.empPhone,"empTime":data.field.empTime,"empIdentity":data.field.empIdentity,"postionId":data.field.postionId}, // data为String类型，必须为 Key/Value 格式。
                     // 服务器端返回的数据类型
+//
                     success: function (data) {
+
                         if(data.msg==="1"){
                             layer.msg("添加成功", {icon: 1,time:1000},function () {
                                 // 关闭弹出层
+
                                 layer.close(index);
+
                                 var iframeIndex = parent.layer.getFrameIndex(window.name);
                                 parent.layer.close(iframeIndex);
                                 parent.location.reload();
                             })
+
+
                         }
                         if(data.msg==="0"){
                             layer.msg("添加失败,请再试试吧!", {icon: 2,time:1000},function () {
                                 // 关闭弹出层
+
                                 layer.close(index);
+
                                 var iframeIndex = parent.layer.getFrameIndex(window.name);
                                 parent.layer.close(iframeIndex);
                                 parent.location.reload();
                             })
+
                         }
                     },
                     error: function(e) {
                         console.log("error")
                     },
                 });
+
+
+
             });
+
             return false;
         });
+
     });
 </script>
 </body>
