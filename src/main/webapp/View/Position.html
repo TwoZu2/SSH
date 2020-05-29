@@ -232,10 +232,8 @@
             var data = obj.data;
 
             //给打开的页面传值 (放入cookie)
-            document.cookie = "locId:" + data.locId + "&locName:" + data.locName + "&locText:"+data.locText;
-
+            document.cookie = "locId:" + data.locId + "&locName:" + data.locName + "&locText:"+data.locText + "&deparId:"+ data.deparId;
             if (obj.event === 'edit') {
-
                 var index = layer.open({
                     title: '编辑用户',
                     type: 2,
