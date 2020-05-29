@@ -87,9 +87,10 @@
 <body>
 <div class="layui-form layuimini-form">
     <div class="layui-form-item">
-        <label class="layui-form-label required">职位名称</label>
+        <label class="layui-form-label">职位名称</label>
         <div class="layui-input-block">
-            <input type="text" name="locId" lay-verify="required" lay-reqtext="职位名称不能为空" placeholder="请输入职位名称" value="" class="layui-input">
+            <input type="text" name="locName" lay-verify="required" lay-reqtext="职业名称不能为空" placeholder="请输入职业" value="" class="layui-input">
+
         </div>
     </div>
     <!--    <div class="layui-form-item">-->
@@ -100,15 +101,17 @@
     <!--        </div>-->
     <!--    </div>-->
     <div class="layui-form-item">
-        <label class="layui-form-label required">职位描述</label>
+        <label class="layui-form-label">职业描述</label>
         <div class="layui-input-block">
-            <textarea  name="locText" lay-verify="required" lay-reqtext="描述不能为空" placeholder="请输入内容" value="" class="layui-input"></textarea>
+
+            <textarea  name="locText" lay-verify="required" lay-reqtext="内容不能为空" placeholder="请输入内容" value="" class="layui-input"></textarea>
         </div>
     </div>
+
     <div class="layui-form-item">
-        <label class="layui-form-label required">添加部门</label>
+        <label class="layui-form-label">添加部门</label>
         <div class="layui-input-inline">
-            <select>
+            <select id="select">
                 <option value="">全部</option>
                 <option value="1">后勤部</option>
                 <option value="3">财政部</option>
@@ -125,9 +128,10 @@
             </select>
         </div>
     </div>
+
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <textarea  name="deparId" lay-verify="required" id="deparId" style="display: none" class="layui-input"></textarea>
+            <input type="text" id="deparId" name="deparId" lay-verify="required"  style="display: none" value="" class="layui-input">
         </div>
     </div>
     <!--    <div class="layui-form-item">-->
@@ -161,49 +165,61 @@
         var form = layui.form,
             layer = layui.layer,
             $ = layui.$;
+
+        //添加部门
         form.on('select()', function(s) {
-            //获取输入的数据(条件查询)
-            var result = s.value;
-            document.getElementById("deparId").value =s.value;
+            document.getElementById("deparId").value = s.value;
         });
         //监听提交
-            form.on('submit(saveBtn)','select' , function (data) {
-                var index = layer.alert("确认添加?", {
-                    title: '提示'
-                }, function () {
-                    $.ajax({
-                        url: "../../Posistion_save",    // 提交到controller的url路径
-                        type: "post",    // 提交方式
-                        dataType: "json",
-                        data: {"locName": data.field.locName, "locText": data.field.locText,"deparId": data.find.deparId}, // data为String类型，必须为 Key/Value 格式。
-                        // 服务器端返回的数据类型
-                        success: function (data) {
-                            if (data.msg === "1") {
-                                layer.msg("添加成功", {icon: 1, time: 1000}, function () {
-                                    // 关闭弹出层
-                                    layer.close(index);
-                                    var iframeIndex = parent.layer.getFrameIndex(window.name);
-                                    parent.layer.close(iframeIndex);
-                                    parent.location.reload();
-                                })
-                            }
-                            if (data.msg === "0") {
-                                layer.msg("添加失败,请再试试吧!", {icon: 2, time: 1000}, function () {
-                                    // 关闭弹出层
-                                    layer.close(index);
-                                    var iframeIndex = parent.layer.getFrameIndex(window.name);
-                                    parent.layer.close(iframeIndex);
-                                    parent.location.reload();
-                                })ss
-                            }
-                        },
-                        error: function (e) {
-                            console.log("error")
-                        },
-                    });
+        form.on('submit(saveBtn)', function (data) {
+
+            var index = layer.alert("确认添加?", {
+                title: '提示'
+            }, function () {
+                $.ajax({
+
+                    url: "../../Position_save",    // 提交到controller的url路径
+                    type: "post",    // 提交方式
+                    dataType: "json",
+                    data:{"locName":data.field.locName,"locText":data.field.locText,"deparId":data.field.deparId}, // data为String类型，必须为 Key/Value 格式。
+                    // 服务器端返回的数据类型
+                    success: function (data) {
+
+                        if(data.msg==="1"){
+                            layer.msg("添加成功", {icon: 1,time:1000},function () {
+                                // 关闭弹出层
+                                layer.close(index);
+                                var iframeIndex = parent.layer.getFrameIndex(window.name);
+                                parent.layer.close(iframeIndex);
+                                parent.location.reload();
+                            })
+
+                        }
+                        if(data.msg==="0"){
+                            layer.msg("添加失败,请再试试吧!", {icon: 2,time:1000},function () {
+                                // 关闭弹出层
+
+                                layer.close(index);
+
+                                var iframeIndex = parent.layer.getFrameIndex(window.name);
+                                parent.layer.close(iframeIndex);
+                                parent.location.reload();
+                            })
+
+                        }
+                    },
+                    error: function(e) {
+                        console.log("error")
+                    },
                 });
-                return false;
+
+
+
             });
+
+            return false;
+        });
+
     });
 </script>
 </body>
