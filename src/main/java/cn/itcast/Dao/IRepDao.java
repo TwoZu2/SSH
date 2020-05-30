@@ -10,4 +10,5 @@ public interface IRepDao {
     Map FindLike(Class c,Map map,int page, int limit);
     boolean UpdateById(Repairs repairs);
     boolean DeleteById(Repairs repairs);
+    boolean save(Repairs repairs);
 }

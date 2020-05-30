@@ -246,7 +246,7 @@
 
             //给打开的页面传值 (放入cookie)
 
-            document.cookie = "aptName:" + data.aptName +"&aptPhone:"+data.aptPhone+"&aptNo:"+data.aptNo+"&aptType:"+data.aptType+"&serviceType:"+data.serviceType
+            document.cookie = "aptId:"+data.aptId+"&aptName:" + data.aptName +"&aptPhone:"+data.aptPhone+"&aptNo:"+data.aptNo+"&aptType:"+data.aptType+"&serviceType:"+data.serviceType
             ;
             if (obj.event === 'edit') {
                 var index = layer.open({

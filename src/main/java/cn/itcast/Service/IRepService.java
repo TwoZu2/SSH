@@ -10,4 +10,5 @@ public interface IRepService {
     Map FindLike(Repairs repairs, int page, int limit);
     boolean UpdateById(Repairs repairs);
     boolean DeleteById(Repairs repairs);
+    boolean save(Repairs repairs);
 }

@@ -36,6 +36,11 @@ public class RepDao implements IRepDao {
         return util.DeleteByID(repairs);
     }
 
+    @Override
+    public boolean save(Repairs repairs) {
+        return util.SaveOrUpdate(repairs);
+    }
+
     public Map FindLike(Class c, Map map, int page, int limit) {
 
         return util.FindLike(c,map,page,limit);

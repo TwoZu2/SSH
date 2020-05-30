@@ -84,6 +84,19 @@ public class RepControl extends ActionSupport implements ModelDriven<Repairs> {
         }
         return SUCCESS;
     }
+    public String save(){
+        System.out.println(repairs);
+        repairs.setRepId(0);
+                if(iRepService.save(repairs)){
+
+                    map.put("msg","1");
+                }else {
+
+                    map.put("msg","0");
+                }
+
+                return SUCCESS;
+    }
     @Override
     public Repairs getModel() {
         return repairs;

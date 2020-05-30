@@ -23,7 +23,12 @@
 
 <form class="layui-form layui-from-pane"  style="margin-top:20px" >
 <!--    document.cookie = "aptName:" + data.aptName +"&aptPhone:"+data.aptPhone+"&aptNo:"+data.aptNo+"&aptType:"+data.aptType+"&serviceType:"+data.serviceType-->
-
+    <div class="layui-form-item" style="display: none">
+        <label class="layui-form-label">id</label>
+        <div class="layui-input-block">
+            <input type="text" value="" name="aptId" id="aptId" required  lay-verify="required" autocomplete="off" placeholder="请输入姓名" class="layui-input">
+        </div>
+    </div>
     <div class="layui-form-item" style="display: none">
         <label class="layui-form-label">姓名</label>
         <div class="layui-input-block">
@@ -37,7 +42,7 @@
         </div>
     </div>
 
-    <div class="layui-form-item" style="display: none">
+    <div class="layui-form-item" style="display: none"  >
         <label class="layui-form-label">车牌号</label>
 
         <div class="layui-input-block">
@@ -52,18 +57,18 @@
     </div>
 
 
-    <div class="layui-form-item"  style="display: none">
-        <label class="layui-form-label">维修时间</label>
+    <div class="layui-form-item">
+        <label class="layui-form-label">预计</label>
         <div class="layui-input-block">
             <input type="date" name="time" id="time"
                    autocomplete="off"   class="layui-input">
 
         </div>
     </div>
-    <div class="layui-form-item" >
-        <label class="layui-form-label">预计时间</label>
+    <div class="layui-form-item"  style="display: none">
+        <label class="layui-form-label">维修</label>
         <div class="layui-input-block">
-            <input type="text" name="yutime" id="yutime"
+            <input type="date" name="RepTime" id="RepTime"
                    autocomplete="off"   class="layui-input">
 
         </div>
@@ -84,7 +89,7 @@
         <div class="layui-input-block">
 
             <select id="select" name="select" lay-filter="select1">
-                <option>"财政部"</option>
+                <option></option>
             </select>
 
         </div>
@@ -109,24 +114,8 @@
 
         </div>
     </div>
-    <div class="layui-form-item" >
-        <label class="layui-form-label">服务费用</label>
-        <div class="layui-input-block">
 
-            <input type="number" name="price" id="price"
-                   autocomplete="off" placeholder="请输入服务费用" min="0"   class="layui-input">
 
-        </div>
-    </div>
-    <div class="layui-form-item" >
-        <label class="layui-form-label">提车时间</label>
-        <div class="layui-input-block">
-
-            <input type="date" name="endtime" id="endtime"
-                   autocomplete="off"   class="layui-input">
-
-        </div>
-    </div>
     <div class="layui-form-item" style="margin-top:40px">
         <div class="layui-input-block">
             <button class="layui-btn  layui-btn-submit " lay-submit="" lay-filter="demo1">立即提交</button>
@@ -135,7 +124,7 @@
     </div>
 </form>
 <script>
-    // $("#type1 option[value=${param.type1}]").prop("selected","selected");
+
     /*获取当前时间*/
     var time = new Date();
     /*格式化日，如果小于9，则补0*/
@@ -259,55 +248,66 @@
 
     layui.use('form', function(){
         var form = layui.form;
-
+        var msg="";
 
         //监听提交
         form.on('submit(demo1)', function(data) {
 
+              var  servicetype = $("#type1 option:selected").text();
+            var person= $("#select2 option:selected").text();
 
-            var name = $("#name").val();
-            var no = $("#no").val();
+            var index = layer.alert("确认预约?", {
+                title: '提示'
+            }, function () {
 
-            var phone = $("#phone").val();
-            var type = $("#type").val();
+                $.ajax({
 
-            var type1 =  $("#type1").val();
-            var starttime = $("#time").val();
-            var endtime = $("#endtime").val();
-            var ren = $("#ren").val();
-            var price = $("#price").val();
-            var yutime = $("#yutime").val();
-            var id = $("#id").val();
+                    url: "../../Rep_save",    // 提交到controller的url路径
+                    type: "post",    // 提交方式
 
-            $.ajax({
+                    data:{"RepName": data.field.aptName,
+                        "RepPhone":data.field.aptPhone,"RepType":data.field.aptType,"RepNum":data.field.aptNo,
+                        "RepService":servicetype,"RepTime":data.field.RepTime,"Time":data.field.time,
+                        "RepPerson":person,
+                        "RepState":'0',"RepPrice":0}, // data为String类型，必须为 Key/Value 格式。
+                    // 服务器端返回的数据类型
+                    async:false,
+                    success: function (data) {
 
-                url: "../../Servletrepadd",    // 提交到controller的url路径
-                type: "post",    // 提交方式
-                data:{"name": name, "no":no,"type":type,"type1":type1,"phone":phone,"price":price,"starttime":starttime,"endtime":endtime,"ren":ren,"yutime":yutime,"zhuang":'0'}, // data为String类型，必须为 Key/Value 格式。
-                // 服务器端返回的数据类型
-                async:false,
-                success: function (data) {
-
-                    if(data==="1"){
+                        if(data.msg==="1"){
 
 
-                        parent.layer.msg("添加成功", {icon: 1,time:1000}, function () {
+                            layer.msg("预约成功", {icon: 1,time:1000}, function () {
+                                        msg="0";
 
-                            $.ajax({url:'../../Servletappodel?id='+id,
-                                type:"post",
+                                     var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                                    parent.location.reload();//刷新父页面，注意一定要在关闭当前iframe层之前执行刷新
+                                    parent.layer.close(index)
 
                             });
-                            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-                            parent.location.reload();//刷新父页面，注意一定要在关闭当前iframe层之前执行刷新
-                            parent.layer.close(index)
-                        });
 
+
+                        }else {
+                           layer.msg("预约失败", {icon: 2,time:1000}, function () {
+
+                                // $.ajax({url:'../../Servletappodel?id='+id,
+                                //     type:"post",
+                                //
+                                // });
+                                var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                                parent.location.reload();//刷新父页面，注意一定要在关闭当前iframe层之前执行刷新
+                                parent.layer.close(index)
+                            });
+                        }
 
                     }
 
-                }
+                });
+            })
 
-            });
+                $.post("../../Appo_delete", {aptId: data.field.aptId}, function (ret) {
+
+                });
 
 
             return false;
@@ -317,6 +317,42 @@
         })
 
     });
+</script>
+<script>
+
+    var params= document.cookie;
+    var pa = params.split("&");
+
+    var s = new Object();
+    for(var i = 0; i < pa.length; i ++){
+        s[pa[i].split(":")[0]] = pa[i].split(":")[1];
+    }
+    // document.cookie = "repId:" + data.repId +"repName:" + data.repName
+    //     + "&repPhone:" + data.repPhone + "&repType:" + data.repType +
+    //     "&:"+data.repNum +"&repTime:"+data.repTime+"&time:"+data.time+"&repService:" +
+    //     ""+data.repService+"&repPerson:"+data.repPerson+"&repPrice:"+data.repPrice+"&repState:"+data.repState;
+    <!--    document.cookie = "aptName:" + data.aptName +"&aptPhone:"+data.aptPhone+"&aptNo:"+data.aptNo+"&aptType:"+data.aptType+"&serviceType:"+data.serviceType-->
+
+    document.getElementById("aptName").value =s.aptName;
+
+    document.getElementById("aptPhone").value = s.aptPhone;
+    document.getElementById("aptNo").value =s.aptNo;
+
+    document.getElementById("aptType").value = s.aptType;
+    document.getElementById("aptId").value=s.aptId;
+
+    $("#type1 option[value=serviceType]").prop("selected","selected");
+    var time = new Date();
+    /*格式化日，如果小于9，则补0*/
+    var day = ("0" + time.getDate()).slice(-2);
+    /*格式化月，如果小于9，则补0*/
+    var month = ("0" + (time.getMonth() + 1)).slice(-2);
+    /*拼接日期*/
+    var today = time.getFullYear() + "-" + (month) + "-" + (day);
+    /*完成赋值操作*/
+
+    document.getElementById("RepTime").value=today;
+
 </script>
 
 </body>

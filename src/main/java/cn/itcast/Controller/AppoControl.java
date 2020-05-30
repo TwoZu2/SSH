@@ -72,7 +72,7 @@ public class AppoControl extends ActionSupport implements ModelDriven<Appointmen
         return SUCCESS;
     }
     public String delete(){
-
+                System.out.println(appointment);
         if(iAppoService.DeleteById(appointment)){
 
             map.put("msg","1");

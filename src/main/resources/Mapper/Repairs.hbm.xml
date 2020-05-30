@@ -7,6 +7,7 @@
     <class name="cn.itcast.Entity.Repairs" table="repairs" schema="maintain">
         <id name="repId">
             <column name="RepId" sql-type="int(11)"/>
+            <generator class="increment"/>
         </id>
         <property name="repName">
             <column name="RepName" sql-type="varchar(20)" length="20"/>

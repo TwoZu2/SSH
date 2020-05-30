@@ -40,6 +40,11 @@ public class RepService implements IRepService {
         return iRepDao.DeleteById(repairs);
     }
 
+    @Override
+    public boolean save(Repairs repairs) {
+        return iRepDao.save(repairs);
+    }
+
     public Map FindLike(Repairs repairs, int page, int limit) {
         page--;
         page *= limit;
