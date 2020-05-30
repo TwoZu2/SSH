@@ -38,5 +38,13 @@
             </result>
             <allowed-methods>update,save,find</allowed-methods>
         </action>
+
+
+        <action name="Service_*" class="serviceControl" method="{1}">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+            <allowed-methods>delete,update,save,findService</allowed-methods>
+        </action>
     </package>
 </struts>
