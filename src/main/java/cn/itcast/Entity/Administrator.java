@@ -1,5 +1,9 @@
 package cn.itcast.Entity;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+
+@Component
 public class Administrator {
     private int adminId;
     private String adminName;

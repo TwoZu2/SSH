@@ -19,13 +19,6 @@
             <allowed-methods>delete,update,save,findUser</allowed-methods>
         </action>
 
-        <action name="Admin_*" class="adminControl" method="{1}">
-            <!--            <result name="success">ok.jsp</result>-->
-            <result type="json">
-                <param name="root">map</param>
-            </result>
-            <allowed-methods>update,save,find</allowed-methods>
-        </action>
 
         <action name="Mes_*" class="mesControl" method="{1}">
 
