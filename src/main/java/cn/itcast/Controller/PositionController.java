@@ -77,8 +77,7 @@ public class PositionController extends ActionSupport implements ModelDriven<Loc
     }
     public String update(){
         System.out.println("update");
-
-        System.out.println(location.getLocId());
+        System.out.println(location);
         if(positionService.updateById(location)){
             System.out.println(1);
             map.put("msg","1");

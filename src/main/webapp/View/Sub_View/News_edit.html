@@ -90,16 +90,16 @@
         <label class="layui-form-label required">ID</label>
         <div class="layui-input-block">
             <input type="text" id="newId" name="newId" lay-verify="required" readonly="readonly"   value="" class="layui-input">
-<!--            <tip>填写自己管理账号的名称。</tip>-->
+            <!--            <tip>填写自己管理账号的名称。</tip>-->
         </div>
     </div>
-<!--    <div class="layui-form-item">-->
-<!--        <label class="layui-form-label required">性别</label>-->
-<!--        <div class="layui-input-block">-->
-<!--            <input type="radio" name="sex" value="男" title="男" checked="">-->
-<!--            <input type="radio" name="sex" value="女" title="女">-->
-<!--        </div>-->
-<!--    </div>-->
+    <!--    <div class="layui-form-item">-->
+    <!--        <label class="layui-form-label required">性别</label>-->
+    <!--        <div class="layui-input-block">-->
+    <!--            <input type="radio" name="sex" value="男" title="男" checked="">-->
+    <!--            <input type="radio" name="sex" value="女" title="女">-->
+    <!--        </div>-->
+    <!--    </div>-->
     <div class="layui-form-item">
         <label class="layui-form-label required">发布时间</label>
         <div class="layui-input-block">
@@ -118,12 +118,12 @@
             <input type="text" id="newMessage" name="newMessage" lay-verify="required" placeholder="请输入内容" value="" class="layui-input">
         </div>
     </div>
-<!--    <div class="layui-form-item layui-form-text">-->
-<!--        <label class="layui-form-label">备注信息</label>-->
-<!--        <div class="layui-input-block">-->
-<!--            <input type="time" name="newMessage" class="layui-textarea" placeholder="请输入备注信息"></input>-->
-<!--        </div>-->
-<!--    </div>-->
+    <!--    <div class="layui-form-item layui-form-text">-->
+    <!--        <label class="layui-form-label">备注信息</label>-->
+    <!--        <div class="layui-input-block">-->
+    <!--            <input type="time" name="newMessage" class="layui-textarea" placeholder="请输入备注信息"></input>-->
+    <!--        </div>-->
+    <!--    </div>-->
 
     <div class="layui-form-item">
         <div class="layui-input-block">
@@ -193,19 +193,17 @@
 </script>
 <script>
 
-        var params= document.cookie;
-        var pa = params.split("&");
-        var s = new Object();
-        for(var i = 0; i < pa.length; i ++){
-            s[pa[i].split(":")[0]] = pa[i].split(":")[1];
-        }
+    var params= document.cookie;
+    var pa = params.split("&");
+    var s = new Object();
+    for(var i = 0; i < pa.length; i ++){
+        s[pa[i].split(":")[0]] = pa[i].split(":")[1];
+    }
 
-        document.getElementById("newId").value =s.newId;
-        document.getElementById("newTime").value = s.newTime.substring(0,10);
-        document.getElementById("newTitle").value = s.newTitle;
-        document.getElementById("newMessage").value = s.newMessage;
-
-
+    document.getElementById("newId").value =s.newId;
+    document.getElementById("newTime").value = s.newTime.substring(0,10);
+    document.getElementById("newTitle").value = s.newTitle;
+    document.getElementById("newMessage").value = s.newMessage;
 
 </script>
 </body>
