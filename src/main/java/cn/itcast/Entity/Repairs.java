@@ -1,8 +1,10 @@
 package cn.itcast.Entity;
 
+import org.springframework.stereotype.Component;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-
+@Component
 public class Repairs {
     private int repId;
     private String repName;
@@ -151,5 +153,23 @@ public class Repairs {
         result = 31 * result + (repState != null ? repState.hashCode() : 0);
         result = 31 * result + (carTime != null ? carTime.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Repairs{" +
+                "repId=" + repId +
+                ", repName='" + repName + '\'' +
+                ", repPhone='" + repPhone + '\'' +
+                ", repType='" + repType + '\'' +
+                ", repNum='" + repNum + '\'' +
+                ", repTime=" + repTime +
+                ", time='" + time + '\'' +
+                ", repService='" + repService + '\'' +
+                ", repPerson='" + repPerson + '\'' +
+                ", repPrice=" + repPrice +
+                ", repState='" + repState + '\'' +
+                ", carTime=" + carTime +
+                '}';
     }
 }

@@ -1,24 +1,22 @@
 package cn.itcast.Controller;
 
+import cn.itcast.Entity.Appointment;
 import cn.itcast.Entity.Contactus;
-import cn.itcast.Entity.Message;
+import cn.itcast.Service.IAppoService;
 import cn.itcast.Service.IMesService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.util.HashMap;
 import java.util.Map;
-
 @Controller
-public class MesControl extends ActionSupport implements ModelDriven<Contactus> {
+public class AppoControl extends ActionSupport implements ModelDriven<Appointment> {
     @Autowired
-    IMesService iMesService;
-
-    private    Contactus message = new Contactus();
+    IAppoService iAppoService;
+    @Autowired
+    private Appointment appointment;
     private Map map = new HashMap();
 
     public Map getMap() {
@@ -47,46 +45,45 @@ public class MesControl extends ActionSupport implements ModelDriven<Contactus> 
     public void setLimit(String limit) {
         this.limit = limit;
     }
-
     public String findAll(){
-
-        if((message.getRetshow()!=null&&message.getRetshow().length()>0)||message.getContName()!=null&&message.getContName().length()>0){
-
-
-            map = iMesService.FindLike(message,Integer.parseInt(page),Integer.parseInt(limit));
+                System.out.println(appointment);
+        if((appointment.getAptName()!=null&&appointment.getAptName().length()>0)||appointment.getServiceType()!=null&&appointment.getServiceType().length()>0){
 
 
+            map = iAppoService.FindLike(appointment,Integer.parseInt(page),Integer.parseInt(limit));
+
+            System.out.println(map);
             return SUCCESS;
 
         }
-        map = iMesService.findAll(message,Integer.parseInt(page),Integer.parseInt(limit));
+        map = iAppoService.findAll(appointment,Integer.parseInt(page),Integer.parseInt(limit));
         System.out.println(map);
         return SUCCESS;
     }
     public String update(){
+//
+//        if(iMesService.UpdateById(message)){
+//            System.out.println(1);
+//            map.put("msg","1");
+//        }else {
+//            System.out.println(0);
+//            map.put("msg","0");
+//        }
+        return SUCCESS;
+    }
+    public String delete(){
 
-        if(iMesService.UpdateById(message)){
-            System.out.println(1);
+        if(iAppoService.DeleteById(appointment)){
+
             map.put("msg","1");
         }else {
-            System.out.println(0);
+
             map.put("msg","0");
         }
         return SUCCESS;
     }
-        public String delete(){
-
-            if(iMesService.DeleteById(message)){
-
-                map.put("msg","1");
-            }else {
-
-                map.put("msg","0");
-            }
-            return SUCCESS;
-        }
     @Override
-    public Contactus getModel() {
-        return message;
+    public Appointment getModel() {
+        return appointment;
     }
 }
