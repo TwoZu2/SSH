@@ -89,7 +89,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">ID</label>
         <div class="layui-input-block">
-            <input type="text" id="newId" name="newId" lay-verify="required" readonly="readonly"   value="" class="layui-input">
+            <input type="text" id="repId" name="repId" lay-verify="required" hidden="hidden" readonly="readonly"   value="" class="layui-input">
             <!--            <tip>填写自己管理账号的名称。</tip>-->
         </div>
     </div>
@@ -101,33 +101,21 @@
     <!--        </div>-->
     <!--    </div>-->
     <div class="layui-form-item">
-        <label class="layui-form-label required">发布时间</label>
+        <label class="layui-form-label required">请输入费用</label>
         <div class="layui-input-block">
-            <input type="text" id="newTime" name="newTime" lay-verify="required" readonly="readonly"  class="layui-input">
+            <input type="number" id="repPrice" name="repPrice" lay-verify="required" class="layui-input">
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">新闻标题</label>
-        <div class="layui-input-block">
-            <input type="text" id="newTitle" name="newTitle" lay-verify="required" placeholder="请输入标题" value="" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">新闻内容</label>
-        <div class="layui-input-block">
-            <input type="text" id="newMessage" name="newMessage" lay-verify="required" placeholder="请输入内容" value="" class="layui-input">
-        </div>
-    </div>
-    <!--    <div class="layui-form-item layui-form-text">-->
-    <!--        <label class="layui-form-label">备注信息</label>-->
-    <!--        <div class="layui-input-block">-->
-    <!--            <input type="time" name="newMessage" class="layui-textarea" placeholder="请输入备注信息"></input>-->
-    <!--        </div>-->
-    <!--    </div>-->
 
+    <div class="layui-form-item" style="display: none">
+        <label class="layui-form-label required"></label>
+        <div class="layui-input-block">
+            <input type="text" id="carTime" name="carTime" lay-verify="required" class="layui-input">
+        </div>
+    </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认提车</button>
         </div>
     </div>
 </div>
@@ -141,69 +129,94 @@
 
         //监听提交
         form.on('submit(saveBtn)', function (data) {
-            var index = layer.alert("确认修改" +
-                "?", {
-                title: '提示'
-            }, function () {
-                $.ajax({
 
-                    url: "../../User_update",    // 提交到controller的url路径
-                    type: "post",    // 提交方式
-                    dataType: "json",
-                    data:{"newId":data.field.newId,"newTitle":data.field.newTitle,"newMessage":data.field.newMessage}, // data为String类型，必须为 Key/Value 格式。
-                    // 服务器端返回的数据类型
+            if(data.field.repPrice==null||data.field.repPrice.length===""){
+                layer.msg("价格不能为空!", {icon: 2,time:1000})
+            }else {
+                var index = layer.alert("确认提车" +
+                    "?", {
+                    title: '提示'
+                }, function () {
+                    $.ajax({
 
-                    success: function (data) {
+                        url: "../../Rep_update",    // 提交到controller的url路径
+                        type: "post",    // 提交方式
+                        dataType: "json",
+                        data: {
+                            "repId": data.field.repId,
+                            "repPrice": data.field.repPrice,
+                            "repState":1,
+                            "carTime":data.field.carTime
+                            // "contName": data.field.contName,
+                            // "contMessage": data.field.contMessage,
+                            // "contName": data.field.contName,
+                        }, // data为String类型，必须为 Key/Value 格式。
+                        // 服务器端返回的数据类型
 
-                        if(data.msg==="1"){
-                            layer.msg("修改成功", {icon: 1,time:1000},function () {
-                                // 关闭弹出层
+                        success: function (data) {
 
-                                layer.close(index);
+                            if (data.msg === "1") {
+                                layer.msg("提车成功", {icon: 1, time: 1000}, function () {
+                                    // 关闭弹出层
 
-                                var iframeIndex = parent.layer.getFrameIndex(window.name);
-                                parent.layer.close(iframeIndex);
-                                parent.location.reload();
-                            })
+                                    layer.close(index);
+                                    var iframeIndex = parent.layer.getFrameIndex(window.name);
+                                    parent.layer.close(iframeIndex);
+                                    parent.location.reload();
+                                })
 
 
+                            }
+                            if (data.msg === "0") {
+                                layer.msg("提车失败,请再试试吧!", {icon: 2, time: 1000}, function () {
+                                    // 关闭弹出层
+                                    layer.close(index);
+
+                                    var iframeIndex = parent.layer.getFrameIndex(window.name);
+                                    parent.layer.close(iframeIndex);
+                                    parent.location.reload();
+                                })
+
+                            }
                         }
-                        if(data.msg==="0"){
-                            layer.msg("修改失败,请再试试吧!", {icon: 2,time:1000},function () {
-                                // 关闭弹出层
-                                layer.close(index);
+                    });
 
-                                var iframeIndex = parent.layer.getFrameIndex(window.name);
-                                parent.layer.close(iframeIndex);
-                                parent.location.reload();
-                            })
 
-                        }
-                    }
                 });
-
-
-
-            });
-
+            }
             return false;
         });
 
     });
+
 </script>
 <script>
 
     var params= document.cookie;
     var pa = params.split("&");
+
     var s = new Object();
     for(var i = 0; i < pa.length; i ++){
         s[pa[i].split(":")[0]] = pa[i].split(":")[1];
     }
+    // document.cookie = "repId:" + data.repId +"repName:" + data.repName
+    //     + "&repPhone:" + data.repPhone + "&repType:" + data.repType +
+    //     "&:"+data.repNum +"&repTime:"+data.repTime+"&time:"+data.time+"&repService:" +
+    //     ""+data.repService+"&repPerson:"+data.repPerson+"&repPrice:"+data.repPrice+"&repState:"+data.repState;
 
-    document.getElementById("newId").value =s.newId;
-    document.getElementById("newTime").value = s.newTime.substring(0,10);
-    document.getElementById("newTitle").value = s.newTitle;
-    document.getElementById("newMessage").value = s.newMessage;
+    document.getElementById("repId").value =s.repId;
+
+    document.getElementById("repPrice").value = s.repPrice;
+    var time = new Date();
+    /*格式化日，如果小于9，则补0*/
+    var day = ("0" + time.getDate()).slice(-2);
+    /*格式化月，如果小于9，则补0*/
+    var month = ("0" + (time.getMonth() + 1)).slice(-2);
+    /*拼接日期*/
+    var today = time.getFullYear() + "-" + (month) + "-" + (day);
+    /*完成赋值操作*/
+    alert(today)
+    document.getElementById("carTime").value=today;
 
 </script>
 </body>

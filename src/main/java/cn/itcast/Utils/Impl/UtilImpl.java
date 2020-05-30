@@ -95,9 +95,7 @@ public class UtilImpl extends HibernateDaoSupport implements Util {
     public boolean SaveOrUpdate(Object obj) {
 
       try {
-
            this.getHibernateTemplate().saveOrUpdate(obj);
-
           logger.debug("SaveOrUpdate");
            return true;
        }catch (Exception o){
@@ -105,17 +103,16 @@ public class UtilImpl extends HibernateDaoSupport implements Util {
            return false;
        }
     }
-
     @Override
     public boolean DeleteByID(Object obj) {
-//        try {
+        try {
             this.getHibernateTemplate().delete(obj);
             logger.debug("DeleteByID");
             return true;
-//        }catch (Exception o){
-//            logger.debug(o);
-//            return false;
-//        }
+        }catch (Exception o){
+            logger.debug(o);
+            return false;
+        }
     }
 
 }

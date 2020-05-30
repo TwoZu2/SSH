@@ -89,7 +89,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">ID</label>
         <div class="layui-input-block">
-            <input type="text" id="newId" name="newId" lay-verify="required" readonly="readonly"   value="" class="layui-input">
+            <input type="text" id="locId" name="locId" lay-verify="required" readonly="readonly"   value="" class="layui-input">
             <!--            <tip>填写自己管理账号的名称。</tip>-->
         </div>
     </div>
@@ -101,21 +101,30 @@
     <!--        </div>-->
     <!--    </div>-->
     <div class="layui-form-item">
-        <label class="layui-form-label required">发布时间</label>
+        <label class="layui-form-label required">职业名称</label>
         <div class="layui-input-block">
-            <input type="text" id="newTime" name="newTime" lay-verify="required" readonly="readonly"  class="layui-input">
+            <input type="text" id="locName" name="locName" lay-verify="required" readonly="readonly"  class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">新闻标题</label>
+        <label class="layui-form-label">描述</label>
         <div class="layui-input-block">
-            <input type="text" id="newTitle" name="newTitle" lay-verify="required" placeholder="请输入标题" value="" class="layui-input">
+            <input type="text" id="locText" name="locText" lay-verify="required" placeholder="请输入描述" value="" class="layui-input">
         </div>
     </div>
+
     <div class="layui-form-item">
-        <label class="layui-form-label">新闻内容</label>
+        <label class="layui-form-label">部门</label>
+        <div class="layui-input-inline">
+            <select id="select" name="select">
+
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
         <div class="layui-input-block">
-            <input type="text" id="newMessage" name="newMessage" lay-verify="required" placeholder="请输入内容" value="" class="layui-input">
+            <input type="text" id="deparId" name="deparId" lay-verify="required" style="display: none" value="" class="layui-input">
         </div>
     </div>
     <!--    <div class="layui-form-item layui-form-text">-->
@@ -138,60 +147,80 @@
         var form = layui.form,
             layer = layui.layer,
             $ = layui.$;
-
-        //监听提交
-        form.on('submit(saveBtn)', function (data) {
-            var index = layer.alert("确认修改" +
-                "?", {
-                title: '提示'
-            }, function () {
-                $.ajax({
-
-                    url: "../../User_update",    // 提交到controller的url路径
-                    type: "post",    // 提交方式
-                    dataType: "json",
-                    data:{"newId":data.field.newId,"newTitle":data.field.newTitle,"newMessage":data.field.newMessage}, // data为String类型，必须为 Key/Value 格式。
-                    // 服务器端返回的数据类型
-
-                    success: function (data) {
-
-                        if(data.msg==="1"){
-                            layer.msg("修改成功", {icon: 1,time:1000},function () {
-                                // 关闭弹出层
-
-                                layer.close(index);
-
-                                var iframeIndex = parent.layer.getFrameIndex(window.name);
-                                parent.layer.close(iframeIndex);
-                                parent.location.reload();
-                            })
-
-
+        getClassify1();
+        //添加部门
+        form.on('select()', function(s) {
+            document.getElementById("deparId").value = s.value;
+        });
+        document.getElementById("deparId").value = "1";
+            //监听提交
+            form.on('submit(saveBtn)', function (data) {
+                var index = layer.alert("确认修改" +
+                    "?", {
+                    title: '提示'
+                }, function () {
+                    $.ajax({
+                        url: "../../Position_update",    // 提交到controller的url路径
+                        type: "post",    // 提交方式
+                        dataType: "json",
+                        data: {
+                            "locId": data.field.locId,
+                            "locName": data.field.locName,
+                            "locText": data.field.locText,
+                            "deparId": data.field.deparId
+                        }, // data为String类型，必须为 Key/Value 格式。
+                        // 服务器端返回的数据类型
+                        success: function (data) {
+                            if (data.msg === "1") {
+                                layer.msg("修改成功", {icon: 1, time: 1000}, function () {
+                                    // 关闭弹出层
+                                    layer.close(index);
+                                    var iframeIndex = parent.layer.getFrameIndex(window.name);
+                                    parent.layer.close(iframeIndex);
+                                    parent.location.reload();
+                                })
+                            }
+                            if (data.msg === "0") {
+                                layer.msg("修改失败,请再试试吧!", {icon: 2, time: 1000}, function () {
+                                    // 关闭弹出层
+                                    layer.close(index);
+                                    var iframeIndex = parent.layer.getFrameIndex(window.name);
+                                    parent.layer.close(iframeIndex);
+                                    parent.location.reload();
+                                })
+                            }
                         }
-                        if(data.msg==="0"){
-                            layer.msg("修改失败,请再试试吧!", {icon: 2,time:1000},function () {
-                                // 关闭弹出层
-                                layer.close(index);
+                    });
 
-                                var iframeIndex = parent.layer.getFrameIndex(window.name);
-                                parent.layer.close(iframeIndex);
-                                parent.location.reload();
-                            })
-
-                        }
-                    }
                 });
 
+                return false;
 
-
-            });
-
-            return false;
         });
-
     });
 </script>
 <script>
+    //异步刷新列表
+    function getClassify1() {
+        $.ajax({url:'../../Department_find',
+            type:"post",
+            async:true,
+            dataType:"json",
+            error:function(){
+            },
+            data: {"page":1,"limit":99999},
+            success:function(data){
+                var html = '';
+                $.each(data.data, function(idx, obj) {
+                    html+="<option value='"+obj.depId+"'>"+obj.depName+"</option>";
+                })
+                $("#select").empty().append(html);
+                layui.form.render("select");
+            }
+        });
+        return false;
+    }
+
 
     var params= document.cookie;
     var pa = params.split("&");
@@ -199,12 +228,12 @@
     for(var i = 0; i < pa.length; i ++){
         s[pa[i].split(":")[0]] = pa[i].split(":")[1];
     }
-
-    document.getElementById("newId").value =s.newId;
-    document.getElementById("newTime").value = s.newTime.substring(0,10);
-    document.getElementById("newTitle").value = s.newTitle;
-    document.getElementById("newMessage").value = s.newMessage;
-
+    document.getElementById("locId").value =s.locId;
+    document.getElementById("locName").value = s.locName.substring(0,10);
+    document.getElementById("locText").value = s.locText;
+    document.getElementById("deparId").value = s.deparId;
+    var num =s.deparId;
+    $("#select>option:eq('"+num+"')").attr("selected","selected");
 </script>
 </body>
 </html>

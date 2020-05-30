@@ -1,5 +1,8 @@
 package cn.itcast.Entity;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Employees {
     private int empId;
     private String empName;
@@ -9,15 +12,8 @@ public class Employees {
     private String empPhone;
     private String empTime;
     private String empIdentity;
-    private Location location;
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
+    public String postionId;
+   // private Location location;
 
     public int getEmpId() {
         return empId;
@@ -83,6 +79,14 @@ public class Employees {
         this.empIdentity = empIdentity;
     }
 
+    public String getPostionId() {
+        return postionId;
+    }
+
+    public void setPostionId(String postionId) {
+        this.postionId = postionId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -127,7 +131,7 @@ public class Employees {
                 ", empPhone='" + empPhone + '\'' +
                 ", empTime='" + empTime + '\'' +
                 ", empIdentity='" + empIdentity + '\'' +
-
+                ", postionId=" + postionId +
                 '}';
     }
 }

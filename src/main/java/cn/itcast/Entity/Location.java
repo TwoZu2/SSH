@@ -1,24 +1,21 @@
 package cn.itcast.Entity;
 
-import java.util.Set;
+import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+import java.util.Set;
+@Component
 public class Location {
     private int locId;
     private String locName;
     private String locText;
-    private Set<Employees> employees;
-    private Department departmentByDeparId;
-    public Set<Employees> getEmployees() {
-        return employees;
-    }
+    private String  deparId;
+  //  private Set<Employees> employees;
+    //private Department departmentByDeparId;
 
-    public void setEmployees(Set<Employees> employees) {
-        this.employees = employees;
-    }
     public int getLocId() {
         return locId;
     }
-
     public void setLocId(int locId) {
         this.locId = locId;
     }
@@ -39,48 +36,36 @@ public class Location {
         this.locText = locText;
     }
 
+    public String getDeparId() {
+        return deparId;
+    }
+
+    public void setDeparId(String deparId) {
+        this.deparId = deparId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Location location = (Location) o;
-
-        if (locId != location.locId) return false;
-        if (locName != null ? !locName.equals(location.locName) : location.locName != null) return false;
-        if (locText != null ? !locText.equals(location.locText) : location.locText != null) return false;
-
-        return true;
+        return locId == location.locId &&
+                Objects.equals(locName, location.locName) &&
+                Objects.equals(locText, location.locText);
     }
 
     @Override
     public int hashCode() {
-        int result = locId;
-        result = 31 * result + (locName != null ? locName.hashCode() : 0);
-        result = 31 * result + (locText != null ? locText.hashCode() : 0);
-        return result;
-    }
-
-
-
-    public Department getDepartmentByDeparId() {
-        return departmentByDeparId;
-    }
-
-    public void setDepartmentByDeparId(Department departmentByDeparId) {
-        this.departmentByDeparId = departmentByDeparId;
+        return Objects.hash(locId, locName, locText);
     }
 
     @Override
-
-
     public String toString() {
         return "Location{" +
                 "locId=" + locId +
                 ", locName='" + locName + '\'' +
                 ", locText='" + locText + '\'' +
-                ", employees=" + employees +
-                ", departmentByDeparId=" + departmentByDeparId +
+                ", deparId=" + deparId +
                 '}';
     }
 }

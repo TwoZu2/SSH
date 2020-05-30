@@ -1,24 +1,23 @@
 package cn.itcast.Controller;
 
-import cn.itcast.Entity.Contactus;
-import cn.itcast.Entity.Message;
-import cn.itcast.Service.IMesService;
+import cn.itcast.Entity.Appointment;
+import cn.itcast.Entity.Repairs;
+import cn.itcast.Service.IAppoService;
+import cn.itcast.Service.IRepService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-public class MesControl extends ActionSupport implements ModelDriven<Contactus> {
+public class RepControl extends ActionSupport implements ModelDriven<Repairs> {
     @Autowired
-    IMesService iMesService;
-
-    private    Contactus message = new Contactus();
+    IRepService iRepService;
+    @Autowired
+    private Repairs repairs;
     private Map map = new HashMap();
 
     public Map getMap() {
@@ -47,46 +46,46 @@ public class MesControl extends ActionSupport implements ModelDriven<Contactus> 
     public void setLimit(String limit) {
         this.limit = limit;
     }
-
     public String findAll(){
 
-        if((message.getRetshow()!=null&&message.getRetshow().length()>0)||message.getContName()!=null&&message.getContName().length()>0){
+        if((repairs.getRepName()!=null&&repairs.getRepName().length()>0)||repairs.getRepState()!=null&&repairs.getRepState().length()>0){
 
 
-            map = iMesService.FindLike(message,Integer.parseInt(page),Integer.parseInt(limit));
+            map = iRepService.FindLike(repairs,Integer.parseInt(page),Integer.parseInt(limit));
 
-
+            System.out.println(map);
             return SUCCESS;
 
         }
-        map = iMesService.findAll(message,Integer.parseInt(page),Integer.parseInt(limit));
+        map = iRepService.findAll(repairs,Integer.parseInt(page),Integer.parseInt(limit));
         System.out.println(map);
         return SUCCESS;
     }
     public String update(){
 
-        if(iMesService.UpdateById(message)){
-            System.out.println(1);
+        if(iRepService.UpdateById(repairs)){
+
             map.put("msg","1");
         }else {
-            System.out.println(0);
+
+            map.put("msg","0");
+        }
+            repairs.setRepState(null);
+        return SUCCESS;
+    }
+    public String delete(){
+
+        if(iRepService.DeleteById(repairs)){
+
+            map.put("msg","1");
+        }else {
+
             map.put("msg","0");
         }
         return SUCCESS;
     }
-        public String delete(){
-
-            if(iMesService.DeleteById(message)){
-
-                map.put("msg","1");
-            }else {
-
-                map.put("msg","0");
-            }
-            return SUCCESS;
-        }
     @Override
-    public Contactus getModel() {
-        return message;
+    public Repairs getModel() {
+        return repairs;
     }
 }
