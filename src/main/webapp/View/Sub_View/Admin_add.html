@@ -1,0 +1,123 @@
+<!--
+  Created by IntelliJ IDEA.
+  User: admin
+  Date: 2019/12/18
+  Time: 18:40
+  To change this template use File | Settings | File Templates.
+-->
+
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="../../resources/layui/css/layui.css">
+    <script src="../../resources/layui/layui.js"></script>
+    <title>Title</title>
+
+    <style>
+        .layui-form-label{
+            width: 100px;
+        }
+        .layui-input-block {
+            margin-left: 130px;
+            min-height: 36px;
+            width:80%
+        }
+    </style>
+</head>
+<body class="body" style="width: 60%;height: 60%">
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>添加管理员</legend>
+</fieldset>
+
+<div class="layui-form layuimini-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label required">用户名</label>
+        <div class="layui-input-block">
+            <input type="text" name="adminName" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="请输入用户名" value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">密码</label>
+        <div class="layui-input-block">
+            <input type="password" name="adminPassword" id="psd1" lay-verify="required" lay-reqtext="密码不能为空" placeholder="请输入密码" value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">确认密码</label>
+        <div class="layui-input-block">
+            <input type="password" name="adminPassword" id="psd2" lay-verify="required" lay-reqtext="密码不能为空" placeholder="请输入密码" value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
+        </div>
+    </div>
+</div>
+<script>
+
+    layui.use(['form'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.$;
+        //监听提交
+        form.on('submit(saveBtn)', function (data) {
+
+            var pa1=$("#psd1").val();
+            var pa2=$("#psd2").val();
+
+            var index = layer.alert("确认添加?", {
+                title: '提示'
+            }, function () {
+                if(pa1==pa2) {
+                    $.ajax({
+                        url: "../../Admin_save",    // 提交到controller的url路径
+                        type: "post",    // 提交方式
+                        dataType: "json",
+                        data: {"adminName": data.field.adminName, "adminPassword": data.field.adminPassword}, // data为String类型，必须为 Key/Value 格式。
+                        // 服务器端返回的数据类型
+                        success: function (data) {
+                            if (data.msg === "1") {
+                                layer.msg("添加成功", {icon: 1, time: 1000}, function () {
+                                    // 关闭弹出层
+                                    layer.close(index);
+                                    var iframeIndex = parent.layer.getFrameIndex(window.name);
+                                    parent.layer.close(iframeIndex);
+                                    parent.location.reload();
+                                })
+                            }
+                            if (data.msg === "0") {
+                                layer.msg("添加失败,请再试试吧!", {icon: 2, time: 1000}, function () {
+                                    // 关闭弹出层
+                                    layer.close(index);
+                                    var iframeIndex = parent.layer.getFrameIndex(window.name);
+                                    parent.layer.close(iframeIndex);
+                                    parent.location.reload();
+                                })
+                            }
+                        },
+                        error: function (e) {
+                            console.log("error")
+                        },
+                    });
+                }else {
+                    alert("两次密码不一致");
+                }
+
+            });
+            return false;
+        });
+    });
+
+
+
+
+   <!-- -----------------------------------  --------------------------------- -->
+
+</script>
+
+</body>
+</html>

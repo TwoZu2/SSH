@@ -14,37 +14,25 @@
         line-height: 60px;
     }
 </style>
+
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
         <div class="layui-logo">后台管理</div>
-        <!-- 头部区域（可配合layui已有的水平导航） -->
-        <!--<ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="">控制台</a></li>
-            <li class="layui-nav-item"><a href="">商品管理</a></li>
-            <li class="layui-nav-item"><a href="">用户</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">其它系统</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">邮件管理</a></dd>
-                    <dd><a href="">消息管理</a></dd>
-                    <dd><a href="">授权管理</a></dd>
-                </dl>
-            </li>
-        </ul>-->
+
 
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
-                <a href="javascript:;" id="a">
-                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                    ${param.name}
-                </a>
+                <a href="javascript:;" id="adminNameIMG">
+                <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                <label id="adminName"></label>
+            </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="../index.jsp">退出</a></li>
+            <li class="layui-nav-item"><a href="../index1.html">退出</a></li>
         </ul>
     </div>
 
@@ -89,14 +77,15 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;">订单管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="AppointMent1.html" target="voiceList">预约管理</a></dd>
-                        <dd><a href="Repairs2.html" target="voiceList">维修管理</a></dd>
+                        <dd><a href="Pre.jsp" target="voiceList">预约管理</a></dd>
+                        <dd><a href="mt.jsp" target="voiceList">维修管理</a></dd>
 
 
                     </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a href="Service.jsp" target="voiceList">服务管理</a>
+
                 </li>
                 <li class="layui-nav-item">
                     <a href="Mesage.html" target="voiceList">留言管理</a>
@@ -134,8 +123,7 @@
 
 
     function upd() {
-
-
+        var name=$("#a").val();
         layui.use('form', function(){
             var layer = layui.layer;
             layer.open({
@@ -144,14 +132,11 @@
 
                 area: ['30%', '60%'],
                 shadeClose: false, //点击遮罩关闭
-                content: 'Sub/user_upd.jsp?name='+document.getElementById('a').innerText
-
-
+                content: 'Sub_View/Admin_upd.html?name='+name
             })
         });
     }
     function add() {
-
 
         layui.use('form', function(){
             var layer = layui.layer;
@@ -161,11 +146,24 @@
 
                 area: ['30%', '60%'],
                 shadeClose: false, //点击遮罩关闭
-                content: 'Sub/user_add.jsp'
-
-
+                content: 'Sub_View/Admin_add.html'
             })
         });
+    }
+</script>
+
+
+<script>
+
+    var params= document.cookie;
+    var pa = params.split("&");
+    var s = new Object();
+    for(var i = 0; i < pa.length; i ++){
+        s[pa[i].split(":")[0]] = pa[i].split(":")[1];
+    }
+    document.getElementById("adminName").innerText = s.adminName;
+    if(s.adminName==null || s.adminName == undefined){
+        window.location.href="../index1.html";
     }
 </script>
 
