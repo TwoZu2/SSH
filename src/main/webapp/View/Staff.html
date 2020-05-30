@@ -123,8 +123,8 @@
         var $ = layui.jquery,
             form = layui.form,
             table = layui.table;
-        f();
-    //++++++++++++++++++++
+        get();
+        //++++++++++++++++++++
         table.render({
             elem: '#currentTableId',
             //请求地址
@@ -262,12 +262,28 @@
     });
 </script>
 <script>
-    function f() {
-        alter(2)
+    layui.use('form', function () {
+        alert("执行")
+        get();
+    })
+    function get() {
+        $.ajax({url:'../../Staff_find',
+            type:"post",
+            async:true,
+            dataType:"json",
+            error:function(){
+            },
+            data: {"page":1,"limit":99999},
+            success:function(data){
                 var html = '';
-                html+="<option value='100'>模拟数据</option>"
+                $.each(data.data, function(idx, obj) {
+                    html+="<option value='"+obj.locId+"'>"+obj.locName+"</option>";
+                })
                 $("#select").empty().append(html);
                 layui.form.render("select");
+            }
+        });
+        return false;
     }
 </script>
 </body>

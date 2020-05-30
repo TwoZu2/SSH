@@ -95,6 +95,7 @@
                         <label class="layui-form-label">显示状态</label>
                         <div class="layui-input-inline">
                             <select id="select" name="select">
+                                <option value="">全部</option>
                             </select>
                         </div>
                     </div>
@@ -257,25 +258,22 @@
     });
 </script>
 <script>
-    function getClassify1() {
-        $.ajax({url:'../../Department_find',
+    function getClassify1 (){
+        $.ajax({url:'../Department_find',
             type:"post",
             async:true,
             dataType:"json",
             error:function(){
             },
-
             data: {"page":1,"limit":99999},
-            success:function(data){
-                var html = '';
-                $.each(data.data, function(idx, obj) {
-                    html+="<option value='"+obj.depId+"'>"+obj.depName+"</option>";
-                })
-                $("#select").empty().append(html);
-                layui.form.render("select");
+            success:function(data1){
+                var str= data1.substring(data1.indexOf('['),data1.lastIndexOf(']')+1);
+                var html = ' <option name="-1">全部</option>';
+                $.each(JSON.parse(str), function(idx, obj) {
+                    $("#select").append("<option value='"+obj.depId+"'>"+obj.depName+"</option>");
+                });
             }
         });
-        return false;
     }
 </script>
 </body>
