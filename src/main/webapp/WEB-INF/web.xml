@@ -14,7 +14,6 @@
 <!--  &lt;!&ndash;Spring 的框架的核心监听器&ndash;&gt;-->
 <!--  &lt;!&ndash;来自spring-web依赖&ndash;&gt;-->
 <!--  &lt;!&ndash;spring配置文件的位置&ndash;&gt;-->
-
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
