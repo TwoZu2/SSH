@@ -1,7 +1,5 @@
 package cn.itcast.Utils.Impl;
 
-import cn.itcast.Entity.News;
-
 import cn.itcast.Utils.Util;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
@@ -9,11 +7,13 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.support.DaoSupport;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @Component
 public class UtilImpl extends HibernateDaoSupport implements Util {
@@ -114,4 +114,5 @@ public class UtilImpl extends HibernateDaoSupport implements Util {
             return false;
         }
     }
+
 }

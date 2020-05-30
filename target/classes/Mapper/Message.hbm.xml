@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.itcast.Entity.Message" table="message" schema="maintain">
+        <id name="megId">
+            <column name="MegId" sql-type="int(11)"/>
+            <generator class="increment"/>
+        </id>
+        <property name="megName">
+            <column name="MegName" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="megContent">
+            <column name="MegContent" sql-type="varchar(200)" length="200"/>
+        </property>
+        <property name="replyContent">
+            <column name="ReplyContent" sql-type="varchar(200)" length="200" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

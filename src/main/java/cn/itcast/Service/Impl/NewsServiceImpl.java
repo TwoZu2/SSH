@@ -3,13 +3,11 @@ package cn.itcast.Service.Impl;
 import cn.itcast.Dao.INewsDao;
 import cn.itcast.Entity.News;
 import cn.itcast.Service.INewsService;
-import cn.itcast.Utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Transactional

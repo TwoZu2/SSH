@@ -2,7 +2,6 @@ package cn.itcast.Dao;
 
 import cn.itcast.Entity.News;
 
-import java.util.List;
 import java.util.Map;
 
 public interface INewsDao {
