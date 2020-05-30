@@ -94,7 +94,8 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">部门名称</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="depName" autocomplete="off" class="layui-input">
+                                <select id="select" name="select">
+                                </select>
                             </div>
                         </div>
                         <!--                        <div class="layui-inline">-->
@@ -132,12 +133,10 @@
         </script>
 
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
-
         <script type="text/html" id="currentTableBar">
             <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
             <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
         </script>
-
     </div>
 </div>
 <script src="../resources/layui/layui.js" charset="utf-8"></script>
@@ -146,6 +145,8 @@
         var $ = layui.jquery,
             form = layui.form,
             table = layui.table;
+
+        getClassify1();
         //++++++++++++++++++++
         table.render({
             elem: '#currentTableId',
@@ -168,6 +169,25 @@
             limit: 5,
             page: true,
             skin: 'line'
+        });
+        form.on('submit(data-search-btn)', function (data) {
+            //获取输入的数据(模糊查询的值)
+            var result = data.field.locName;
+            // layer.alert(result, {
+            //     title: '最终的搜索信息'
+            // });
+            //执行搜索重载(等于在执行一次上面+++++++++++的方法,不过会带上 result这个值,
+            // 这个值我们指定了name:locName ,跟实体类属性对应，所以会通过模型驱动封装到实体类 )
+            table.reload('currentTableId', {
+                page: {
+                    curr: 1
+                }
+                , where: {
+                    "depName": result
+                }
+            }, 'data');
+
+            return false;
         });
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
@@ -261,6 +281,27 @@
 
     });
 </script>
+<script>
+    function getClassify1() {
+        $.ajax({url:'Department_find',
+            type:"post",
+            async:true,
+            dataType:"json",
+            error:function(){
+            },
 
+            data: {"page":1,"limit":99999},
+            success:function(data){
+                var html = '<option value="">全部</option>';
+                $.each(data.data, function(idx, obj) {
+                    html+="<option value='"+obj.depId+"'>"+obj.depName+"</option>";
+                })
+                $("#select").empty().append(html);
+                layui.form.render("select");
+            }
+        });
+        return false;
+    }
+</script>
 </body>
 </html>
