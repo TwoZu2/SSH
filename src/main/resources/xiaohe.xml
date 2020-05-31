@@ -46,5 +46,12 @@
             </result>
             <allowed-methods>delete,update,save,findService</allowed-methods>
         </action>
+
+        <action name="Release_*" class="releaseController" method="{1}">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+            <allowed-methods>delete,update,save,find</allowed-methods>
+        </action>
     </package>
 </struts>

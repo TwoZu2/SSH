@@ -1,17 +1,18 @@
 package cn.itcast.Dao.Impl;
 
-import cn.itcast.Dao.INewsDao;
-import cn.itcast.Entity.News;
+import cn.itcast.Dao.IReleaseDao;
+import cn.itcast.Entity.Recruitment;
 import cn.itcast.Utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
-
 @Repository
-public class NewsDaoImpl implements INewsDao {
-     @Autowired
+public class ReleaseDaoImpl implements IReleaseDao {
+
+    @Autowired
     Util util;
+
     @Override
     public Map FindAll(Class c, int page, int no) {
         return util.FindAll(c,page,no);
@@ -23,17 +24,18 @@ public class NewsDaoImpl implements INewsDao {
     }
 
     @Override
-    public boolean save(News news) {
-        return util.SaveOrUpdate(news);
+    public boolean save(Recruitment recruitment) {
+        return util.SaveOrUpdate(recruitment);
     }
 
     @Override
-    public boolean UpdateById(News news) {
-        return util.SaveOrUpdate(news);
+    public boolean UpdateById(Recruitment recruitment) {
+
+        return util.SaveOrUpdate(recruitment);
     }
 
     @Override
-    public boolean DeleteById(News news) {
-        return util.DeleteByID(news);
+    public boolean DeleteById(Recruitment recruitment) {
+        return util.DeleteByID(recruitment);
     }
 }

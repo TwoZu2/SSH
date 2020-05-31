@@ -20,8 +20,8 @@ public class NewsControl extends ActionSupport implements ModelDriven<News> {
     @Autowired
     INewsService iNewsService;
 
-        @Autowired
-        private News news;
+    @Autowired
+    private News news;
 
         private String page;
         private String limit;

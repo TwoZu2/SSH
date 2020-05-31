@@ -1,8 +1,8 @@
 package cn.itcast.Service.Impl;
 
-import cn.itcast.Dao.INewsDao;
-import cn.itcast.Entity.News;
-import cn.itcast.Service.INewsService;
+import cn.itcast.Dao.IReleaseDao;
+import cn.itcast.Entity.Recruitment;
+import cn.itcast.Service.IReleaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,15 +12,16 @@ import java.util.Map;
 
 @Transactional
 @Service
-public class NewsServiceImpl implements INewsService {
+public class ReleaseServiceImpl implements IReleaseService {
     @Autowired
-   INewsDao iNewsDao;
+    IReleaseDao releaseDao;
+
     @Override
-    public Map FindAll(News news,int page,int limit) {
+    public Map FindAll(Recruitment recruitment, int page, int limit) {
         //计算分页查询
         page--;
         page *= limit;
-        Map map=iNewsDao.FindAll(news.getClass(),page,limit);
+        Map map=releaseDao.FindAll(recruitment.getClass(),page,limit);
         //设置返回的json 格式 (layui 硬性要求)
         Map map1 = new HashMap();
         map1.put("code",0);
@@ -32,13 +33,13 @@ public class NewsServiceImpl implements INewsService {
     }
 
     @Override
-    public Map FindLike(News news, int page, int limit) {
+    public Map FindLike(Recruitment recruitment, int page, int limit) {
         page--;
         page *= limit;
         Map m = new HashMap();
-        m.put("newTitle",news.getNewTitle());
+        m.put("retNUm",recruitment.getRetNum());
 
-        Map map=iNewsDao.FindLike(news.getClass(),m,page,limit);
+        Map map=releaseDao.FindLike(recruitment.getClass(),m,page,limit);
         Map map1 = new HashMap();
         map1.put("code",0);
         map1.put("msg","");
@@ -48,16 +49,17 @@ public class NewsServiceImpl implements INewsService {
     }
 
     @Override
-    public boolean save(News news) {
+    public boolean save(Recruitment recruitment) {
+        return releaseDao.save(recruitment);
+    }
 
-        return iNewsDao.save(news);
-    }
     @Override
-    public boolean UpdateById(News news) {
-        return iNewsDao.UpdateById(news);
+    public boolean UpdateById(Recruitment recruitment) {
+        return releaseDao.UpdateById(recruitment);
     }
+
     @Override
-    public boolean DeleteById(News news) {
-        return iNewsDao.DeleteById(news);
+    public boolean DeleteById(Recruitment recruitment) {
+        return releaseDao.DeleteById(recruitment);
     }
 }
