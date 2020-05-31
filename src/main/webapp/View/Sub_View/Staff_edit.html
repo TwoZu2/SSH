@@ -177,11 +177,9 @@
             $ = layui.$;
         getClassify1();
         //添加部门
-        document.getElementById("postionId").value = "1";
+
         form.on('select()', function(s) {
                 document.getElementById("postionId").value = s.value;
-        });
-
         //监听提交
         form.on('submit(saveBtn)', function (data) {
             var index = layer.alert("确认修改" +
@@ -264,7 +262,9 @@
     document.getElementById("empAddress").value = s.empAddress;
     document.getElementById("empPhone").value = s.empPhone;
     document.getElementById("empIdentity").value = s.empIdentity;
+
     var num = s.postionId;
+    document.getElementById("postionId").value = num;
     $("#select>option:eq('"+num+"')").attr("selected","selected");
 </script>
 </body>

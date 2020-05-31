@@ -97,6 +97,7 @@ public class DepartmentController  extends  ActionSupport implements ModelDriven
     }
     public String  find(){
         System.out.println("find");
+        System.out.println("TTTTTTTTTTTTTTT");
         System.out.println(department.getDepName());
         //判断是否模糊查询
         if(department.getDepName() !=null&&department.getDepName().length()>0){

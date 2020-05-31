@@ -1,7 +1,9 @@
 package cn.itcast.Entity;
 
-import java.sql.Timestamp;
+import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
+@Component
 public class Apply {
     private int apyId;
     private String apyPostion;

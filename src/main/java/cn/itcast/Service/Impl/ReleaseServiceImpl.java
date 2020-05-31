@@ -37,7 +37,7 @@ public class ReleaseServiceImpl implements IReleaseService {
         page--;
         page *= limit;
         Map m = new HashMap();
-        m.put("retNUm",recruitment.getRetNum());
+        m.put("retPostion",recruitment.getRetPostion());
 
         Map map=releaseDao.FindLike(recruitment.getClass(),m,page,limit);
         Map map1 = new HashMap();
@@ -47,7 +47,6 @@ public class ReleaseServiceImpl implements IReleaseService {
         map1.put("data",map.get("data"));
         return map1;
     }
-
     @Override
     public boolean save(Recruitment recruitment) {
         return releaseDao.save(recruitment);

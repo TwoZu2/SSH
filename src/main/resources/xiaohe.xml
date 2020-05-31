@@ -53,5 +53,11 @@
             </result>
             <allowed-methods>delete,update,save,find</allowed-methods>
         </action>
+        <action name="Apply_*" class="applyController" method="{1}">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+            <allowed-methods>delete,update,save,find</allowed-methods>
+        </action>
     </package>
 </struts>

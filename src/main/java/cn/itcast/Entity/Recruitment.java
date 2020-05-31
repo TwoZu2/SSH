@@ -123,4 +123,19 @@ public class Recruitment {
         result = 31 * result + (endTime != null ? endTime.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Recruitment{" +
+                "retId=" + retId +
+                ", retDepartment='" + retDepartment + '\'' +
+                ", retPostion='" + retPostion + '\'' +
+                ", retText='" + retText + '\'' +
+                ", retDemand='" + retDemand + '\'' +
+                ", retNum=" + retNum +
+                ", workPlace='" + workPlace + '\'' +
+                ", beginTime=" + beginTime +
+                ", endTime=" + endTime +
+                '}';
+    }
 }
