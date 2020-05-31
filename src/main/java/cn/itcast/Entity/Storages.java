@@ -1,7 +1,11 @@
 package cn.itcast.Entity;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.Timestamp;
 
+//入库表
+@Component
 public class Storages {
     private int stoId;
     private String userName;
@@ -73,5 +77,16 @@ public class Storages {
         result = 31 * result + (stoName != null ? stoName.hashCode() : 0);
         result = 31 * result + stoNumber;
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Storages{" +
+                "stoId=" + stoId +
+                ", userName='" + userName + '\'' +
+                ", stoTime=" + stoTime +
+                ", stoName='" + stoName + '\'' +
+                ", stoNumber=" + stoNumber +
+                '}';
     }
 }

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="lang">
+<head>
+    <meta charset="utf-8">
+    <title>库存管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="../resources/layui/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="../resources/layui/css/layui.css" media="all">
+    <script src="../resources/layui/layui.js" charset="utf-8"></script>
+<body>
+<table class="layui-hide" id="inventoryTable" lay-filter="test"></table>
+
+<script type="text/html" id="toolbarDemo1">
+    <input class="layui-btn" type="button"  value="添加"  onclick="tian()" id="btn-add" style="margin-left:3%"/>
+    <input class="layui-input" id="sousuo" style="width: 10%;float: left;margin-left: 1%">
+    <input class="layui-btn" type="button" lay-event="aaa" value="搜索" id="btn-sou"  onclick="dddd()" style="width: 5%;float: left;margin-left: 1%"/>
+
+</script>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+
+<script type="text/javascript">
+
+
+    function dddd() {
+        var table = layui.table;
+
+        var name = $('#sousuo').val();
+
+        table.render({
+            elem: '#inventoryTable'
+
+            , url: '../ServletShow_ity?name='+name
+            , even: true
+
+            , request: {
+                pageName: 'page' //页码的参数名称，默认：page
+                , limitName: 'limit' //每页数据量的参数名，默认：limit
+            }
+
+            , toolbar: '#toolbarDemo1'
+
+            , title: '用户数据表'
+
+            , limit: 12
+            , cols: [[
+
+
+                {field: 'ityId', title: '序号', width:'7%',  sort: true,align: "center"}
+                , {field: 'ityName', title: '配件名称', width: '10%',align: "center"}
+                , {field: 'ityNumber', title: '配件数量', width:'10%',sort: true,align: "center"}
+                , {field: 'ityBrand', title: '品牌', width: '10%',align: "center"}
+                , {field: 'purchasePrice', title: '进价', width: '7%',align: "center"}
+                , {field: 'ityModels', title: '车型', width: '8%',align: "center"}
+                , {field: 'ityType', title: '配件型号', width: '8%',align: "center"}
+                , {field: 'outPrice', title: '售价', width: '5%',align: "center"}
+                , {field: 'ityRole', title: '作用', width: '10%',align: "center"}
+
+
+
+                , {fixed: 'right', title: '操作',width: '25%', toolbar: '#barDemo',align:"center"}
+
+            ]]
+
+            , page: true
+        });
+    }
+    function tian(){
+        layer.open({
+            type: 2,
+            title: '商品添加',
+
+            area: ['50%', '90%'],
+            shadeClose: false, //点击遮罩关闭
+            content: 'Sub_View/Inventory_add.html'
+
+        });
+
+    }
+    layui.use('table',function () {
+        var table = layui.table;
+        table.render({
+            elem: '#inventoryTable'
+
+            , url: '../Inventory_findAll'
+            , even: true
+
+            , request: {
+                pageName: 'page' //页码的参数名称，默认：page
+                , limitName: 'limit' //每页数据量的参数名，默认：limit
+            }
+
+            , toolbar: '#toolbarDemo1'
+
+            , title: '用户数据表'
+
+            , limit: 12
+            , cols: [[
+
+
+                {field: 'ityId', title: '序号', width:'7%',  sort: true,align: "center"}
+                , {field: 'ityName', title: '配件名称', width: '10%',align: "center"}
+                , {field: 'ityNumber', title: '配件数量', width:'10%',sort: true,align: "center"}
+                , {field: 'ityBrand', title: '品牌', width: '10%',align: "center"}
+                , {field: 'purchasePrice', title: '进价', width: '7%',align: "center"}
+                , {field: 'ityModels', title: '车型', width: '8%',align: "center"}
+                , {field: 'ityType', title: '配件型号', width: '8%',align: "center"}
+                , {field: 'outPrice', title: '售价', width: '5%',align: "center"}
+                , {field: 'ityRole', title: '作用', width: '20%',align: "center"}
+
+
+
+                , {fixed: 'right', title: '操作',width: '15%', toolbar: '#barDemo',align:"center"}
+
+            ]]
+
+            , page: true
+        });
+
+
+
+
+        table.on('tool(test)', function (obj) {
+            //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+            var data = obj.data; //获得当前行数据
+            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            var tr = obj.tr; //获得当前行 tr 的DOM对象
+            var brand = data.ItyBrand;
+            var price = data.PurchasePrice;
+            var modle = data.ItyModels;
+            var type  = data.ItyType;
+            var outpeice = data.OutPrice;
+            var role = data.ItyRole;
+            document.cookie="ityId:"+data.ityId+"&ityName:"+data.ityName+"&ityNumber:"+data.ityNumber+"&ityBrand:"+data.ityBrand+"&purchasePrice:"+data.purchasePrice+"&ityModels:"+data.ityModels+"&ityType:"+data.ityType+"&outPrice:"+data.outPrice+"&ityRole:"+data.ityRole;
+            if (layEvent === 'edit') {
+                var name= data.ItyRole;
+
+                if(brand==null){
+                    brand="";
+                }
+                if(price==null){
+                    price="";
+                }
+                if(modle==null){
+                    modle="";
+                }
+                if(type==null){
+                    type="";
+                }
+                if(outpeice==null){
+                    outpeice="";
+                }
+                if(role==null){
+                    role="";
+                }
+                layer.open(
+                    {
+                        type: 2,
+                        title: '编辑页面',
+                        skin: 'layui-layer-molv',
+                        shadeClose: false,
+                        shade: 0.8,
+                        area: ['880px', '550px'],
+                        content: 'Sub_View/Inventory_edit.html',//跳转的页面
+
+                        cancel: function (index) {
+                            $(".layui-laypage-btn").click();//这里用于关闭Open时触发回调函数  刷新父页面数据  一定要引入Jquery
+                        }
+                    });
+                /*  注：在这里我不就做修改界面了
+                  这里这只是一个弹出框
+                  弹出你的修改页面
+                  Content中你自定义自己的页面路径并传参数*/
+            } if (layEvent == 'del')//删除数据
+            {
+                /*  删除数据在这里可以使用Ajax异步
+                  就和平常使用一样简单*/
+                /*  删除数据在这里可以使用Ajax异步
+                 就和平常使用一样简单*/
+                layer.confirm('您确定删除id：' +data.ityId+ '的数据吗？', function (index) {
+
+                    //
+                    // $.post("../Servletdpdel", {id: data.DepId}, function (ret) {
+                    //
+                    //     if (ret === "1") {//删除成功，刷新当前页表格
+                    //         layer.msg("成功",{icon: 1, time: 1500}, function () {
+                    //             obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                    //             layer.close(index);
+                    //              $(".layui-laypage-btn").click();//点击分页刷新当前页
+                    //         });
+                    //     } else if (ret === "-1") {  //删除失败
+                    //         layer.alert(ret.msg, {icon: 2}, function () {
+                    //             layer.close(index);
+                    //             $(".layui-laypage-btn").click();
+                    //             window.location.reload();
+                    //         });
+                    //     }
+                    // });
+
+                    $.ajax({
+                        url: "../Inventory_delete",    // 提交到controller的url路径
+                        type: "post",    // 提交方式
+                        data: {"ityId":data.ityId},  // data为String类型，必须为 Key/Value 格式。
+                        // 服务器端返回的数据类型
+                        success: function (data) {
+                            // 请求成功后的回调函数，其中的参数data为controller返回的map,也就是说,@ResponseBody将返回的map转化为JSON格式的数据，然后通过data这个参数取JSON数据中的值
+                            if(data.msg==="1"){
+                                layer.msg("成功",{icon: 1, time: 1500}, function () {
+                                    obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                                    layer.close(index);
+                                    $(".layui-laypage-btn").click();//点击分页刷新当前页
+                                });
+                            }else {
+                                layer.alert("删除失败", {icon: 2,time:1500}, function () {
+                                    layer.close(index);
+                                    $(".layui-laypage-btn").click();
+                                    // window.location.reload();  刷新父窗口
+                                });
+                            }
+                        },
+                    });
+
+
+                });
+            }
+        });
+    });
+
+</script>
+
+<script>
+    $(function () {
+        var table = layui.table;
+        //监听工具条 ----------------------------------------------- ENd-----------------------------------------------------------        });
+
+    })
+</script>
+
+</body>
+</html>
