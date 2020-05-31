@@ -48,4 +48,5 @@
         </action>
     </package>
     <include file="xiaohe.xml"/>
+    <include file="aofei.xml"/>
 </struts>
