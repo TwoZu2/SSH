@@ -94,6 +94,9 @@ public class PositionController extends ActionSupport implements ModelDriven<Loc
         System.out.println(limit);
         System.out.println(location.getDeparId());
         //判断是否模糊查询
+        if(Integer.parseInt(limit)>999){
+            location.setDeparId(null);
+        }
         if(location.getDeparId() != null && location.getDeparId().length()>0){
             map= positionService.findLike(location,Integer.parseInt(page),Integer.parseInt(limit));
             return "success";
