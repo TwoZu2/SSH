@@ -33,18 +33,19 @@
             </li>
         </ul>-->
 
+
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
-                <a href="javascript:;" id="a">
+                <a href="javascript:;" id="adminNameIMG">
                     <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                    ${param.name}
+                    <label id="adminName"></label>
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="../index.jsp">退出</a></li>
+            <li class="layui-nav-item"><a href="../index.html">退出</a></li>
         </ul>
     </div>
 
@@ -72,31 +73,30 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;">招聘管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="Release.jsp" target="voiceList">发布需求</a></dd>
-                        <dd><a href="Application.jsp" target="voiceList">应聘管理</a></dd>
+                        <dd><a href="Release.html" target="voiceList">发布需求</a></dd>
+                        <dd><a href="Application.html" target="voiceList">应聘管理</a></dd>
 
                     </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">库存管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="enter.jsp" target="voiceList">入库管理</a></dd>
-                        <dd><a href="out.jsp" target="voiceList">出库管理</a></dd>
-                        <dd><a href="inventory.jsp" target="voiceList">库存管理</a></dd>
+                        <dd><a href="Storages.html" target="voiceList">入库管理</a></dd>
+                        <dd><a href="Selling.html" target="voiceList">出库管理</a></dd>
+                        <dd><a href="Inventory.html" target="voiceList">库存管理</a></dd>
 
                     </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">订单管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="AppointMent.html" target="voiceList">预约管理</a></dd>
-                        <dd><a href="Repairs.html" target="voiceList">维修管理</a></dd>
-
-
+                        <dd><a href="Pre.jsp" target="voiceList">预约管理</a></dd>
+                        <dd><a href="mt.jsp" target="voiceList">维修管理</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="Service.jsp" target="voiceList">服务管理</a>
+                    <a href="Service.html" target="voiceList">服务管理</a>
+
                 </li>
                 <li class="layui-nav-item">
                     <a href="Mesage.html" target="voiceList">留言管理</a>
@@ -104,20 +104,16 @@
                 </li>
                 <li class="layui-nav-item">
                     <a href="News.html" target="voiceList">新闻管理</a>
-
                 </li>
             </ul>
         </div>
     </div>
-
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <div style="padding: 15px; ">
 
             <iframe class="layadmin-iframe ifrem_voice" src="Department.html" width="100%" height="600px"  name="voiceList" frameborder="0" scrolling="off" ></iframe>
-
         </div>
-
     </div>
 
     <div class="layui-footer">
@@ -134,8 +130,7 @@
 
 
     function upd() {
-
-
+        var name=$("#a").val();
         layui.use('form', function(){
             var layer = layui.layer;
             layer.open({
@@ -144,14 +139,11 @@
 
                 area: ['30%', '60%'],
                 shadeClose: false, //点击遮罩关闭
-                content: 'Sub/user_upd.jsp?name='+document.getElementById('a').innerText
-
-
+                content: 'Sub_View/Admin_upd.html?name='+name
             })
         });
     }
     function add() {
-
 
         layui.use('form', function(){
             var layer = layui.layer;
@@ -161,13 +153,27 @@
 
                 area: ['30%', '60%'],
                 shadeClose: false, //点击遮罩关闭
-                content: 'Sub/user_add.jsp'
-
+                content: 'Sub_View/Admin_add.html'
 
             })
         });
     }
 </script>
 
+
+<script>
+
+    var params= document.cookie;
+    var pa = params.split("&");
+    var s = new Object();
+    for(var i = 0; i < pa.length; i ++){
+        s[pa[i].split(":")[0]] = pa[i].split(":")[1];
+    }
+    document.getElementById("adminName").innerText = s.adminName;
+
+    if(s.adminName==null || s.adminName == undefined){
+       // window.location.href="../index.html";
+    }
+</script>
 </body>
 </html>

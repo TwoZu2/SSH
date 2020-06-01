@@ -1,7 +1,10 @@
 package cn.itcast.Entity;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.Timestamp;
 
+@Component
 public class Selling {
     private int selId;
     private String userName;
@@ -86,4 +89,18 @@ public class Selling {
         result = 31 * result + selNumber;
         return result;
     }
+
+
+    @Override
+    public String toString() {
+        return "Selling{" +
+                "selId=" + selId +
+                ", userName='" + userName + '\'' +
+                ", sellDescribe='" + sellDescribe + '\'' +
+                ", selTime=" + selTime +
+                ", selName='" + selName + '\'' +
+                ", selNumber=" + selNumber +
+                '}';
+    }
+
 }

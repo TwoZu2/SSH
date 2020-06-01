@@ -18,13 +18,15 @@
 
             <allowed-methods>delete,update,save,findUser</allowed-methods>
         </action>
+
+
         <action name="Mes_*" class="mesControl" method="{1}">
 
             <result type="json">
                 <param name="root">map</param>
             </result>
 
-            <allowed-methods>delete,update,save,findAll</allowed-methods>
+            <allowed-methods>delete,update,findAll</allowed-methods>
         </action>
 
         <action name="Appo_*" class="appoControl" method="{1}">
@@ -33,7 +35,7 @@
                 <param name="root">map</param>
             </result>
 
-            <allowed-methods>delete,update,save,findAll</allowed-methods>
+            <allowed-methods>delete,update,findAll</allowed-methods>
         </action>
 
         <action name="Rep_*" class="repControl" method="{1}">
@@ -42,8 +44,9 @@
                 <param name="root">map</param>
             </result>
 
-            <allowed-methods>delete,update,save,findAll</allowed-methods>
+            <allowed-methods>delete,update,findAll</allowed-methods>
         </action>
     </package>
     <include file="xiaohe.xml"/>
+    <include file="aofei.xml"/>
 </struts>

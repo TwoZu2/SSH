@@ -1,7 +1,11 @@
 package cn.itcast.Entity;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.Timestamp;
 
+
+@Component
 public class Recruitment {
     private int retId;
     private String retDepartment;
@@ -118,5 +122,20 @@ public class Recruitment {
         result = 31 * result + (beginTime != null ? beginTime.hashCode() : 0);
         result = 31 * result + (endTime != null ? endTime.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Recruitment{" +
+                "retId=" + retId +
+                ", retDepartment='" + retDepartment + '\'' +
+                ", retPostion='" + retPostion + '\'' +
+                ", retText='" + retText + '\'' +
+                ", retDemand='" + retDemand + '\'' +
+                ", retNum=" + retNum +
+                ", workPlace='" + workPlace + '\'' +
+                ", beginTime=" + beginTime +
+                ", endTime=" + endTime +
+                '}';
     }
 }

@@ -86,11 +86,21 @@
 </head>
 <body>
 <div class="layui-form layuimini-form">
+
     <div class="layui-form-item">
-        <label class="layui-form-label required">ID</label>
+        <label class="layui-form-label required">服务序号</label>
         <div class="layui-input-block">
-            <input type="text" id="newId" name="empId" lay-verify="required" readonly="readonly"   value="" class="layui-input">
-            <!--            <tip>填写自己管理账号的名称。</tip>-->
+            <input type="text" id="serId" name="serId" lay-verify="required" lay-reqtext="序号不能为空" placeholder="请输入序号" value="" class="layui-input">
+
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">服务名称</label>
+        <div class="layui-input-block">
+            <input type="text" id="serName" name="serName" lay-verify="required" lay-reqtext="服务名不能为空" placeholder="请输入服务名" value="" class="layui-input">
+
         </div>
     </div>
     <!--    <div class="layui-form-item">-->
@@ -100,70 +110,44 @@
     <!--            <input type="radio" name="sex" value="女" title="女">-->
     <!--        </div>-->
     <!--    </div>-->
-</div>
-<div class="layui-form-item">
-    <label class="layui-form-label">姓名</label>
-    <div class="layui-input-block">
-        <input type="text" value="" name="empName" id="empName" required  lay-verify="required" autocomplete="off" placeholder="请输入部门name" class="layui-input">
-    </div>
-</div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">服务价格</label>
+        <div class="layui-input-block">
 
-<div class="layui-form-item">
-    <label class="layui-form-label">性别</label>
-    <div class="layui-input-block">
-        男<input type="radio" name="empSex" checked="checked" value="男">
-        女<input type="radio" name="epmSex"  value="女">
-    </div>
-</div>
-<div class="layui-form-item">
-    <label class="layui-form-label">年龄</label>
+            <input type="number" id="serPrice" name="serPrice" lay-verify="required" lay-reqtext="价格不能为空" placeholder="请输入价格" value="" class="layui-input"></input>
 
-    <div class="layui-input-block">
-        <input type="text" value="" name="empAge" id="empAge" required  lay-verify="required" autocomplete="off" placeholder="请输入部门名称" class="layui-input">
-        <input type="text" value="" name="empAge" id="empAge" required  lay-verify="required" autocomplete="off" placeholder="请输入部门名称" class="layui-input">
+        </div>
     </div>
-</div>
-<div class="layui-form-item">
-    <label class="layui-form-label">地址</label>
-    <div class="layui-input-block">
-        <input type="text" value="" name="empAddress" id="empAddress" required  lay-verify="required" autocomplete="off" placeholder="请输入部门人数" class="layui-input">
-    </div>
-</div>
 
-<div class="layui-form-item">
-    <label class="layui-form-label">联系方式</label>
-    <div class="layui-input-block">
-        <input type="text" value="" name="empPhone" id="empPhone"  required  lay-verify="required" autocomplete="off" placeholder="请输入部门描述" class="layui-input">
-    </div>
-</div>
-<div class="layui-form-item" >
-    <label class="layui-form-label">入职时间</label>
-    <div class="layui-input-block">
-        <input type="date" name="empTime" id="empTime"
-               autocomplete="off" placeholder="请输入入职时间"  class="layui-input">
+    <div class="layui-form-item">
+        <label class="layui-form-label required">服务介绍</label>
+        <div class="layui-input-block">
 
+            <textarea id="serIntroduce" name="serIntroduce" lay-verify="required" lay-reqtext="介绍不能为空" placeholder="请输入介绍" value="" class="layui-input"></textarea>
+        </div>
     </div>
-</div>
-<div class="layui-form-item">
-    <label class="layui-form-label">身份证</label>
 
-    <div class="layui-input-block">
-        <input type="number" value="" name="empIdentity" id="empIdentity" required  lay-verify="required" autocomplete="off" placeholder="请输入身份证" class="layui-input">
+    <div class="layui-form-item">
+        <label class="layui-form-label required">服务类型</label>
+        <div class="layui-input-block">
+            <select name="serviceType" id="serviceType">
+                <option value="大">大类型</option>
+                <option value="小">小类型</option>
+            </select>
+        </div>
+
+    <!--    <div class="layui-form-item layui-form-text">-->
+    <!--        <label class="layui-form-label">备注信息</label>-->
+    <!--        <div class="layui-input-block">-->
+    <!--            <input type="time" name="newMessage" class="layui-textarea" placeholder="请输入备注信息"></input>-->
+    <!--        </div>-->
+    <!--    </div>-->
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
+        </div>
     </div>
-</div>
-
-<!--    <div class="layui-form-item layui-form-text">-->
-<!--        <label class="layui-form-label">备注信息</label>-->
-<!--        <div class="layui-input-block">-->
-<!--            <input type="time" name="newMessage" class="layui-textarea" placeholder="请输入备注信息"></input>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<div class="layui-form-item">
-    <div class="layui-input-block">
-        <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
-    </div>
-</div>
 </div>
 </div>
 
@@ -172,33 +156,41 @@
         var form = layui.form,
             layer = layui.layer,
             $ = layui.$;
-
         //监听提交
         form.on('submit(saveBtn)', function (data) {
+
             var index = layer.alert("确认修改?", {
                 title: '提示'
             }, function () {
+
                 $.ajax({
 
-                    url: "../../Staff_update",    // 提交到controller的url路径
+                    url: "../../Service_update",    // 提交到controller的url路径
                     type: "post",    // 提交方式
                     dataType: "json",
-                    data:{"empId":data.field.empId,"empName":data.field.empName,"empSex":data.field.empSex,"empAge":data.field.empAge,"empAddress":data.field.empAddress,"empPhone":data.field.empPhone,"empTime":data.field.empTime,"empIdentity":data.field.empIdentity}, // data为String类型，必须为 Key/Value 格式。 // data为String类型，必须为 Key/Value 格式。
+                        data:{"serId":data.field.serId,"serName":data.field.serName,"serPrice":data.field.serPrice,"serIntroduce":data.field.serIntroduce,"serviceType":data.field.serviceType}, // data为String类型，必须为 Key/Value 格式。
                     // 服务器端返回的数据类型
+
                     success: function (data) {
+
                         if(data.msg==="1"){
                             layer.msg("修改成功", {icon: 1,time:1000},function () {
                                 // 关闭弹出层
+
                                 layer.close(index);
+
                                 var iframeIndex = parent.layer.getFrameIndex(window.name);
                                 parent.layer.close(iframeIndex);
                                 parent.location.reload();
                             })
+
+
                         }
                         if(data.msg==="0"){
                             layer.msg("修改失败,请再试试吧!", {icon: 2,time:1000},function () {
                                 // 关闭弹出层
                                 layer.close(index);
+
                                 var iframeIndex = parent.layer.getFrameIndex(window.name);
                                 parent.layer.close(iframeIndex);
                                 parent.location.reload();
@@ -225,14 +217,13 @@
     for(var i = 0; i < pa.length; i ++){
         s[pa[i].split(":")[0]] = pa[i].split(":")[1];
     }
-    document.getElementById("empId").value =s.empId;
-    document.getElementById("empName").value = s.empName.substring(0,10);
-    document.getElementById("empSex").value = s.empSex;
-    document.getElementById("empAge").value = s.empAge;
-    document.getElementById("empAddress").value = s.empAddress;
-    document.getElementById("empPhone").value = s.empPhone;
-    document.getElementById("empTime").value = s.empTime;
-    document.getElementById("empIdentity").value = s.empIdentity;
+
+    document.getElementById("serId").value =s.serId;
+    document.getElementById("serName").value = s.serName
+    document.getElementById("serPrice").value = s.serPrice;
+    document.getElementById("serIntroduce").value = s.serIntroduce;
+    document.getElementById("serviceType").value =s.serviceType;
+
 
 
 </script>

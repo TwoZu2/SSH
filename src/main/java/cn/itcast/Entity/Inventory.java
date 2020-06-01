@@ -1,7 +1,11 @@
 package cn.itcast.Entity;
 
+import org.springframework.stereotype.Component;
+
 import java.math.BigDecimal;
 
+//库存
+@Component
 public class Inventory {
     private int ityId;
     private String ityName;
@@ -118,5 +122,20 @@ public class Inventory {
         result = 31 * result + (outPrice != null ? outPrice.hashCode() : 0);
         result = 31 * result + (ityRole != null ? ityRole.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Inventory{" +
+                "ityId=" + ityId +
+                ", ityName='" + ityName + '\'' +
+                ", ityNumber=" + ityNumber +
+                ", ityBrand='" + ityBrand + '\'' +
+                ", purchasePrice=" + purchasePrice +
+                ", ityModels='" + ityModels + '\'' +
+                ", ityType='" + ityType + '\'' +
+                ", outPrice=" + outPrice +
+                ", ityRole='" + ityRole + '\'' +
+                '}';
     }
 }

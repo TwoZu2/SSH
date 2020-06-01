@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="aofei" extends="json-default">
+        <action name="Selling_*" class="sellingController" method="{1}">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+            <allowed-methods>delete,edit,add,findAll,findItyName</allowed-methods>
+        </action>
+
+        <action name="Storages_*" class="storagesControl" method="{1}">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+            <allowed-methods>delete,update,add,findAll</allowed-methods>
+        </action>
+
+        <action name="Inventory_*" class="inventoryControl" method="{1}">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+            <allowed-methods>delete,update,add,findAll</allowed-methods>
+        </action>
+    </package>
+</struts>

@@ -116,8 +116,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">部门</label>
         <div class="layui-input-inline">
-            <select id="select" name="select">
-
+            <select id="select">
             </select>
         </div>
     </div>
@@ -148,11 +147,11 @@
             layer = layui.layer,
             $ = layui.$;
         getClassify1();
-        //添加部门
+        //添加部门 document.getElementById("deparId").value = s.value;
+        document.getElementById("deparId").value = "1";
         form.on('select()', function(s) {
             document.getElementById("deparId").value = s.value;
         });
-        document.getElementById("deparId").value = "1";
             //监听提交
             form.on('submit(saveBtn)', function (data) {
                 var index = layer.alert("确认修改" +
@@ -220,8 +219,6 @@
         });
         return false;
     }
-
-
     var params= document.cookie;
     var pa = params.split("&");
     var s = new Object();
@@ -229,10 +226,10 @@
         s[pa[i].split(":")[0]] = pa[i].split(":")[1];
     }
     document.getElementById("locId").value =s.locId;
-    document.getElementById("locName").value = s.locName.substring(0,10);
+    document.getElementById("locName").value = s.locName;
     document.getElementById("locText").value = s.locText;
-    document.getElementById("deparId").value = s.deparId;
     var num =s.deparId;
+    document.getElementById("deparId").value = num;
     $("#select>option:eq('"+num+"')").attr("selected","selected");
 </script>
 </body>

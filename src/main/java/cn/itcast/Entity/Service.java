@@ -1,7 +1,10 @@
 package cn.itcast.Entity;
 
+import org.springframework.stereotype.Component;
+
 import java.math.BigDecimal;
 
+@Component
 public class Service {
     private int serId;
     private String serName;
@@ -74,5 +77,16 @@ public class Service {
         result = 31 * result + (serIntroduce != null ? serIntroduce.hashCode() : 0);
         result = 31 * result + (serviceType != null ? serviceType.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Service{" +
+                "serId=" + serId +
+                ", serName='" + serName + '\'' +
+                ", serPrice=" + serPrice +
+                ", serIntroduce='" + serIntroduce + '\'' +
+                ", serviceType='" + serviceType + '\'' +
+                '}';
     }
 }
