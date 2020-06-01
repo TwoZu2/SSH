@@ -138,8 +138,10 @@
             var type  = data.ItyType;
             var outpeice = data.OutPrice;
             var role = data.ItyRole;
-            document.cookie="ityId:"+data.ityId+"&ityName:"+data.ityName+"&ityNumber:"+data.ityNumber+"&ityBrand:"+data.ityBrand+"&purchasePrice:"+data.purchasePrice+"&ityModels:"+data.ityModels+"&ityType:"+data.ityType+"&outPrice:"+data.outPrice+"&ityRole:"+data.ityRole;
+
             if (layEvent === 'edit') {
+                document.cookie="ityId:"+data.ityId+"&ityName:"+data.ityName+"&ityNumber:"+data.ityNumber+"&ityBrand:"+data.ityBrand+"&purchasePrice:"+data.purchasePrice+"&ityModels:"+data.ityModels+"&ityType:"+data.ityType+"&outPrice:"+data.outPrice+"&ityRole:"+data.ityRole;
+
                 var name= data.ItyRole;
 
                 if(brand==null){

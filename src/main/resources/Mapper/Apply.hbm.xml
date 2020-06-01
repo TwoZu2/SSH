@@ -11,6 +11,9 @@
         <property name="apyPostion">
             <column name="ApyPostion" sql-type="varchar(20)" length="20"/>
         </property>
+        <property name="locId">
+            <column name="LocId"/>
+        </property>
         <property name="apyName">
             <column name="ApyName" sql-type="varchar(30)" length="30"/>
         </property>
@@ -30,7 +33,7 @@
             <column name="ApyPhone" sql-type="varchar(20)" length="20"/>
         </property>
         <property name="apyIdentity">
-            <column name="ApyIdentity" sql-type="varchar(30)" length="30" not-null="true"/>
+            <column name="ApyIdentity" sql-type="varchar(30)" length="30"/>
         </property>
         <property name="empAddress">
             <column name="EmpAddress" sql-type="varchar(50)" length="50"/>

@@ -36,7 +36,12 @@ public class ApplyServiceImpl implements IApplyService {
         page--;
         page *= limit;
         Map m = new HashMap();
-        m.put("appPostion",apply.getApyPostion());
+        if(apply.getApyPostion()!=null&&apply.getApyPostion().length()>0) {
+            m.put("apyPostion",apply.getApyPostion());
+        }else {
+            m.put("apyName",apply.getApyName());
+        }
+
         Map map=applyDao.FindLike(apply.getClass(),m,page,limit);
         Map map1 = new HashMap();
         map1.put("code",0);

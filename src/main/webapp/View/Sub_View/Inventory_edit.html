@@ -192,7 +192,7 @@
             //             }
             //         }
             // });
-            alert("1");
+
 
             $.ajax({
                 url: "../../Inventory_update",    // 提交到controller的url路径
@@ -236,6 +236,7 @@
 
     var cookie=document.cookie;
     var str=cookie.split("&");
+
     var obj=new Object();
     for(var i=0;i<str.length;i++){
         obj[str[i].split(":")[0]]=str[i].split(":")[1];
@@ -248,6 +249,7 @@
     document.getElementById("ItyModels").value=obj.ityModels;
     document.getElementById("ItyType").value=obj.ityType;
     document.getElementById("OutPrice").value=obj.outPrice;
+
     document.getElementById("ItyRole").value=obj.ityRole;
 
 </script>

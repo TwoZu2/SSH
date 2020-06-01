@@ -92,6 +92,13 @@
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">姓名</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="aptName" autocomplete="off" class="layui-input">
+
+                                </div>
+                            </div>
                             <label class="layui-form-label">职位搜索</label>
                             <div class="layui-input-inline">
                                 <select id="select" name="select">
@@ -156,6 +163,7 @@
             }],
             cols: [[
                 {field: 'apyId', title: '序号', width: '5%', sort: true, align: "center"}
+                , {field: 'locId',hide: true,  sort: true, align: "center"}
                 , {field: 'apyPostion', title: '应聘职位', width: '10%', sort: true, align: "center"}
                 , {field: 'apyName', title: '姓名', width: '8%', sort: true, align: "center"}
                 , {field: 'apySex', title: '性别', width: '7%', align: "center"}
@@ -177,6 +185,7 @@
         form.on('select()', function(data){
             //获取输入的数据(条件查询)
             var result = data.value;
+            alert(result)
             //执行搜索重载(等于在执行一次上面+++++++++++的方法,不过会带上 result这个值,
             // 这个值我们指定了name:newTitle ,跟实体类属性对应，所以会通过模型驱动封装到实体类 )
             table.reload('currentTableId', {
@@ -189,7 +198,27 @@
             }, 'data');
             return false;
         });
+        form.on('submit(data-search-btn)', function (data) {
 
+            //获取输入的数据(模糊查询的值)
+            var result = data.field.aptName;
+            // layer.alert(result, {
+            //     title: '最终的搜索信息'
+            // });
+
+            //执行搜索重载(等于在执行一次上面+++++++++++的方法,不过会带上 result这个值,
+            // 这个值我们指定了name:newTitle ,跟实体类属性对应，所以会通过模型驱动封装到实体类 )
+            table.reload('currentTableId', {
+                page: {
+                    curr: 1
+                }
+                , where: {
+                    "apyName": result
+                }
+            }, 'data');
+
+            return false;
+        });
         /**
          * toolbar监听事件
          */
@@ -222,20 +251,42 @@
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
             //给打开的页面传值 (放入cookie)
-            document.cookie = "newId:" + data.newId + "&newTime:" + data.newTime + "&newTitle:"+data.newTitle +"&newMessage:"+data.newMessage;
+            /*获取当前时间*/
+            var time = new Date();
+            /*格式化日，如果小于9，则补0*/
+            var day = ("0" + time.getDate()).slice(-2);
+            /*格式化月，如果小于9，则补0*/
+            var month = ("0" + (time.getMonth() + 1)).slice(-2);
+            /*拼接日期*/
+            var today = time.getFullYear() + "-" + (month) + "-" + (day);
+            /*完成赋值操作*/
 
             if (obj.event === 'by') {
                 layer.confirm('确定通过:'+data.apyName+"，是否成为为本公司实习生吗?", function (index) {
-                    document.getElementById("test").innerHTML = "已通过";
-                    layer.msg("交给人事部", {icon: 1, time: 1000}, function () {
-                        layer.close(index);
+                    $.post("../Staff_save", {"empName":data.apyName,"empSex":data.apySex,"empAge":data.empAge,"empAddress":data.empAddress,"empPhone":data.apyPhone,"empTime":today,"empIdentity":data.apyIdentity,"postionId":data.locId}, function (ret) {
+                        if (ret.msg === "1") {//删除成功，刷新当前页表格
+                            layer.msg("成功", {icon: 1, time: 1000}, function () {
+                                $.post("../Apply_delete", {apyId: data.apyId}, function (ret) {
+
+                                    obj.del();
+
+                                });
+
+                                layer.close(index);
+                            });
+                        } else {  //删除失败
+                            layer.alert("失败", {icon: 2,time: 1000}, function () {
+                                layer.close(index);
+
+                            });
+                        }
                     });
                 });
             } else if (obj.event === 'delete') {
 
 
-                layer.confirm('真的删除ID为:'+data.newId+"的数据吗?", function (index) {
-                    $.post("../", {newId: data.newId}, function (ret) {
+                layer.confirm('真的删除ID为:'+data.apyId+"的数据吗?", function (index) {
+                    $.post("../Apply_delete", {apyId: data.apyId}, function (ret) {
                         if (ret.msg === "1") {//删除成功，刷新当前页表格
                             layer.msg("删除成功", {icon: 1, time: 1000}, function () {
 

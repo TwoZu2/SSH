@@ -86,8 +86,9 @@ public class ApplyController extends ActionSupport implements ModelDriven<Apply>
     }
 
     public String find() throws IOException {
+        System.out.println(apply);
         //判断是否模糊查询
-        if(apply.getApyPostion()!=null&&apply.getApyPostion().length()>0){
+        if((apply.getApyPostion()!=null&&apply.getApyPostion().length()>0)||(apply.getApyName()!=null&&apply.getApyName().length()>0)){
 
             map= applyService.FindLike(apply,Integer.parseInt(page),Integer.parseInt(limit));
 
@@ -96,6 +97,7 @@ public class ApplyController extends ActionSupport implements ModelDriven<Apply>
 
 
         map = applyService.FindAll(apply,Integer.parseInt(page),Integer.parseInt(limit));
+        System.out.println(map);
         return "success";
     }
     @Override

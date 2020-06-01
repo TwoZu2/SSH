@@ -108,7 +108,7 @@
         //监听提交
         form.on('submit(saveBtn)', function (data) {
             //给打开的页面传值 (放入cookie)
-            document.cookie = "adminName:" + data.field.adminName ;
+            document.cookie = "&adminName:" + data.field.adminName ;
             $.ajax({
                 url: "Admin_find",    // 提交到controller的url路径
                 type: "post",    // 提交方式

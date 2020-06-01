@@ -7,6 +7,16 @@ import java.sql.Timestamp;
 public class Apply {
     private int apyId;
     private String apyPostion;
+
+    public int getLocId() {
+        return locId;
+    }
+
+    public void setLocId(int locId) {
+        this.locId = locId;
+    }
+
+    private int locId;
     private String apyName;
     private String apySex;
     private int empAge;
@@ -130,5 +140,22 @@ public class Apply {
         result = 31 * result + (apyIdentity != null ? apyIdentity.hashCode() : 0);
         result = 31 * result + (empAddress != null ? empAddress.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Apply{" +
+                "apyId=" + apyId +
+                ", apyPostion='" + apyPostion + '\'' +
+                ", locId=" + locId +
+                ", apyName='" + apyName + '\'' +
+                ", apySex='" + apySex + '\'' +
+                ", empAge=" + empAge +
+                ", apyTime=" + apyTime +
+                ", apyEducation='" + apyEducation + '\'' +
+                ", apyPhone='" + apyPhone + '\'' +
+                ", apyIdentity='" + apyIdentity + '\'' +
+                ", empAddress='" + empAddress + '\'' +
+                '}';
     }
 }
